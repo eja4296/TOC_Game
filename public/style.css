@@ -13,6 +13,7 @@ html {
 
 
 html, input {
+  overflow-y: auto;
   font-family:
     "HelveticaNeue-Light",
     "Helvetica Neue Light",
@@ -200,14 +201,15 @@ ul {
   width: 100%;
   float: left;
   height: 100px;
-  border: 1px solid blue;
+  border-top: 1px solid black;
+ 
 }
 
 #rightSide #dropdowns .secondDropdown{
   position: relative;
   width: 100%;
   float: left;
-  height: 400px;
+  height: 200px;
   border: 1px solid red;
   
 }
@@ -248,6 +250,7 @@ ul {
       width: auto;
       padding: 0;
       margin: 0;
+      z-index: -1;
       /* may have to make width:75% or something */
       
   }
@@ -293,6 +296,7 @@ ul {
     width: 80%;
     float: left;
   padding-left: 15px;
+  overflow-y: scroll;
   }
 
 #rightSide #dropdowns #vote #voteInformation{
@@ -336,7 +340,8 @@ ul {
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
-  
+  outline: none;
+  border: 1px solid black;
 }
 
 #rightSide #dropdowns #vote ul li .choice{
@@ -678,6 +683,35 @@ ul {
   #rightSide #title{
     font-size: 1em;
   }
+  
+  #rightSide #dropdowns .dropdownTitle{
+
+    font-size: 15px;
+  }
+  
+  #rightSide #dropdowns #event #eventTitle{
+    font-size: .75em;
+  }
+
+#rightSide #dropdowns #event #eventDescriptionTLDR{
+    font-size: .75em;
+  }
+
+#rightSide #dropdowns #vote #voteInformation{
+  font-size: .75em;
+}
+
+#rightSide #dropdowns #vote #voteTimer, #rightSide #dropdowns #vote #userVote, #rightSide #dropdowns #vote #userVoteWeight{
+  font-size: .75em;
+}
+
+#rightSide #dropdowns #vote #voteTimerNum, #rightSide #dropdowns #vote #userVoteChoice, #rightSide #dropdowns #vote #weight{
+  font-size: .75em;
+}
+  
+  #rightSide #dropdowns #vote ul li .choice{
+  font-size: .75em;
+}
   
   /*
    #rightSide #dropdowns .dropdown{
