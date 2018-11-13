@@ -359,7 +359,9 @@ ul {
   height: 75px;
   width: 10%;
 
-
+  outline: none;
+  border: 1px solid black;
+  border-right: none;
   background-image: url("media/dropdownIcon.svg");
   background-repeat: no-repeat;
   background-position: center; 
@@ -687,6 +689,13 @@ ul {
   #rightSide #dropdowns .dropdownTitle{
 
     font-size: 15px;
+  }
+  
+#rightSide #dropdowns #stats ul li img{
+      
+      height: 40px;
+
+      
   }
   
   #rightSide #dropdowns #event #eventTitle{
