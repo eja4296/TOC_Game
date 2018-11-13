@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimumscale=1.0, maximum-scale=1.0">
+  <title>Three of Coins</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Eagle+Lake|Quintessential|Uncial+Antiqua|UnifrakturMaguntia" rel="stylesheet">
+</head>
+<body>
+  <ul class="pages">
+    <li class="chat page">
+      
+      
+      
+      <div id="rightSide">
+        <div id="title">
+          Three of Coins
+        </div>
+        
+        <div id="dropdowns">
+          <div class="dropdown" id="stats">
+            <div class="dropdownTitle">Character Stats</div>
+            <ul>
+              <li class="stat"><img src="media/health.png" alt="Health"><div class="specificStat" id="health">40</div></li>
+              <li class="stat"><img src="media/strength.png" alt="Strength"><div class="specificStat"id="strength">5</div></li>
+              <li class="stat"><img src="media/intelligence.png" alt="Intelligence"><div class="specificStat" id="intelligence">5</div></li>
+              <li class="stat"><img src="media/charisma.png" alt="Charisma"><div class="specificStat" id="charisma">5</div></li>
+              <li class="stat"><img src="media/luck.png" alt="Luck"><div class="specificStat" id="luck">5</div></li>
+              <li class="stat"><img src="media/gold.png" alt="Gold"><div class="specificStat" id="gold">10</div></li>
+            </ul>
+            <button class="dropdownButton" id="statDropdownButton"> </button>
+          </div>
+          <div class="secondDropdown" id="secondStats">
+          
+          </div>
+          
+          <div class="dropdown" id="event">
+            <div class="dropdownTitle">Current Event</div>
+            <div id="eventImage">
+              <img id="eventPicture" src="media/magician.jpg" alt="Event Image">
+            </div>
+          
+            <div id="eventTitle">The Magiacian</div>
+            <div id="eventDescription">
+              
+            </div>
+            <div id="eventDescriptionTLDR">
+              The adventurer encounters a witch crafting a potion in a room populated with books.
+            </div>
+           <button class="dropdownButton" id="eventDropdownButton"> </button>
+          </div>
+          
+           <div class="secondDropdown" id="secondEvent">
+          
+          </div>
+          
+          <div class="dropdown" id="vote">
+            <div class="dropdownTitle">Vote Choice</div>
+            <div id="eventChoices">
+              
+              <div id="voteInformation">
+                <div id="voteTimer">
+                  Time: <div id="voteTimerNum">0</div>
+                </div>
+                <div id="userVote">
+                  Vote: <div id="userVoteChoice">_</div>
+                </div>
+
+                <div id="userVoteWeight">
+                 Weight: <div id="weight">1</div>
+                </div>
+                
+                </div>
+              
+              <ul>
+                <li ><button id="button0" value="Sword">Sword</button><div class="choice"><div id="swordChoiceTLDR">Attack</div></div></li>
+                <li ><button id="button1" value="Wand">Wand</button><div class="choice"><div id="wandChoiceTLDR">Invetigate</div></div></li>
+                <li ><button id="button2" value="Cup">Cup</button><div class="choice"><div id="cupChoiceTLDR">Inquire</div</div></li>
+                <li ><button id="button3" value="Coin">Coin</button><div class="choice"><div id="coinChoiceTLDR">Taste</div></div></li>
+
+              </ul>
+            </div>
+            <button class="dropdownButton" id="eventDropdownButton"> </button>
+          </div>
+            
+             <div class="secondDropdown" id="secondVote">
+          
+          </div>
+        
+        </div>
+        
+        
+        
+        
+        <div id="voteArea">
+          <div id="voteButtons">
+
+          </div>
+
+          <div id="userVote">
+            Your vote: <div id="userVoteChoice"></div>
+          </div>
+          <div id="totalVotes">
+            Votes counted: <div id="numOfUsersVoted">0/0</div>
+          </div>
+          <div id="userVoteWeight">
+            Your vote weight: <div id="weight">1</div>
+          </div>
+          <div id="finalVote">
+            Fate has decided you will use your: <div id="finalVoteChoice"></div>
+          </div>
+          <div id="submitResetVotes">
+            <button id="submitVotesButton">Submit Votes</button>
+            <button id="resetVotesButton">Reset Votes</button>
+          </div>
+          
+                    
+          <div id="allVotes">
+            Votes for Sword: 0
+            <br>Votes for Wand: 0
+            <br>Votes for Cup: 0
+            <br>Votes for Coin: 0
+          </div>
+          
+          <div id="players">
+            
+          </div>
+
+          
+        </div>
+      
+        
+      </div>
+      
+      <div id="leftSide">
+        <div class="chatArea">
+
+
+
+          <ul class="messages"></ul>
+        </div>
+
+        <input class="inputMessage" placeholder="Type here..."/>
+      
+      </div>
+      
+    </li>
+    <li class="login page">
+      <div id="welcome">
+          <h3 class="title">Welcome to</h3>
+          <h1 class="title" id="loginPageTitle">Three of Coins</h1>
+        </div>
+      <div class="form">
+        
+        <h3 class="title">Make a username:</h3>
+        <input class="usernameInput" type="text" maxlength="14" />
+      </div>
+    </li>
+  </ul>
+  
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+</body>
+</html>
