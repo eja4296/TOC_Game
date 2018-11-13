@@ -54,9 +54,9 @@ $(() => {
   const resetButton = document.querySelector('#resetVotesButton');
   
   const statDropdownButton = document.querySelector('#statDropdownButton');
-  let statDropdownActive = false;
   const eventDropdownButton = document.querySelector('#eventDropdownButton');
-  let eventDropdownActive = false;
+  const voteDropdownButton = document.querySelector('#voteDropdownButton');
+  
 
 
   //  const startButton = document.querySelector('#startButton');
@@ -350,30 +350,45 @@ $(() => {
   resetButton.addEventListener('click', resetVotes);
   
   const statDropdown = () => {
-    if(statDropdownActive){
+    
+    //statDropdownActive = !statDropdownActive;
+    if(document.querySelector("#secondStats").style.display == "block"){
       document.querySelector("#secondStats").style.display = "none";
-      statDropdownActive = false;
+
     }
     else{
       document.querySelector("#secondStats").style.display = "block";
-      statDropdownActive = true;
+
     }
   }
   
   statDropdownButton.addEventListener('click', statDropdown);
   
   const eventDropdown = () => {
-    if(eventDropdownActive){
+    if(document.querySelector("#secondEvent").style.display == "block"){
       document.querySelector("#secondEvent").style.display = "none";
-      eventDropdownActive = false;
+
     }
     else{
       document.querySelector("#secondEvent").style.display = "block";
-      eventDropdownActive = true;
+
     }
   }
   
   eventDropdownButton.addEventListener('click', eventDropdown);
+  
+  const voteDropdown = () => {
+    if(document.querySelector("#secondVote").style.display == "block"){
+      document.querySelector("#secondVote").style.display = "none";
+
+    }
+    else{
+      document.querySelector("#secondVote").style.display = "block";
+
+    }
+  }
+  
+  voteDropdownButton.addEventListener('click', voteDropdown);
   
   /*
   // Get votes function

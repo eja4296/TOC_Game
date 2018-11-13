@@ -214,7 +214,7 @@ ul {
 
 #rightSide #dropdowns .dropdownTitle{
     position: relative;
-    width: 95%;
+    width: 100%;
     float: left;
     text-align: center;
     height: 25px;
@@ -223,7 +223,7 @@ ul {
 
 #rightSide #dropdowns #stats ul{
     position: relative;
-    width: 95%;
+    width: 90%;
     float: left;
     text-align: center;
     font-size: 25px;
@@ -277,25 +277,27 @@ ul {
     position: relative;
     width: 10%;
     float: left;
-    left: 2.5%;
+   
   }
 
 #rightSide #dropdowns #event #eventTitle{
     position: relative;
-    width: 85%;
+    width: 80%;
     float: left;
   text-decoration: underline;
+  padding-left: 15px;
   }
 
 #rightSide #dropdowns #event #eventDescriptionTLDR{
     position: relative;
-    width: 85%;
+    width: 80%;
     float: left;
+  padding-left: 15px;
   }
 
 #rightSide #dropdowns #vote #voteInformation{
   position: relative;
-  width: 95%;
+  width: 90%;
   float: left;
   height: 25px;
 }
@@ -312,7 +314,7 @@ ul {
 
 #rightSide #dropdowns #vote ul{
   position: relative;
-  width: 95%;
+  width: 90%;
   float: left;
   height: 50px;
   padding: 0;
@@ -349,14 +351,18 @@ ul {
 
 
 #rightSide #dropdowns .dropdownButton{
-  height: 100px;
-  width: 5%;
+  height: 75px;
+  width: 10%;
 
 
   background-image: url("media/dropdownIcon.svg");
   background-repeat: no-repeat;
   background-position: center; 
   background-size: 15px;
+}
+
+#rightSide #dropdowns #secondStats, #rightSide #dropdowns #secondEvent, #rightSide #dropdowns #secondVote{
+  display: none;
 }
 
 
