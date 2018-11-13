@@ -209,8 +209,8 @@ ul {
   position: relative;
   width: 100%;
   float: left;
-  height: 200px;
-  border: 1px solid red;
+  height: auto;
+  
   
 }
 
@@ -297,6 +297,33 @@ ul {
     float: left;
   padding-left: 15px;
   overflow-y: scroll;
+  }
+
+#rightSide #dropdowns #secondEvent #secondEventImage img{
+    position: relative;
+    width: 100%;
+    float: left;
+    box-shadow: 1px 1px 3px black;
+    margin: 5px; 
+  }
+
+#rightSide #dropdowns #secondEvent #secondEventImage{
+    position: relative;
+    width: 23%;
+    float: left;
+   
+  }
+
+
+#rightSide #dropdowns #secondEvent #eventDescription{
+    position: relative;
+    width: 75%;
+    height: auto;
+    float: left;
+    overflow-y: scroll;
+   text-align: center;
+  font-style: italic;
+  padding: 10px;
   }
 
 #rightSide #dropdowns #vote #voteInformation{
@@ -694,7 +721,7 @@ ul {
 #rightSide #dropdowns #stats ul li img{
       
       height: 40px;
-
+      
       
   }
   
@@ -704,6 +731,29 @@ ul {
 
 #rightSide #dropdowns #event #eventDescriptionTLDR{
     font-size: .75em;
+  }
+  
+  #rightSide #dropdowns #secondEvent #secondEventImage img{
+    
+    width: 50%;
+    left: 25%;
+    
+    box-shadow: 1px 1px 3px black;
+    margin: 5px; 
+  }
+
+#rightSide #dropdowns #secondEvent #secondEventImage{
+    position: relative;
+    width: 100%;
+    float: left;
+   
+  }
+
+
+#rightSide #dropdowns #secondEvent #eventDescription{
+    position: relative;
+    width: 100%;
+
   }
 
 #rightSide #dropdowns #vote #voteInformation{

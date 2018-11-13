@@ -354,11 +354,13 @@ $(() => {
     //statDropdownActive = !statDropdownActive;
     if(document.querySelector("#secondStats").style.display == "block"){
       document.querySelector("#secondStats").style.display = "none";
-
+      statDropdownButton.style.border = "1px solid black";
+      statDropdownButton.style.borderRight = "none";
     }
     else{
       document.querySelector("#secondStats").style.display = "block";
-
+      statDropdownButton.style.border = "3px solid black";
+      statDropdownButton.style.borderRight = "none";
     }
   }
   
@@ -367,11 +369,14 @@ $(() => {
   const eventDropdown = () => {
     if(document.querySelector("#secondEvent").style.display == "block"){
       document.querySelector("#secondEvent").style.display = "none";
+      eventDropdownButton.style.border = "1px solid black";
+      eventDropdownButton.style.borderRight = "none";
 
     }
     else{
       document.querySelector("#secondEvent").style.display = "block";
-
+      eventDropdownButton.style.border = "3px solid black";
+      eventDropdownButton.style.borderRight = "none";
     }
   }
   
@@ -380,11 +385,14 @@ $(() => {
   const voteDropdown = () => {
     if(document.querySelector("#secondVote").style.display == "block"){
       document.querySelector("#secondVote").style.display = "none";
+      voteDropdownButton.style.border = "1px solid black";
+      voteDropdownButton.style.borderRight = "none";
 
     }
     else{
       document.querySelector("#secondVote").style.display = "block";
-
+      voteDropdownButton.style.border = "3px solid black";
+      voteDropdownButton.style.borderRight = "none";
     }
   }
   
