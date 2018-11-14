@@ -29,11 +29,12 @@
               <li class="stat"><img src="media/luck.png" alt="Luck"><div class="specificStat" id="luck">5</div></li>
               <li class="stat"><img src="media/gold.png" alt="Gold"><div class="specificStat" id="gold">10</div></li>
             </ul>
-            <button class="dropdownButton" id="statDropdownButton"> </button>
+            
           </div>
           <div class="secondDropdown" id="secondStats">
             Coming soon...
           </div>
+          <button class="dropdownButton" id="statDropdownButton"> </button>
           
           <div class="dropdown" id="event">
             <div class="dropdownTitle">Current Event</div>
@@ -44,9 +45,9 @@
             <div id="eventTitle">The Magiacian</div>
             
             <div id="eventDescriptionTLDR">
-              The adventurer encounters a witch crafting a potion in a room populated with books.
+              The adventurer encounters a witch crafting a potion in a room populated with books. What should you do?
             </div>
-           <button class="dropdownButton" id="eventDropdownButton"> </button>
+           
           </div>
           
            <div class="secondDropdown" id="secondEvent">
@@ -58,6 +59,7 @@
             </div>
               
           </div>
+          <button class="dropdownButton" id="eventDropdownButton"> </button>
           
           <div class="dropdown" id="vote">
             <div class="dropdownTitle">Vote Choice</div>
@@ -78,23 +80,40 @@
                 </div>
               
               <ul>
-                <li ><button id="button0" value="Sword">Sword</button><div class="choice"><div id="swordChoiceTLDR">Attack</div></div></li>
-                <li ><button id="button1" value="Wand">Wand</button><div class="choice"><div id="wandChoiceTLDR">Invetigate</div></div></li>
-                <li ><button id="button2" value="Cup">Cup</button><div class="choice"><div id="cupChoiceTLDR">Inquire</div</div></li>
-                <li ><button id="button3" value="Coin">Coin</button><div class="choice"><div id="coinChoiceTLDR">Taste</div></div></li>
+                <li ><div class="choice"><div id="swordChoiceTLDR">Attack</div></div><button id="button0" value="Sword">Sword</button></li>
+                <li ><div class="choice"><div id="wandChoiceTLDR">Investigate</div></div><button id="button1" value="Wand">Wand</button></li>
+                <li ><div class="choice"><div id="cupChoiceTLDR">Inquire</div</div><button id="button2" value="Cup">Cup</button></li>
+                <li ><div class="choice"><div id="coinChoiceTLDR">Taste</div></div><button id="button3" value="Coin">Coin</button></li>
 
               </ul>
             </div>
-            <button class="dropdownButton" id="voteDropdownButton"> </button>
+            
           </div>
             
              <div class="secondDropdown" id="secondVote">
-              Coming soon...
+              <ul>
+                <li id="secondSwordChoice">Use your <b>Sword</b> to: <b><div id="secondSwordChoiceTLDR">Attack. </div></b><div id="secondSwordChoiceDescription">This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.</div></li>
+                <li id="secondWandChoice">Use your <b>Wand</b> to: <b><div id="secondSwordChoiceTLDR">Investigate. </div></b><div id="secondWandChoiceDescription">We may be able to learn something useful from the books around the room, they may be worth taking a look at.</div></li>
+                <li id="secondCupChoice">Use your <b>Cup</b> to: <b><div id="secondSwordChoiceTLDR">Inquire. </div></b><div id="secondCupChoiceDescription">The witch may know something about this place we’re in, we should ask her some questions.</div></li>
+                <li id="secondCoinChoice">Use your <b>Coin</b> to: <b><div id="secondSwordChoiceTLDR">Taste. </div></b><div id="secondCoinChoiceDescription">That draught looks very enticing...should we take a sip?</div></li>
+              </ul>
           </div>
+            <button class="dropdownButton" id="voteDropdownButton"> </button>
         
+            <div class="dropdown" id="resolution">
+            <div class="dropdownTitle">Fate</div>
+              <div id="finalVote">
+                Fate has decided you will use your: <b><div id="finalVoteChoice">Sword</div></b>
+              </div>
+              <div id="resolutionDescription">The adventurer rushes up to the witch and in his haste knocks the cauldron of liquid and spills it on her! Enraged, she draws her staff and combat spellbook and prepares to fight.</div>
+              
+        </div>
+            <button class="dropdownButton" id="voteDropdownButton"> </button>
+            
         </div>
         
         
+        </div>
         
         
         <div id="voteArea">
@@ -102,18 +121,12 @@
 
           </div>
 
-          <div id="userVote">
-            Your vote: <div id="userVoteChoice"></div>
-          </div>
+ 
           <div id="totalVotes">
             Votes counted: <div id="numOfUsersVoted">0/0</div>
           </div>
-          <div id="userVoteWeight">
-            Your vote weight: <div id="weight">1</div>
-          </div>
-          <div id="finalVote">
-            Fate has decided you will use your: <div id="finalVoteChoice"></div>
-          </div>
+     
+          
           <div id="submitResetVotes">
             <button id="submitVotesButton">Submit Votes</button>
             <button id="resetVotesButton">Reset Votes</button>

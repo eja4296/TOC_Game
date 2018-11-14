@@ -200,8 +200,8 @@ ul {
   position: relative;
   width: 100%;
   float: left;
-  height: 100px;
-  border-top: 1px solid black;
+  height: 125px;
+  
  
 }
 
@@ -225,7 +225,7 @@ ul {
 
 #rightSide #dropdowns #stats ul{
     position: relative;
-    width: 90%;
+    width: 100%;
     float: left;
     text-align: center;
     font-size: 25px;
@@ -285,18 +285,21 @@ ul {
 
 #rightSide #dropdowns #event #eventTitle{
     position: relative;
-    width: 80%;
+    width: 90%;
     float: left;
-  text-decoration: underline;
-  padding-left: 15px;
+    text-decoration: underline;
+    padding-left: 15px;
+    height: 25px;
   }
 
 #rightSide #dropdowns #event #eventDescriptionTLDR{
     position: relative;
-    width: 80%;
+    width: 90%;
     float: left;
-  padding-left: 15px;
-  overflow-y: scroll;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-y: scroll;
+    height: 74px;
   }
 
 #rightSide #dropdowns #secondEvent #secondEventImage img{
@@ -317,20 +320,22 @@ ul {
 
 #rightSide #dropdowns #secondEvent #eventDescription{
     position: relative;
-    width: 75%;
+    width: 77%;
     height: auto;
     float: left;
     overflow-y: scroll;
-   text-align: center;
-  font-style: italic;
-  padding: 10px;
+    text-align: center;
+    font-style: italic;
+    padding: 10px;
+    margin-top: 5px;
   }
 
 #rightSide #dropdowns #vote #voteInformation{
   position: relative;
-  width: 90%;
+  width: 100%;
   float: left;
   height: 25px;
+  padding-left: 5px;
 }
 
 #rightSide #dropdowns #vote #voteTimer, #rightSide #dropdowns #vote #userVote, #rightSide #dropdowns #vote #userVoteWeight{
@@ -345,7 +350,7 @@ ul {
 
 #rightSide #dropdowns #vote ul{
   position: relative;
-  width: 90%;
+  width: 100%;
   float: left;
   height: 50px;
   padding: 0;
@@ -379,12 +384,67 @@ ul {
   text-align: center;
 }
 
+#rightSide #dropdowns #secondVote ul{
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+    padding-left: 5px;
+}
+
+#rightSide #dropdowns #secondVote ul li{
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+#rightSide #dropdowns #secondVote ul li div{
+  display: inline;
+   
+}
+
+#rightSide #resolution #finalVote{
+  position: relative;
+  width: 100%;
+  height: 25px;
+  float: left;
+  padding-left: 5px;
+  padding-right: 5px;
+  
+}
+
+#rightSide #resolution #finalVote #finalVoteChoice{
+  display: inline;
+  text-decoration: none;
+}
+
+#rightSide #resolution #resolutionDescription{
+  position: relative;
+  width: 100%;
+  float: left;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  overflow-y: scroll;
+  height: 74px;
+}
+
+#rightSide #dropdowns #secondVote ul #secondSwordChoiceDescription, #rightSide #dropdowns #secondVote ul #secondWandChoiceDescription, #rightSide #dropdowns #secondVote ul #secondCupChoiceDescription, #rightSide #dropdowns #secondVote ul #secondCoinChoiceDescription{
+  font-style: italic;
+   
+}
+
 
 
 
 #rightSide #dropdowns .dropdownButton{
-  height: 75px;
-  width: 10%;
+  height: 25px;
+  width: 100%;
 
   outline: none;
   border: 1px solid black;
@@ -761,16 +821,27 @@ ul {
 }
 
 #rightSide #dropdowns #vote #voteTimer, #rightSide #dropdowns #vote #userVote, #rightSide #dropdowns #vote #userVoteWeight{
-  font-size: .75em;
+  font-size: 1em;
 }
 
 #rightSide #dropdowns #vote #voteTimerNum, #rightSide #dropdowns #vote #userVoteChoice, #rightSide #dropdowns #vote #weight{
-  font-size: .75em;
+  font-size: 1em;
 }
   
   #rightSide #dropdowns #vote ul li .choice{
   font-size: .75em;
 }
+  
+  #rightSide #resolution #finalVote{
+  font-size: .75em;
+}
+
+
+
+#rightSide #resolution #resolutionDescription{
+  font-size: .75em;
+}
+
   
   /*
    #rightSide #dropdowns .dropdown{
