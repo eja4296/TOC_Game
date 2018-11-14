@@ -53,16 +53,18 @@ const fool = {
 
 
 const allMagicianEvents = [];
-/*
+
 const magician_Main = {
   title: 'The Magician',
   name: 'magician',
   type: 'voting',
-  flavorTextDescription: 'The adventurer enters a dimly lit and cramped room. The walls are lined with shelves of books, many of which display runes from a long lost ancient language. In the center of the room stands a large black cauldron, which has vapor rising from the top and makes a quiet simmering noise. On the side of the pot opposite to the adventurer is a witch dressed in mage’s robes, adding ingredients to the elixir and occasionally stirring it. Though her wrinkles and grey hair betray her age, she stands tall with dignity and you can see the vast amount of knowledge she’s gained over countless years (and perhaps centuries) in her eyes.',
-  abridgedDescription: 'The adventurer encounter a witch crafting a potion in a room populated with books.',
-  options: ['Use your Sword', 'Use your Wand', 'Use your Cup', 'Use your Coin'],
+  flavorTextDescription: 'The adventurer enters a dimly lit and cramped room. The walls are lined with shelves of books, many of which display runes from a long lost ancient language. In the center of the room stands a large black cauldron, which has vapor rising from the top and makes a quiet simmering noise. On the side of the pot opposite to the adventurer is an elven witch dressed in mage’s robes, adding ingredients to the elixir and occasionally stirring it. Though her wrinkles and grey hair betray her age, she stands tall with dignity and you can see the vast amount of knowledge she’s gained over countless years (and perhaps centuries) in her eyes.',
+  tldrDescription: 'The adventurer encounter a witch crafting a potion in a room populated with books.',
+  options: ['Attack', 'Investigate', 'Inquire', 'Taste'],
   optionsFlavor: ['This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.', 'We may be able to learn something useful from the books around the room, they may be worth taking a look at.', 'The witch may know something about this place we’re in, we should ask her some questions.', 'That draught looks very enticing...should we take a sip?'],
   completedOptions: [0, 0, 0, 0],
+  constaint: 0,
+  optionConstraints: [1, 0, 1, 0],
   connections: [1, 2, 3, 4],
   resolution: {
     text: '',
@@ -78,8 +80,10 @@ const magician_sword = {
   name: 'magician',
   type: 'resolution',
   flavorTextDescription: 'The adventurer rushes up to the witch and in his haste knocks the cauldron of liquid and spills it on her! Enraged, she draws her staff and combat spellbook and prepares to fight.',
-  abridgedDescription: '',
+  tldrDescription: '',
   options: [],
+  constaint: 1,
+  optionConstraints: [],
   completedOptions: [],
   connections: [0],
   resolution: {
@@ -100,8 +104,8 @@ const magician_wand = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The witch calls out to the adventurer, “Weary traveller I do not mind if you look through my library but be warned that some of those tomes contain dangerous knowledge. Proceed at your own risk.” The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
-  abridgedDescription: '',
-  options: ['Use your Sword', 'Use your Wand', 'Use your Cup', 'Leave'],
+  tldrDescription: '',
+  options: ['Open Iron Book', 'Open Floating Book', 'Open Worm Book', 'Leave'],
   optionsFlavor: ['Open the iron book.', 'Open the floating book.', 'Open the worn book.', 'These books could be dangerous like the witch said, better leave them where we found them.'],
   completedOptions: [0, 0, 0, 0],
   connections: [5, 6, 7, 8],
@@ -119,7 +123,7 @@ const magician_cup = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The witch begins, “There are few places in the world that seep evil energy as this place does - I only stay here for the immense amount of mana and magical resources it provides.” She pauses. “I sense that you are here to end this wretched place. I know little but I’m willing to impart on you what I can, though just knowing this information could prove dangerous. Are you sure you wish to know regardless?”',
-  abridgedDescription: '',
+  tldrDescription: '',
   options: ['Say Yes', 'Say No'],
   optionsFlavor: ['', ''],
   completedOptions: [0, 0, 0, 0],
@@ -138,7 +142,7 @@ const magician_coin = {
   name: 'magician',
   type: 'resolution',
   flavorTextDescription: 'The witch notices the adventurer eyeing the cerulean mixture she has been so carefully crafting. “Care for a taste?” she asks as she extends a sturdy but boney hand towards him, clasping a vial of her work. The adventurer scoops his hands into the cauldron, and brings some of the cerulean mixture up to his mouth. Surprisingly, it’s no longer hot, likely because it’s no longer being disturbed.',
-  abridgedDescription: '',
+  tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
   connections: [0],
@@ -161,7 +165,7 @@ const magician_wand_sword = {
   name: 'magician',
   type: 'resolution',
   flavorTextDescription: 'You attempt to open the book with your Sword.',
-  abridgedDescription: '',
+  tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
   connections: [0],
@@ -181,7 +185,7 @@ const magician_wand_wand = {
   name: 'magician',
   type: 'resolution',
   flavorTextDescription: 'You attempt to open the book with your Wand.',
-  abridgedDescription: '',
+  tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
   connections: [0],
@@ -201,7 +205,7 @@ const magician_wand_cup = {
   name: 'magician',
   type: 'resolution',
   flavorTextDescription: 'You attempt to open the book with your Cup.',
-  abridgedDescription: '',
+  tldrDescription: '',
   options: [''],
   completedOptions: [0, 0, 0, 0],
   connections: [0],
@@ -221,7 +225,7 @@ const magician_wand_leave = {
   name: 'magician',
   type: 'resolution',
   flavorTextDescription: 'Nothing gained, nothing lost.',
-  abridgedDescription: '',
+  tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
   connections: [0],
@@ -240,7 +244,7 @@ const magician_cup_yes = {
   name: 'magician',
   type: 'resolution',
   flavorTextDescription: 'You inquire the witch.',
-  abridgedDescription: '',
+  tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
   connections: [0],
@@ -261,7 +265,7 @@ const magician_cup_no = {
   name: 'magician',
   type: 'resolution',
   flavorTextDescription: 'You ignore the witch.',
-  abridgedDescription: '',
+  tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
   connections: [0],
@@ -278,63 +282,7 @@ const magician_cup_no = {
 
 allMagicianEvents.push(magician_cup_no);
 
-
-  var newMagician = {
-    title: "The Magician",
-    name: "magician",
-    falvorTextDescription: "The adventurer enters a dimly lit and cramped room. The walls are lined with shelves of books, many of which display runes from a long lost ancient language...",
-    abridgedDescription: "The adventurer encounter a witch crafting a potion in a room populated with books.",
-    mainOptions:[
-      {optionName: "sword",
-        optionDescription: "This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.",
-        result: {
-          type: "combat",
-          resultDescription: "The adventurer rushes up to the witch and in his haste knocks the cauldron of liquid and spills it on her! Enraged, she draws her staff and combat spellbook and prepares to fight.",
-          condition: {
-            stat: "luck",
-            dice: "4",
-            threshold: "15",
-          },
-          success: {
-            desciprtion: "As the witch crumples in defeat, her staff clangs to the ground with a loud thump. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself.",
-            item: "Staff of Fireball"
-          },
-          failure: {
-            description: "You could not best the witch."
-          },
-        }
-      },
-      {optionName: "wand",
-        optionDescription: "We may be able to learn something useful from the books around the room, they may be worth taking a look at.",
-        result: {
-          type: "inspect",
-          resultDescription: "The witch calls out to the adventurer, “Weary traveller I do not mind if you look through my library but be warned that some of those tomes contain dangerous knowledge. Proceed at your own risk.” The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.",
-          condition: {
-            stat: "luck",
-            dice: "4",
-            threshold: "15",
-          },
-          success: {
-            description: "As the witch crumples in defeat, her staff clangs to the ground with a loud thump. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself.",
-            item: "Staff of Fireball"
-          },
-          failure: {
-            description: "You could not best the witch."
-          },
-        }
-
-      },
-      {optionName: "cup",
-        optionDescription: "Cup description",
-
-      },
-      {optionName: "coin",
-        optionDescription: "Coin description",
-
-      },
-    ],
-  }
-
+/*
 const magician = {
   title: 'The Magician',
   name: 'magician',

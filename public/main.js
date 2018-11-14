@@ -354,13 +354,15 @@ $(() => {
     //statDropdownActive = !statDropdownActive;
     if(document.querySelector("#secondStats").style.display == "block"){
       document.querySelector("#secondStats").style.display = "none";
-      statDropdownButton.style.border = "1px solid black";
-      statDropdownButton.style.borderRight = "none";
+      statDropdownButton.style.borderTop = "1px solid black";
+      statDropdownButton.style.borderBottom = "1px solid black";
+      
     }
     else{
       document.querySelector("#secondStats").style.display = "block";
-      statDropdownButton.style.border = "3px solid black";
-      statDropdownButton.style.borderRight = "none";
+      statDropdownButton.style.borderTop = "3px solid black";
+      statDropdownButton.style.borderBottom = "3px solid black";
+      
     }
   }
   
@@ -369,14 +371,15 @@ $(() => {
   const eventDropdown = () => {
     if(document.querySelector("#secondEvent").style.display == "block"){
       document.querySelector("#secondEvent").style.display = "none";
-      eventDropdownButton.style.border = "1px solid black";
-      eventDropdownButton.style.borderRight = "none";
+      eventDropdownButton.style.borderTop = "1px solid black";
+      eventDropdownButton.style.borderBottom = "1px solid black";
+      
 
     }
     else{
       document.querySelector("#secondEvent").style.display = "block";
-      eventDropdownButton.style.border = "3px solid black";
-      eventDropdownButton.style.borderRight = "none";
+      eventDropdownButton.style.borderTop = "3px solid black";
+      eventDropdownButton.style.borderBottom = "3px solid black";
     }
   }
   
@@ -385,14 +388,14 @@ $(() => {
   const voteDropdown = () => {
     if(document.querySelector("#secondVote").style.display == "block"){
       document.querySelector("#secondVote").style.display = "none";
-      voteDropdownButton.style.border = "1px solid black";
-      voteDropdownButton.style.borderRight = "none";
+      voteDropdownButton.style.borderTop = "1px solid black";
+      voteDropdownButton.style.borderBottom = "1px solid black";
 
     }
     else{
       document.querySelector("#secondVote").style.display = "block";
-      voteDropdownButton.style.border = "3px solid black";
-      voteDropdownButton.style.borderRight = "none";
+      voteDropdownButton.style.borderTop = "3px solid black";
+      voteDropdownButton.style.borderBottom = "3px solid black";
     }
   }
   

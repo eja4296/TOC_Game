@@ -447,8 +447,11 @@ ul {
   width: 100%;
 
   outline: none;
-  border: 1px solid black;
   border-right: none;
+  border-left: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background-color: lightgray;
   background-image: url("media/dropdownIcon.svg");
   background-repeat: no-repeat;
   background-position: center; 
