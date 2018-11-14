@@ -56,7 +56,7 @@ $(() => {
   const statDropdownButton = document.querySelector('#statDropdownButton');
   const eventDropdownButton = document.querySelector('#eventDropdownButton');
   const voteDropdownButton = document.querySelector('#voteDropdownButton');
-  
+  const logDropdownButton = document.querySelector('#logDropdownButton');
 
 
   //  const startButton = document.querySelector('#startButton');
@@ -356,12 +356,14 @@ $(() => {
       document.querySelector("#secondStats").style.display = "none";
       statDropdownButton.style.borderTop = "1px solid black";
       statDropdownButton.style.borderBottom = "1px solid black";
+      statDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Down.png')";
       
     }
     else{
       document.querySelector("#secondStats").style.display = "block";
       statDropdownButton.style.borderTop = "3px solid black";
       statDropdownButton.style.borderBottom = "3px solid black";
+       statDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Up.png')";
       
     }
   }
@@ -373,6 +375,7 @@ $(() => {
       document.querySelector("#secondEvent").style.display = "none";
       eventDropdownButton.style.borderTop = "1px solid black";
       eventDropdownButton.style.borderBottom = "1px solid black";
+       eventDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Down.png')";
       
 
     }
@@ -380,6 +383,7 @@ $(() => {
       document.querySelector("#secondEvent").style.display = "block";
       eventDropdownButton.style.borderTop = "3px solid black";
       eventDropdownButton.style.borderBottom = "3px solid black";
+      eventDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Up.png')";
     }
   }
   
@@ -390,16 +394,36 @@ $(() => {
       document.querySelector("#secondVote").style.display = "none";
       voteDropdownButton.style.borderTop = "1px solid black";
       voteDropdownButton.style.borderBottom = "1px solid black";
+       voteDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Down.png')";
 
     }
     else{
       document.querySelector("#secondVote").style.display = "block";
       voteDropdownButton.style.borderTop = "3px solid black";
       voteDropdownButton.style.borderBottom = "3px solid black";
+      voteDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Up.png')";
     }
   }
   
   voteDropdownButton.addEventListener('click', voteDropdown);
+  
+  const logDropdown = () => {
+    if(document.querySelector("#secondGameLog").style.display == "block"){
+      document.querySelector("#secondGameLog").style.display = "none";
+      logDropdownButton.style.borderTop = "1px solid black";
+      logDropdownButton.style.borderBottom = "1px solid black";
+       logDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Down.png')";
+
+    }
+    else{
+      document.querySelector("#secondGameLog").style.display = "block";
+      logDropdownButton.style.borderTop = "3px solid black";
+      logDropdownButton.style.borderBottom = "3px solid black";
+      logDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Up.png')";
+    }
+  }
+  
+  logDropdownButton.addEventListener('click', logDropdown);
   
   /*
   // Get votes function

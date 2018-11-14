@@ -13,7 +13,7 @@ html {
 
 
 html, input {
-  overflow-y: auto;
+  overflow-y: scroll;
   font-family:
     "HelveticaNeue-Light",
     "Helvetica Neue Light",
@@ -439,6 +439,12 @@ ul {
    
 }
 
+#rightSide #dropdowns #gameLog{
+  position: relative;
+  width: 100%;
+  float: left;
+  height: 50px;
+}
 
 
 
@@ -452,13 +458,13 @@ ul {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   background-color: lightgray;
-  background-image: url("media/dropdownIcon.svg");
+  background-image: url("media/dropdownIcon_Down.png");
   background-repeat: no-repeat;
   background-position: center; 
   background-size: 15px;
 }
 
-#rightSide #dropdowns #secondStats, #rightSide #dropdowns #secondEvent, #rightSide #dropdowns #secondVote{
+#rightSide #dropdowns #secondStats, #rightSide #dropdowns #secondEvent, #rightSide #dropdowns #secondVote, #rightSide #dropdowns #secondGameLog{
   display: none;
 }
 
