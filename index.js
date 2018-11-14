@@ -63,8 +63,7 @@ const magician_Main = {
   options: ['Attack', 'Investigate', 'Inquire', 'Taste'],
   optionsFlavor: ['This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.', 'We may be able to learn something useful from the books around the room, they may be worth taking a look at.', 'The witch may know something about this place we’re in, we should ask her some questions.', 'That draught looks very enticing...should we take a sip?'],
   completedOptions: [0, 0, 0, 0],
-  constaint: 0,
-  optionConstraints: [1, 0, 1, 0],
+
   connections: [1, 2, 3, 4],
   resolution: {
     text: '',
@@ -78,22 +77,17 @@ allMagicianEvents.push(magician_Main);
 const magician_sword = {
   title: 'The Magician',
   name: 'magician',
-  type: 'resolution',
+  type: 'voting',
   flavorTextDescription: 'The adventurer rushes up to the witch and in his haste knocks the cauldron of liquid and spills it on her! Enraged, she draws her staff and combat spellbook and prepares to fight.',
   tldrDescription: '',
-  options: [],
-  constaint: 1,
-  optionConstraints: [],
-  completedOptions: [],
-  connections: [0],
+  options: ['Slash', 'Cast a Spell'],
+  optionsFlavor: ['The witch will be no match for my raw strength. I will cut her down where she stands.', 'The witch is old and her mind is frayed. I will use magic to incapacitate her.'],
+  completedOptions: [0, 0, 0, 0],
+  connections: [11, 12],
   resolution: {
-    text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer swings his sword at the witch, she counters with her staff and deals blow to his gut, knockiing the wind out of him. The witch refrains from dealing further damage, as she knows he is no match for her.'],
-    dice: 4,
-    threshold: [15, 0],
-    statNeeded: fool.strength,
-    effectStats: ['strength', '', 'health'],
-    effectPower: [2, 0, -5],
-    type: 'stat',
+    text: [''],
+    type: 'none',
+    effect: '',
   },
 
 };
@@ -104,8 +98,8 @@ const magician_wand = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The witch calls out to the adventurer, “Weary traveller I do not mind if you look through my library but be warned that some of those tomes contain dangerous knowledge. Proceed at your own risk.” The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
-  tldrDescription: '',
-  options: ['Open Iron Book', 'Open Floating Book', 'Open Worm Book', 'Leave'],
+  tldrDescription: 'There is an Iron book, Floating book, and Worn book. Should we open one, or leave?',
+  options: ['Iron Book', 'Floating Book', 'Worm Book', 'Leave'],
   optionsFlavor: ['Open the iron book.', 'Open the floating book.', 'Open the worn book.', 'These books could be dangerous like the witch said, better leave them where we found them.'],
   completedOptions: [0, 0, 0, 0],
   connections: [5, 6, 7, 8],
@@ -281,6 +275,53 @@ const magician_cup_no = {
 };
 
 allMagicianEvents.push(magician_cup_no);
+
+const magician_sword_sword = {
+  title: 'The Magician',
+  name: 'magician',
+  type: 'resolution',
+  flavorTextDescription: 'You hack the witch with your sword.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  connections: [0],
+  resolution: {
+    text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer swings his sword at the witch, she counters with her staff and deals blow to his gut, knockiing the wind out of him. The witch refrains from dealing further damage, as she knows he is no match for her.'],
+    dice: 4,
+    threshold: [15, 0],
+    statNeeded: fool.strength,
+    effectStats: ['strength', '', 'health'],
+    effectPower: [2, 0, -5],
+    type: 'stat',
+  },
+
+};
+
+allMagicianEvents.push(magician_sword_sword);
+
+const magician_sword_sword = {
+  title: 'The Magician',
+  name: 'magician',
+  type: 'resolution',
+  flavorTextDescription: 'You cast a spell on the witch.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  connections: [0],
+  resolution: {
+    text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer casts his spell at the witch, she effortlessly counters with a spell of her own knocking the adveturer off his feet. The witch refrains from dealing further damage, as she knows he is no match for her.'],
+    dice: 4,
+    threshold: [15, 0],
+    statNeeded: fool.strength,
+    effectStats: ['strength', '', 'health'],
+    effectPower: [2, 0, -5],
+    type: 'stat',
+  },
+
+};
+
+
+allMagicianEvents.push(magician_sword_wand);
 
 /*
 const magician = {
