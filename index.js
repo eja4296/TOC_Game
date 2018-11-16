@@ -44,7 +44,16 @@ let topVote = 0;
 
 let gameOver = false;
 
-const fool = {
+let fool = {
+  health: 40,
+  strength: 5,
+  charisma: 5,
+  intelligence: 5,
+  luck: 5,
+  gold: 10,
+};
+
+const foolBase = {
   health: 40,
   strength: 5,
   charisma: 5,
@@ -396,133 +405,7 @@ const magician_sword_wand = {
 
 allMagicianEvents.push(magician_sword_wand);
 
-/*
-const magician = {
-  title: 'The Magician',
-  name: 'magician',
-  description: 'A crooked old woman stirs a cauldron full of a steaming blue liquid. She smiles and offers you a cap.',
-  options: ['Drink', 'Fight', 'Leave'],
-  effectStat: ['health', 'health', 'health'],
-  effectPower: [-1, -1, -1],
-};
 
-const highPriestess = {
-  title: 'The High Priestess',
-  name: 'highPriestess',
-  description: 'You enter a room, in which stands a large statue of a beautiful angel. She is weeping through closed palms clasped over her face, and the tears drip as a fountain into a large basin of clear liquid.',
-  options: ['Drink', 'Gather a flask', 'Pray', 'Leave'],
-  effectStat: ['health', 'health', 'health', 'health'],
-  effectPower: [-1, -1, -1, -1],
-};
-
-const empress = {
-  title: 'The Empress',
-  name: 'empress',
-  description: 'You enter a room that is a lush garden space, with trees and exotic plants twenty high over your head. In the center of the room is an enormous and beautiful flower that you have never seen before.',
-  options: ['Try to pick a petal', 'Smell the flower', 'Hack at the flower', 'Leave'],
-  effectStat: ['health', 'health', 'health', 'health'],
-  effectPower: [-1, -1, -1, -1],
-};
-
-const emperor = {
-  title: 'The Emperor',
-  name: 'emperor',
-  description: 'You enter a room, in the center of which sits a gem-encrusted sword in a pedestal.',
-  options: ['Take the sword', 'Leave'],
-  effectStat: ['health', 'health'],
-  effectPower: [-1, -1],
-};
-
-const hierophant = {
-  title: 'The Hierophant',
-  name: 'hieropohant',
-  description: 'You enter a room that looks much like a fortune teller’s tent. A woman sits at a table in the center of the room, peering at you over her crystal ball. She gestures at the chair across from her.',
-  options: ['Ask for fortune', 'Ask about the secrets of the dungeon', 'Attack'],
-  effectStat: ['health', 'health', 'health'],
-  effectPower: [-1, -1, -1],
-};
-
-const lovers = {
-  title: 'The Lovers',
-  name: 'lovers',
-  description: 'You enter a room with a huge mirror covering the wall. There is no visible exit except the door you came in from. You and the door are reflected in the mirror, but your reflection seems off somehow. It grins back at you, but you are not smiling.',
-  options: ['Touch the mirror', 'Call out to the mirror', 'Smash the mirror', 'Run into the mirror'],
-  effectStat: ['health', 'health', 'health', 'health'],
-  effectPower: [-1, -1, -1, -1],
-};
-
-const chariot = {
-  title: 'The Chariot',
-  name: 'chariot',
-  description: 'You hesitate to call this a room, because there is no visible ceiling or floor. Instead you see a bright blue sky above you and rolling hills of sand in front of you for what seems like miles. You hear a whinnying behind you where the door once was, and swivel around to see a pearl white mare, thrashing but tied to a wooden post. Someone left a bucket of water for it by its feet.',
-  options: ['Untie and attempt to ride the horse', 'Take the bucket of water', 'Try walking to the other side of the dunes'],
-  effectStat: ['health', 'health', 'health'],
-  effectPower: [-1, -1, -1],
-};
-
-const hermit = {
-  title: 'The Hermit',
-  name: 'hermit',
-  description: 'You enter a pitch black room, with two lights in front of you. The farther light looks like a flame and calls out to you, telling you that it will lead those worthy to the truth. The other light is nearby and you can clearly make out that it’s a doorway.',
-  options: ['Follow the flame', 'Leave'],
-  effectStat: ['health', 'health'],
-  effectPower: [-1, -1],
-};
-
-const wheelOfFortune = {
-  title: 'Wheel of Fortune',
-  name: 'wheelOfFortune',
-  description: 'A massive stone wheel sits in this room, divided into many sections, all engraved with strange symbols. A sign nearby invites you to spin the wheel.',
-  options: ['Spin', 'Leave'],
-  effectStat: ['health', 'health'],
-  effectPower: [-1, -1],
-};
-
-const death = {
-  title: 'Death',
-  name: 'death',
-  description: 'You enter a comfortably furnished room. A cloaked man sitting in a chair turns to you. His face is shrouded in shadow as he reaches into his cloak with a skeletal hand, extracting an hourglass and making a noise of confusion and frustration. He speak in a grating voice, “YOU SHOULD NOT BE HERE. IT’S NOT TIME YET…” He sighs and stands, seeming to glide towards you as he picks up a large scythe to lean on like a walking stick, gesturing to a deck of cards on a table. “WELL, I WAS GETTING A BIT BORED, FANCY A GAME?”',
-  options: ["Play Death's game", 'Ask to rest', 'Attack', 'Leave'],
-  effectStat: ['health', 'health', 'health', 'health'],
-  effectPower: [-1, -1, -1, -1],
-};
-
-const devil = {
-  title: 'The Devil',
-  name: 'devil',
-  description: 'You enter a room that is absolutely filled with treasure. Heaps of glittering gold and gems tower over you.',
-  options: ['Take some treasure', 'Leave some treasure', 'Leave'],
-  effectStat: ['health', 'health', 'health'],
-  effectPower: [-1, -1, -1],
-};
-
-const world = {
-  title: 'The World',
-  name: 'world',
-  description: 'Fight the World...',
-  options: ['Attack'],
-  effectStat: ['health'],
-  effectPower: [-1],
-};
-
-let topVote = 0;
-
-allEvents.push(magician);
-allEvents.push(highPriestess);
-allEvents.push(empress);
-allEvents.push(emperor);
-allEvents.push(hierophant);
-allEvents.push(lovers);
-allEvents.push(chariot);
-allEvents.push(hermit);
-allEvents.push(wheelOfFortune);
-allEvents.push(death);
-allEvents.push(devil);
-allEvents.push(world);
-
-let resolutionBool = false;
-const eventResIndex = -1;
-*/
 // Timer for different phases
 
 /*
@@ -756,7 +639,11 @@ document.querySelector(""
 }, 1000);
 */
 
-let voteTimer = 10;
+
+
+const timeToVote = 15;
+
+let voteTimer = timeToVote + 1;
 
 setInterval(() => {
   if(gameStarted && gameOver == false){
@@ -841,8 +728,7 @@ setInterval(() => {
       //console.log(allVotes[randomNum]);
       currentEvent.completedOptions[finalVoteNum] = 1;
 
-      
-      console.log(finalVoteNum);
+
       
       currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
       
@@ -853,16 +739,175 @@ setInterval(() => {
         }
       }
       
+      let rng = 0;
       if(currentEvent.type == "resolution"){
+        let die = currentEvent.dice;
+        let stat;
         
+        switch (currentEvent.statNeeded){
+          case "Health":
+            stat = fool.health;
+            break;
+          case "Strength":
+            stat = fool.strength;
+            break;
+          case "Intelligence":
+            stat = fool.intelligence;
+            break;
+          case "Charisma":
+            stat = fool.charisma;
+            break;
+          case "Luck":
+            stat = fool.luck;
+            break;
+          case "Gold":
+            stat = fool.gold;
+            break;
+          default:
+            break;
+        }
+        
+        let roll = Math.floor(Math.random() * die) + stat;
+        let looping = true;
+        let result = 0;
+        for(let i = 0; i < currentEvent.threshold.length; i++){
+          if(looping && roll > currentEvent.threshold[i]){
+            looping = false;
+            result = i;
+          }
+        }
+        
+        rng = result;
+        
+        if(currentEvent.effectStats[rng]){
+          for(let i = 0; i < currentEvent.effectStats[rng].length; i++){
+            switch(currentEvent.effectStats[rng][i]){
+              case "Health":
+                if(fool.health + currentEvent.effectPower[rng][i] < foolMax.health){
+                    fool.health += currentEvent.effectPower[rng][i];
+                }
+                else if(fool.health + currentEvent.effectPower[rng][i] >= 0){
+                  fool.health = 0;
+                }
+                else{
+                  fool.health = foolMax.health;
+                }
+                break;
+              case "Strength":
+
+                if(fool.strength + currentEvent.effectPower[rng][i] < foolMax.strength){
+                    fool.strength += currentEvent.effectPower[rng][i];
+                }
+                else if(fool.strength + currentEvent.effectPower[rng][i] >= 1){
+                  fool.strength = 1;
+                }
+                else{
+                  fool.strength = foolMax.strength;
+                } 
+                break;
+              case "Intelligence":
+
+                if(fool.intelligence + currentEvent.effectPower[rng][i] < foolMax.intelligence){
+                    fool.intelligence += currentEvent.effectPower[rng][i];
+                }
+                else if(fool.intelligence + currentEvent.effectPower[rng][i] >= 1){
+                  fool.intelligence = 1;
+                }
+                else{
+                  fool.intelligence = foolMax.intelligence;
+                }
+                break;
+              case "Charisma":
+
+                if(fool.charisma + currentEvent.effectPower[rng][i] < foolMax.charisma){
+                    fool.charisma += currentEvent.effectPower[rng][i];
+                }
+                else if(fool.charisma + currentEvent.effectPower[rng][i] >= 1){
+                  fool.charisma = 1;
+                }
+                else{
+                  fool.charisma = foolMax.charisma;
+                }
+                break;
+              case "Luck":
+
+                if(fool.luck + currentEvent.effectPower[rng][i] < foolMax.luck){
+                    fool.luck += currentEvent.effectPower[rng][i];
+                }
+                else if(fool.luck + currentEvent.effectPower[rng][i] >= 1){
+                  fool.luck = 1;
+                }
+                else{
+                  fool.luck = foolMax.luck;
+                }
+                break;
+              case "Gold":
+
+                if(fool.gold + currentEvent.effectPower[rng] [i]< foolMax.gold){
+                    fool.gold += currentEvent.effectPower[rng][i];
+                }
+                else if(fool.gold + currentEvent.effectPower[rng][i] >= 0){
+                  fool.gold = 0;
+                }
+                else{
+                  fool.gold = foolMax.gold;
+                }
+                break;
+              default:
+                break;
+            }   
+          }
+        }
+        
+        
+   
+        
+        
+        /*
+        let eventResolutionIndex = 0;
+        let die = currentEvent.dice;
+        let looping = true;
+        die *= Math.floor(Math.random() * die);
+        for (var i = 0; i < currentEvent.effectStats.length; i++) {
+          if (looping && currentEvent.statNeeded * die > currentEvent.threshold[i]) {
+            eventResolutionIndex = i;
+            looping = false;
+          }
+        }
+
+
+        switch (currentEvent.effectStats[eventResolutionIndex]) {
+          case 'health':
+            fool.health += currentEvent.effectPower[eventResolutionIndex];
+            break;
+          case 'strength':
+            fool.strength += currentEvent.effectPower[eventResolutionIndex];
+            break;
+          case 'intelligence':
+            fool.intelligence += currentEvent.effectPower[eventResolutionIndex];
+            break;
+          case 'charisma':
+            fool.charisma += currentEvent.effectPower[eventResolutionIndex];
+            break;
+          case 'luck':
+            fool.luck += currentEvent.effectPower[eventResolutionIndex];
+            break;
+          case 'gold':
+            fool.gold += currentEvent.effectPower[eventResolutionIndex];
+            break;
+          default:
+            break;
+        }
+        */
       }
       
       if(completionCheck == false){
         io.sockets.emit('load event', {
           currentEvent,
           finalVoteNum,
-          rng: 0,
+          rng,
           fool,
+          foolMax,
         });
 
         swordVotes = [];
@@ -878,12 +923,12 @@ setInterval(() => {
 
         finalVote = "";
 
-        voteTimer = 10;
+        voteTimer = timeToVote;
       }
       else{
         gameOver = true;
         gameStarted = false;
-        voteTimer = 10;
+        voteTimer = timeToVote;
         io.emit('game over', {
           
         });
@@ -906,6 +951,7 @@ io.on('connection', (socket) => {
       topVote,
       rng: 0,
       fool,
+      foolMax,
     });
   }
 
@@ -946,12 +992,21 @@ io.on('connection', (socket) => {
    
       gameOver = false;
       
+      fool.health = foolBase.health;
+      fool.strength = foolBase.strength;
+      fool.intelligence = foolBase.intelligence;
+      fool.charisma = foolBase.charisma;
+      fool.luck = foolBase.luck;
+      fool.gold = foolBase.gold;
+      
+      
 
       io.sockets.emit('load event', {
         currentEvent,
         topVote,
         rng: 0,
         fool,
+        foolMax,
       });
       
       

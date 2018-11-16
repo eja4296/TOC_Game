@@ -35,7 +35,7 @@ $(() => {
   let timer;
   let topVote;
   const votingComplete = false;
-
+  
   /*
   const $voteA = $('#voteA');
   const $voteB = $('#voteB');
@@ -312,7 +312,7 @@ $(() => {
     }
     */
     
-    playerPreviousVote = playerVote;
+    
     playerVote = e.target.value;
     
     //document.querySelector("#event").style.display = "none";
@@ -327,6 +327,7 @@ $(() => {
       document.querySelector("#userVoteChoice").innerHTML = e.target.value;
     }
     
+    playerPreviousVote = playerVote;
     playerVoted = true;
     
     
@@ -429,6 +430,7 @@ $(() => {
   
   const startGame = () => {
     socket.emit('start game');
+    document.querySelector('#secondGameLog').innerHTML = "";
   }
   
   startButton.addEventListener('click', startGame);
@@ -669,7 +671,7 @@ $(() => {
     document.querySelector("#allVotes").innerHTML += "<br>Votes for Coin: 0";
     
     playerVoted = false;
-    playerPreviousVote = "";
+    playerPreviousVote = "_";
     
     document.querySelector("#userVoteChoice").innerHTML = "";
     totalPlayersVoted = 0;
@@ -678,8 +680,20 @@ $(() => {
   });
   
   
-    const loadEvent = (eventCard, topVote, rng) => {
+    const loadEvent = (eventCard, topVote, rng, fool, foolMax) => {
       
+        document.querySelector('#health').innerHTML = fool.health;
+        document.querySelector('#health').style.color = "hsl(" + (fool.health / foolMax.health) * 120 + ", 100%, 50%)";
+        document.querySelector('#strength').innerHTML = fool.strength;
+        document.querySelector('#strength').style.color = "hsl(" + (fool.strength / foolMax.strength) * 120 + ", 100%, 50%)";
+        document.querySelector('#intelligence').innerHTML = fool.intelligence;
+        document.querySelector('#intelligence').style.color = "hsl(" + (fool.intelligence / foolMax.intelligence) * 120 + ", 100%, 50%)";
+        document.querySelector('#charisma').innerHTML = fool.charisma;
+        document.querySelector('#charisma').style.color = "hsl(" + (fool.charisma / foolMax.charisma) * 120 + ", 100%, 50%)";
+        document.querySelector('#luck').innerHTML = fool.luck;
+        document.querySelector('#luck').style.color = "hsl(" + (fool.luck / foolMax.luck) * 120 + ", 100%, 50%)";
+        document.querySelector('#gold').innerHTML = fool.gold;
+        document.querySelector('#gold').style.color = "hsl(" + (fool.gold / foolMax.gold) * 120 + ", 100%, 50%)";
 
       if(eventCard.type == "voting"){
         document.querySelector('#eventTitle').innerHTML = eventCard.title;
@@ -690,7 +704,7 @@ $(() => {
         document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.tldrDescription + "</div>";
         
         for (let i = 0; i < 4; i++) {
-          console.log()
+        
           if (eventCard.completedOptions[i] == 0 && eventCard.options[i]) {
             document.querySelector(`#button${i}`).style.display = 'block';
             document.querySelector(`#button${i}`).innerHTML = eventCard.voteOption[i];
@@ -706,12 +720,7 @@ $(() => {
         }
       }
       else if(eventCard.type == "resolution"){
-        document.querySelector('#health').innerHTML = `Health: ${data.fool.health}`;
-        document.querySelector('#strength').innerHTML = `Strength: ${data.fool.strength}`;
-        document.querySelector('#intelligence').innerHTML = `Intelligence: ${data.fool.intelligence}`;
-        document.querySelector('#charisma').innerHTML = `Charisma: ${data.fool.charisma}`;
-        document.querySelector('#luck').innerHTML = `Luck: ${data.fool.luck}`;
-        document.querySelector('#gold').innerHTML = `Gold: ${data.fool.gold}`;
+        
         
         document.querySelector('#eventDescriptionTLDR').innerHTML = eventCard.flavorTextDescription;
         document.querySelector('#eventDescription').innerHTML = eventCard.text[rng];
@@ -758,8 +767,8 @@ $(() => {
   
   socket.on('load event', (data) => {
     currentEvent = data.currentEvent;
-    loadEvent(data.currentEvent, data.topVote, data.rng);
-    console.dir(currentEvent);
+    loadEvent(data.currentEvent, data.topVote, data.rng, data.fool, data.foolMax);
+
     
   
     
@@ -783,6 +792,12 @@ $(() => {
   
   socket.on('vote timer', (data) => {
     updateTimer(data.voteTimer);
+    if(data.voteTimer <= 5){
+      document.querySelector("#voteTimerNum").style.color = "red";
+    }
+    else{
+      document.querySelector("#voteTimerNum").style.color = "black";
+    }
   });
   
   socket.on('game over', (data) => {
