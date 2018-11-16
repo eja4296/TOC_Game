@@ -42,10 +42,10 @@
               <img id="eventPicture" src="media/magician.jpg" alt="Event Image">
             </div>
           
-            <div id="eventTitle">The Magiacian</div>
+            <div id="eventTitle">The Magician</div>
             
             <div id="eventDescriptionTLDR">
-              The adventurer encounters a witch crafting a potion in a room populated with books. What should you do?
+              The adventurer encounters a witch crafting a potion in a room populated with books. What should he do?
             </div>
            
           </div>
@@ -80,10 +80,10 @@
                 </div>
               
               <ul>
-                <li ><div class="choice"><div id="swordChoiceTLDR">Attack</div></div><button id="button0" value="Sword">Sword</button></li>
-                <li ><div class="choice"><div id="wandChoiceTLDR">Investigate</div></div><button id="button1" value="Wand">Wand</button></li>
-                <li ><div class="choice"><div id="cupChoiceTLDR">Inquire</div</div><button id="button2" value="Cup">Cup</button></li>
-                <li ><div class="choice"><div id="coinChoiceTLDR">Taste</div></div><button id="button3" value="Coin">Coin</button></li>
+                <li ><div class="choice"><div id="option0">Attack</div></div><button id="button0" value="Sword">Sword</button></li>
+                <li ><div class="choice"><div id="option1">Investigate</div></div><button id="button1" value="Wand">Wand</button></li>
+                <li ><div class="choice"><div id="option2">Inquire</div></div><button id="button2" value="Cup">Cup</button></li>
+                <li ><div class="choice"><div id="option3">Taste</div></div><button id="button3" value="Coin">Coin</button></li>
 
               </ul>
             </div>
@@ -92,23 +92,23 @@
             
              <div class="secondDropdown" id="secondVote">
               <ul>
-                <li id="secondSwordChoice"><b>Sword</b>: <div id="secondSwordChoiceDescription">This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.</div> - We should <b><div id="secondSwordChoiceTLDR">Attack. </div></b></li>
-                <li id="secondWandChoice"><b>Wand</b>: </b><div id="secondWandChoiceDescription">We may be able to learn something useful from the books around the room, they may be worth taking a look at.</div> - We should <b><div id="secondWandChoiceTLDR">Investigate. </div></li>
-                <li id="secondCupChoice"><b>Cup</b>: </b><div id="secondCupChoiceDescription">The witch may know something about this place we’re in, we should ask her some questions.</div> - We should <b><div id="secondCupChoiceTLDR">Inquire. </div></b></li>
-                <li id="secondCoinChoice"><b>Coin</b>: <div id="secondCoinChoiceDescription">That draught looks very enticing...should we take a sip?</div> - We should <b><div id="secondCoinChoiceTLDR">Taste. </div></b></li>
+                <li id="secondSwordChoice"><b>Sword</b>: <div id="secondOptionTLDR0">(Attack) </div><div id="secondOption0">This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.</div></li>
+                <li id="secondWandChoice"><b>Wand</b>: <div id="secondOptionTLDR1">(Investigate) </div><div id="secondOption1">We may be able to learn something useful from the books around the room, they may be worth taking a look at.</div></li>
+                <li id="secondCupChoice"><b>Cup</b>: <div id="secondOptionTLDR2">(Inquire) </div><div id="secondOption2">The witch may know something about this place we’re in, we should ask her some questions.</div></li>
+                <li id="secondCoinChoice"><b>Coin</b>: <div id="secondOptionTLDR3">(Taste) </div><div id="secondOption3">That draught looks very enticing...should we take a sip?</div></li>
               </ul>
           </div>
             <button class="dropdownButton" id="voteDropdownButton"> </button>
         
             <div class="dropdown" id="gameLog">
             <div class="dropdownTitle">Game Log</div>
-              <div id="logTitle">Your adventure so far...</div>
+              <div id="logTitle">The adventure so far...</div>
               
               
             </div>
             
             <div class="secondDropdown" id="secondGameLog">
-                Coming soon...
+                
               </div>
             
             <button class="dropdownButton" id="logDropdownButton"> </button>
@@ -116,9 +116,13 @@
             
             
         </div>
+          
+          
         
-        
+        <button id="startButton">Start</button>
         </div>
+        
+        
         
         
         <div id="voteArea">

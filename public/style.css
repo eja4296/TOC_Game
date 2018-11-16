@@ -434,7 +434,7 @@ ul {
   height: 74px;
 }
 
-#rightSide #dropdowns #secondVote ul #secondSwordChoiceDescription, #rightSide #dropdowns #secondVote ul #secondWandChoiceDescription, #rightSide #dropdowns #secondVote ul #secondCupChoiceDescription, #rightSide #dropdowns #secondVote ul #secondCoinChoiceDescription{
+#rightSide #dropdowns #secondVote ul #secondOption0, #rightSide #dropdowns #secondVote ul #secondOption1, #rightSide #dropdowns #secondVote ul #secondOption2, #rightSide #dropdowns #secondVote ul #secondOption3{
   font-style: italic;
    
 }
@@ -446,6 +446,28 @@ ul {
   height: 50px;
 }
 
+#rightSide #dropdowns #gameLog #logTitle{
+  position: relative;
+  width: 100%;
+  float: left;
+  padding-left: 5px;
+}
+
+#rightSide #dropdowns #secondGameLog{
+  position: relative;
+  width: 100%;
+  float: left;
+  
+}
+
+#rightSide #dropdowns #secondGameLog .logElement{
+  position: relative;
+  width: 100%;
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top; 5px;
+}
 
 
 #rightSide #dropdowns .dropdownButton{
@@ -463,6 +485,7 @@ ul {
   background-position: center; 
   background-size: 15px;
 }
+
 
 #rightSide #dropdowns #secondStats, #rightSide #dropdowns #secondEvent, #rightSide #dropdowns #secondVote, #rightSide #dropdowns #secondGameLog{
   display: none;

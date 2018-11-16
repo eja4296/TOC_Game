@@ -57,6 +57,8 @@ $(() => {
   const eventDropdownButton = document.querySelector('#eventDropdownButton');
   const voteDropdownButton = document.querySelector('#voteDropdownButton');
   const logDropdownButton = document.querySelector('#logDropdownButton');
+  
+  const startButton = document.querySelector('#startButton');
 
 
   //  const startButton = document.querySelector('#startButton');
@@ -425,6 +427,12 @@ $(() => {
   
   logDropdownButton.addEventListener('click', logDropdown);
   
+  const startGame = () => {
+    socket.emit('start game');
+  }
+  
+  startButton.addEventListener('click', startGame);
+  
   /*
   // Get votes function
   // Gets the votes from the server each time a player votes
@@ -666,8 +674,121 @@ $(() => {
     document.querySelector("#userVoteChoice").innerHTML = "";
     totalPlayersVoted = 0;
     document.querySelector("#numOfUsersVoted").innerHTML = totalPlayersVoted + "/" + totalPlayers; 
-    document.querySelector("#finalVoteChoice").innerHTML = "";
+    
   });
+  
+  
+    const loadEvent = (eventCard, topVote, rng) => {
+      
+
+      if(eventCard.type == "voting"){
+        document.querySelector('#eventTitle').innerHTML = eventCard.title;
+        document.querySelector('#eventImage').src = `media/${eventCard.name}.jpg`;
+        document.querySelector('#secondEventImage').src = `media/${eventCard.name}.jpg`;
+        document.querySelector('#eventDescriptionTLDR').innerHTML = eventCard.tldrDescription;
+        document.querySelector('#eventDescription').innerHTML = eventCard.flavorTextDescription;
+        document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.tldrDescription + "</div>";
+        
+        for (let i = 0; i < 4; i++) {
+          console.log()
+          if (eventCard.completedOptions[i] == 0 && eventCard.options[i]) {
+            document.querySelector(`#button${i}`).style.display = 'block';
+            document.querySelector(`#button${i}`).innerHTML = eventCard.voteOption[i];
+            document.querySelector(`#option${i}`).innerHTML = eventCard.options[i];
+            document.querySelector(`#secondOption${i}`).innerHTML = eventCard.optionsFlavor[i];
+            document.querySelector(`#secondOptionTLDR${i}`).innerHTML = "(" + eventCard.options[i]+ ") ";
+          } else {
+            document.querySelector(`#option${i}`).innerHTML = '';
+            document.querySelector(`#button${i}`).style.display = 'none';
+            document.querySelector(`#secondOption${i}`).innerHTML = "";
+            document.querySelector(`#secondOptionTLDR${i}`).innerHTML = "";
+          }
+        }
+      }
+      else if(eventCard.type == "resolution"){
+        document.querySelector('#health').innerHTML = `Health: ${data.fool.health}`;
+        document.querySelector('#strength').innerHTML = `Strength: ${data.fool.strength}`;
+        document.querySelector('#intelligence').innerHTML = `Intelligence: ${data.fool.intelligence}`;
+        document.querySelector('#charisma').innerHTML = `Charisma: ${data.fool.charisma}`;
+        document.querySelector('#luck').innerHTML = `Luck: ${data.fool.luck}`;
+        document.querySelector('#gold').innerHTML = `Gold: ${data.fool.gold}`;
+        
+        document.querySelector('#eventDescriptionTLDR').innerHTML = eventCard.flavorTextDescription;
+        document.querySelector('#eventDescription').innerHTML = eventCard.text[rng];
+        
+        document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.tldrDescription + "</div>";
+
+        
+
+        if(!eventCard.effectStats[rng]){
+          
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>Nothing happened...</div>";
+          
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " </div>";
+          document.querySelector("#eventDescriptionTLDR").innerHTML += " Nothing happened...";
+        }
+        else{
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " ";
+          for(var i = 0; i < eventCard.effectStats[rng].length; i++){
+            document.querySelector("#eventDescriptionTLDR").innerHTML += " <br>" + eventCard.effectStats[rng][i] + ": " + eventCard.effectPower[rng][i] + "";
+            document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.effectStats[rng][i] + ": " + eventCard.effectPower[rng][i] + "</div> ";
+          }
+          document.querySelector('#secondGameLog').innerHTML += "</div>";
+        }
+      }
+      /*
+    // Add information about the event to the client page
+    document.querySelector('#eventTitle').innerHTML = `<h2>${eventCard.title}</h2>`;
+    document.querySelector('#eventImage').src = `media/${eventCard.name}.jpg`;
+    document.querySelector('#description').innerHTML = eventCard.flavorTextDescription;
+    document.querySelector('#textOverlay').innerHTML = eventCard.flavorTextDescription;
+
+    // Only display necessary options and buttons
+    for (let i = 0; i < 4; i++) {
+      if (eventCard.options && eventCard.options[i] && eventCard.completedOptions[i] == 0) {
+        document.querySelector(`#button${i}`).style.display = 'block';
+        document.querySelector(`#option${i}`).innerHTML = `${voteLetters[i]}. (${eventCard.options[i]}) ${eventCard.optionsFlavor[i]}`;
+      } else {
+        document.querySelector(`#option${i}`).innerHTML = '';
+        document.querySelector(`#button${i}`).style.display = 'none';
+      }
+    }
+    */
+  };
+  
+  socket.on('load event', (data) => {
+    currentEvent = data.currentEvent;
+    loadEvent(data.currentEvent, data.topVote, data.rng);
+    console.dir(currentEvent);
+    
+  
+    
+    /*
+    document.querySelector('#optionList').style.display = 'block';
+    document.querySelector('#voteCompleted').innerHTML = '';
+    playerVoted = false;
+
+    document.querySelector('#health').innerHTML = `Health: ${data.fool.health}`;
+    document.querySelector('#strength').innerHTML = `Strength: ${data.fool.strength}`;
+    document.querySelector('#intelligence').innerHTML = `Intelligence: ${data.fool.intelligence}`;
+    document.querySelector('#charisma').innerHTML = `Charisma: ${data.fool.charisma}`;
+    document.querySelector('#luck').innerHTML = `Luck: ${data.fool.luck}`;
+    document.querySelector('#gold').innerHTML = `Gold: ${data.fool.gold}`;
+    */
+  });
+  
+  const updateTimer = (newTime) => {
+    document.querySelector("#voteTimerNum").innerHTML = newTime;
+  } 
+  
+  socket.on('vote timer', (data) => {
+    updateTimer(data.voteTimer);
+  });
+  
+  socket.on('game over', (data) => {
+    document.querySelector("#eventDescriptionTLDR").innerHTML = "Game Over";
+  });
+  
   /*
   // First the client adds a vote to the server
   // The server holds all of the votes

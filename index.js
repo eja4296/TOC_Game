@@ -24,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 let usernames = [];
 let numUsers = 0;
 let numUsersVoted = 0;
-const voteTimer = 30;
 const changeEventTimer = -1;
 const eventResolutionTimer = -1;
 const numOfEvents = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
@@ -41,14 +40,26 @@ let cupVotes = [];
 let coinVotes = [];
 
 let finalVote = "";
+let topVote = 0;
+
+let gameOver = false;
 
 const fool = {
-  health: 10,
+  health: 40,
   strength: 5,
-  charisma: 4,
-  intelligence: 3,
-  luck: 6,
+  charisma: 5,
+  intelligence: 5,
+  luck: 5,
   gold: 10,
+};
+
+const foolMax = {
+  health: 40,
+  strength: 10,
+  charisma: 10,
+  intelligence: 10,
+  luck: 10,
+  gold: 100,
 };
 
 
@@ -59,17 +70,14 @@ const magician_Main = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The adventurer enters a dimly lit and cramped room. The walls are lined with shelves of books, many of which display runes from a long lost ancient language. In the center of the room stands a large black cauldron, which has vapor rising from the top and makes a quiet simmering noise. On the side of the pot opposite to the adventurer is an elven witch dressed in mage’s robes, adding ingredients to the elixir and occasionally stirring it. Though her wrinkles and grey hair betray her age, she stands tall with dignity and you can see the vast amount of knowledge she’s gained over countless years (and perhaps centuries) in her eyes.',
-  tldrDescription: 'The adventurer encounter a witch crafting a potion in a room populated with books.',
+  tldrDescription: 'The adventurer encounters a witch crafting a potion in a room populated with books. What should he do?',
   options: ['Attack', 'Investigate', 'Inquire', 'Taste'],
   optionsFlavor: ['This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.', 'We may be able to learn something useful from the books around the room, they may be worth taking a look at.', 'The witch may know something about this place we’re in, we should ask her some questions.', 'That draught looks very enticing...should we take a sip?'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
 
   connections: [1, 2, 3, 4],
-  resolution: {
-    text: '',
-    type: 'none',
-    effect: '',
-  },
 };
 
 allMagicianEvents.push(magician_Main);
@@ -79,16 +87,14 @@ const magician_sword = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The adventurer rushes up to the witch and in his haste knocks the cauldron of liquid and spills it on her! Enraged, she draws her staff and combat spellbook and prepares to fight.',
-  tldrDescription: '',
+  tldrDescription: 'The adventurer decides to attack the witch. How should he engage her in combat?',
   options: ['Slash', 'Cast a Spell'],
   optionsFlavor: ['The witch will be no match for my raw strength. I will cut her down where she stands.', 'The witch is old and her mind is frayed. I will use magic to incapacitate her.'],
-  completedOptions: [0, 0, 0, 0],
+  voteOption: ['Sword', 'Wand'],
+  completedOptions: [0, 0, 1, 1],
+  completedOptionsStart: [0, 0, 1, 1],
   connections: [11, 12],
-  resolution: {
-    text: [''],
-    type: 'none',
-    effect: '',
-  },
+
 
 };
 
@@ -98,16 +104,14 @@ const magician_wand = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The witch calls out to the adventurer, “Weary traveller I do not mind if you look through my library but be warned that some of those tomes contain dangerous knowledge. Proceed at your own risk.” The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
-  tldrDescription: 'There is an Iron book, Floating book, and Worn book. Should we open one, or leave?',
-  options: ['Iron Book', 'Floating Book', 'Worm Book', 'Leave'],
+  tldrDescription: 'There is an Iron book, Floating book, and Worn book. Should the adventurer open one, or leave?',
+  options: ['Iron', 'Floating', 'Worn', 'Leave'],
   optionsFlavor: ['Open the iron book.', 'Open the floating book.', 'Open the worn book.', 'These books could be dangerous like the witch said, better leave them where we found them.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Leave'],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [5, 6, 7, 8],
-  resolution: {
-    text: [],
-    type: 'none',
-    effect: '',
-  },
+ 
 };
 
 allMagicianEvents.push(magician_wand);
@@ -117,16 +121,14 @@ const magician_cup = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The witch begins, “There are few places in the world that seep evil energy as this place does - I only stay here for the immense amount of mana and magical resources it provides.” She pauses. “I sense that you are here to end this wretched place. I know little but I’m willing to impart on you what I can, though just knowing this information could prove dangerous. Are you sure you wish to know regardless?”',
-  tldrDescription: '',
-  options: ['Say Yes', 'Say No'],
-  optionsFlavor: ['', ''],
-  completedOptions: [0, 0, 0, 0],
+  tldrDescription: 'The witch offers to enlighten the adventurer with her knowledge. Should he accept?',
+  options: ['Yes', 'No'],
+  optionsFlavor: ["We should accept. The witch's knowledge could prove to be invaluable", 'It would be best to decline. Knowledge can be dangerous.'],
+  voteOption: ['Say Yes', 'Say No'],
+  completedOptions: [0, 0, 1, 1],
+  completedOptionsStart: [0, 0, 1, 1],
   connections: [9, 10],
-  resolution: {
-    text: '',
-    type: 'none',
-    effect: '',
-  },
+
 };
 
 allMagicianEvents.push(magician_cup);
@@ -139,17 +141,22 @@ const magician_coin = {
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  resolution: {
-    text: ['The adventurer feels rejuvenated, possibly more alive than he has in a while.', 'The adventurer almost immediately feels sick - clearly the potion hadn’t been finished quite yet.'],
-    dice: 4,
-    threshold: [15, 0],
-    statNeeded: fool.luck,
-    effectStats: ['luck', '', 'health'],
-    effectPower: [2, 0, -3],
-    type: 'stat',
+  text: ['The adventurer feels rejuvenated, possibly more alive than he has in a while.', 'The adventurer almost immediately feels sick - clearly the potion hadn’t been finished quite yet.'],
+  dice: 4,
+  threshold: [15, 0],
+  statNeeded: 'Luck',
+  outcomes: 2,
+  effectStats: [
+    ['Luck', 'Strength', 'Health'],
+    ['Luck', 'Strength', 'Health']
+  ],  
+  effectPower: [
+    [1, 1, 30],
+    [-1, -1, -5],
+  ],
 
-  },
 };
 
 allMagicianEvents.push(magician_coin);
@@ -162,16 +169,25 @@ const magician_wand_sword = {
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  resolution: {
-    text: ['The adventurer forces the book open and feels his muscles surge with power as he reads its contents.', 'The adventurer tries his damndest to open the book but it takes all of his might to just hold it. He uses his last ounce of strength to reshelve it, and decides to move on.', 'The adventurer tugs the book from its place but can’t muster the power to keep it in his hands. It ungracefully tumbles from the rack and lands on the adventurer’s feet.'],
-    dice: 4,
-    threshold: [8, 4, 0],
-    statNeeded: fool.strength,
-    effectStats: ['strength', '', 'health'],
-    effectPower: [2, 0, -3],
-    type: 'stat',
-  },
+  text: ['The adventurer forces the book open and feels his muscles surge with power as he reads its contents.', 'The adventurer tries his damndest to open the book but it takes all of his might to just hold it. He uses his last ounce of strength to reshelve it, and decides to move on.', 'The adventurer tugs the book from its place but can’t muster the power to keep it in his hands. It ungracefully tumbles from the rack and lands on the adventurer’s feet.'],
+  dice: 4,
+  threshold: [8, 4, 0],
+  statNeeded: "Strength",
+  outcomes: 3,
+  effectStats: [
+    ['Strength', 'Intelligence'],
+    [],
+    ['Health', 'Strength']
+  ],  
+  effectPower: [
+    [2, 1],
+    [],
+    [-3, -1],
+  ],
+ 
+
 };
 allMagicianEvents.push(magician_wand_sword);
 const magician_wand_wand = {
@@ -182,16 +198,26 @@ const magician_wand_wand = {
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  resolution: {
-    text: ['The magic book slams open and attempts to assault the adventurer with dark magic, but he uses his own power to bend the book to his will, letting him access its harbored secrets without resistance.', 'The adventurer clasps the levitating book in his hands, but the book refuses to open, and the whispers emanating from it have gone silent. It seems the adventurer is not quite worthy of its secrets just yet.', 'The adventurer extends a hand to the floating book and the room fills with a high pitched scream coming from the book itself, replacing the almost ambient whispers that it conjured previously. It dissolves into ash, but not before thoroughly leaving the adventurer’s head rattled and ears ringing. The witch looks over at the adventurer, gives a shrug, and continues to stir her pot.'],
-    dice: 4,
-    threshold: [8, 4, 0],
-    statNeeded: fool.intelligence,
-    effectStats: ['intelligence', '', 'health'],
-    effectPower: [2, 0, -3],
-    type: 'stat',
-  },
+
+  text: ['The magic book slams open and attempts to assault the adventurer with dark magic, but he uses his own power to bend the book to his will, letting him access its harbored secrets without resistance.', 'The adventurer clasps the levitating book in his hands, but the book refuses to open, and the whispers emanating from it have gone silent. It seems the adventurer is not quite worthy of its secrets just yet.', 'The adventurer extends a hand to the floating book and the room fills with a high pitched scream coming from the book itself, replacing the almost ambient whispers that it conjured previously. It dissolves into ash, but not before thoroughly leaving the adventurer’s head rattled and ears ringing. The witch looks over at the adventurer, gives a shrug, and continues to stir her pot.'],
+  dice: 4,
+  threshold: [8, 4, 0],
+  statNeeded: "Intelligence",
+  outcomes: 3,
+  effectStats: [
+    ['Intelligence'],
+    [],
+    ['Health', 'Intelligence']
+  ],  
+  effectPower: [
+    [2],
+    [],
+    [-3, -1],
+  ],
+  
+
 };
 allMagicianEvents.push(magician_wand_wand);
 const magician_wand_cup = {
@@ -202,16 +228,25 @@ const magician_wand_cup = {
   tldrDescription: '',
   options: [''],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  resolution: {
-    text: ['“It’s just my recipe book!” she replies. “I hardly use it anymore - I have all of my concoctions in my head nowadays. I’d be happy to let you use it.” She extends the book over her cauldron, which sufficiently heats it to reveal writing that was previously invisible. “Can’t just let anyone have these secrets, can I?”. She points to the simplest formula, a healing elixir, and provides the adventurer the ingredients and flask to make one.', 'The witch doesn’t respond, too absorbed in her work. After some initial pestering, the adventurer gives up and places the pages back with the other books.'],
-    dice: 4,
-    threshold: [7, 0],
-    statNeeded: fool.charisma,
-    effectStats: ['charisma', ''],
-    effectPower: [2, 0],
-    type: 'stat',
-  },
+
+  text: ['“It’s just my recipe book!” she replies. “I hardly use it anymore - I have all of my concoctions in my head nowadays. I’d be happy to let you use it.” She extends the book over her cauldron, which sufficiently heats it to reveal writing that was previously invisible. “Can’t just let anyone have these secrets, can I?”. She points to the simplest formula, a healing elixir, and provides the adventurer the ingredients and flask to make one.', 'The witch doesn’t respond, too absorbed in her work. After some initial pestering, the adventurer gives up and places the pages back with the other books.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Charisma",
+  outcomes: 2,
+
+  effectStats: [
+    ['Charisma', 'Intelligence', "Health"],
+    []
+  ],  
+  effectPower: [
+    [1, 1, 5],
+    [],
+  ],
+  
+
 };
 allMagicianEvents.push(magician_wand_cup);
 const magician_wand_leave = {
@@ -222,14 +257,22 @@ const magician_wand_leave = {
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  resolution: {
-    text: ['It was probably a good idea to leave those books alone.'],
-    threshold: [],
-    effectStats: [],
-    effectPower: [],
-    type: 'none',
-  },
+  
+  text: ['It was probably a good idea to leave those books alone.'],
+  dice: 0,
+  threshold: [],
+  statNeeded: "",
+  outcomes: 0,
+  effectStats: [
+
+  ],  
+  effectPower: [
+
+  ],
+
+  
 };
 allMagicianEvents.push(magician_wand_leave);
 
@@ -241,16 +284,24 @@ const magician_cup_yes = {
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  resolution: {
-    text: ['The witch lowers her voice to barely audible from where the adventurer is standing, and tells him of her experiences over the many years of the dungeon. Of the power of swords, cups, wands, and coins having influence on all of the happenings in the realm, and of constantly shifting rooms with constantly shifting happenings and unknown futures in each of them.', 'She begins to speak, but a purple mist rises from the floor and the temperature in the room drops drastically. The tainted air finds its way into her nose and fills her lungs. The witch twitches and writhes in unnatural ways until she succumbs to suffocation. As if to hint at what’s coming, the remaining haze attacks the adventurer.'],
-    dice: 4,
-    threshold: [15, 10],
-    statNeeded: fool.charisma,
-    effectStats: ['charisma', 'health'],
-    effectPower: [2, -5],
-    type: 'stat',
-  },
+
+  text: ['The witch lowers her voice to barely audible from where the adventurer is standing, and tells him of her experiences over the many years of the dungeon. Of the power of swords, cups, wands, and coins having influence on all of the happenings in the realm, and of constantly shifting rooms with constantly shifting happenings and unknown futures in each of them.', 'She begins to speak, but a purple mist rises from the floor and the temperature in the room drops drastically. The tainted air finds its way into her nose and fills her lungs. The witch twitches and writhes in unnatural ways until she succumbs to suffocation. As if to hint at what’s coming, the remaining haze attacks the adventurer.'],
+  dice: 4,
+  threshold: [15, 10],
+  statNeeded: "Charisma",
+  outcomes: 2,
+  effectStats: [
+    ['Charisma', 'Intelligence'],
+    ['Charisma', 'Health']
+  ],  
+  effectPower: [
+    [2, 2],
+    [-1, -5],
+  ],
+
+
 };
 allMagicianEvents.push(magician_cup_yes);
 
@@ -262,16 +313,22 @@ const magician_cup_no = {
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  resolution: {
-    text: ['“I see,” the witch says somewhat disheartened. “Perhaps then you are not the adventurer that I was expecting to liberate this place.”'],
-    dice: 0,
-    threshold: [],
-    statNeeded: fool.health,
-    effectStats: [],
-    effectPower: [],
-    type: 'none',
-  },
+ 
+  text: ['“I see,” the witch says somewhat disheartened. “Perhaps then you are not the adventurer that I was expecting to liberate this place.”'],
+  dice: 0,
+  threshold: [],
+  statNeeded: "",
+  outcomes: 0,
+  effectStats: [
+
+  ],  
+  effectPower: [
+
+  ],
+  
+
 };
 
 allMagicianEvents.push(magician_cup_no);
@@ -284,22 +341,30 @@ const magician_sword_sword = {
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  resolution: {
-    text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer swings his sword at the witch, she counters with her staff and deals blow to his gut, knockiing the wind out of him. The witch refrains from dealing further damage, as she knows he is no match for her.'],
-    dice: 4,
-    threshold: [15, 0],
-    statNeeded: fool.strength,
-    effectStats: ['strength', '', 'health'],
-    effectPower: [2, 0, -5],
-    type: 'stat',
-  },
+
+  text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer swings his sword at the witch, she counters with her staff and deals blow to his gut, knockiing the wind out of him. The witch refrains from dealing further damage, as she knows he is no match for her.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Strength",
+  outcomes: 2,
+  effectStats: [
+    ['Strength', 'Luck'],
+    ['Health', 'Strength']
+  ],  
+  effectPower: [
+    [2, 2],
+    [-5, -1],
+  ],
+ 
+
 
 };
 
 allMagicianEvents.push(magician_sword_sword);
 
-const magician_sword_sword = {
+const magician_sword_wand = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
@@ -307,16 +372,24 @@ const magician_sword_sword = {
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  resolution: {
-    text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer casts his spell at the witch, she effortlessly counters with a spell of her own knocking the adveturer off his feet. The witch refrains from dealing further damage, as she knows he is no match for her.'],
-    dice: 4,
-    threshold: [15, 0],
-    statNeeded: fool.strength,
-    effectStats: ['strength', '', 'health'],
-    effectPower: [2, 0, -5],
-    type: 'stat',
-  },
+ 
+  text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer casts his spell at the witch, she effortlessly counters with a spell of her own knocking the adveturer off his feet. The witch refrains from dealing further damage, as she knows he is no match for her.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Intelligence",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', 'Luck'],
+    ['Health', 'Intelligence']
+  ],  
+  effectPower: [
+    [2, 2],
+    [-5, -1],
+  ],
+  
+ 
 
 };
 
@@ -671,7 +744,7 @@ setInterval(() => {
         }
 
         // Set change event timer to -1
-
+document.querySelector(""
         // Set vote timer to 10 (or whatever we decide)
         // This will restart the entire loop
       }
@@ -683,6 +756,145 @@ setInterval(() => {
 }, 1000);
 */
 
+let voteTimer = 10;
+
+setInterval(() => {
+  if(gameStarted && gameOver == false){
+    
+    io.sockets.emit('vote timer', {
+        voteTimer: voteTimer,
+      });
+    
+    if(voteTimer <= 0){
+      // Calculate votes
+      let allVotes = [];
+
+      for(var i = 0; i < swordVotes.length; i++){
+        allVotes.push(swordVotes[i]);
+      }
+      for(var i = 0; i < wandVotes.length; i++){
+        allVotes.push(wandVotes[i]);
+      }
+      for(var i = 0; i < cupVotes.length; i++){
+        allVotes.push(cupVotes[i]);
+      }
+      for(var i = 0; i < coinVotes.length; i++){
+        allVotes.push(coinVotes[i]);
+      }
+      
+      
+
+
+      let randomNum = Math.floor(Math.random() * allVotes.length);
+      
+
+      if(allVotes[randomNum]){
+        finalVote = allVotes[randomNum]
+      }
+      else if(!allVotes[randomNum] && currentEvent.type == "voting"){
+        
+        let available = false;
+        while(!available){
+          randomNum = Math.floor(Math.random() * 4);
+          if(currentEvent.completedOptions[randomNum] == 0){
+            available = true;
+          }
+        }
+        
+        switch (randomNum){
+          case 0:
+            finalVote = "Sword";
+            break;
+          case 1:
+            finalVote = "Wand";
+            break;
+          case 2:
+            finalVote = "Cup";
+            break;
+          case 3:
+            finalVote = "Coin";
+            break;
+          default:
+            break;
+        }
+        
+      }
+      
+
+      let finalVoteNum = 0;
+      
+      switch (finalVote){
+        case "Sword":
+          break;
+        case "Wand":
+          finalVoteNum = 1;
+          break;
+        case "Cup":
+          finalVoteNum = 2;
+          break;
+        case "Coin":
+          finalVoteNum = 3;
+          break;
+        default:
+          break;
+      }
+      //console.log(allVotes[randomNum]);
+      currentEvent.completedOptions[finalVoteNum] = 1;
+
+      
+      console.log(finalVoteNum);
+      
+      currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
+      
+      let completionCheck = true;
+      for(var i = 0; i < currentEvent.completedOptions.length; i++){
+        if(currentEvent.completedOptions[i] == 0){
+          completionCheck = false;
+        }
+      }
+      
+      if(currentEvent.type == "resolution"){
+        
+      }
+      
+      if(completionCheck == false){
+        io.sockets.emit('load event', {
+          currentEvent,
+          finalVoteNum,
+          rng: 0,
+          fool,
+        });
+
+        swordVotes = [];
+        wandVotes = [];
+        cupVotes = [];
+        coinVotes = [];
+        numUsersVoted = 0;
+
+        io.emit('resetVotes', {
+          finalVote: finalVote,
+          usernames,
+        });
+
+        finalVote = "";
+
+        voteTimer = 10;
+      }
+      else{
+        gameOver = true;
+        gameStarted = false;
+        voteTimer = 10;
+        io.emit('game over', {
+          
+        });
+      }
+      
+    }
+    
+    voteTimer -= 1;
+  }
+}, 1000);
+
 // When the server and client are connected this runs
 io.on('connection', (socket) => {
   let addedUser = false;
@@ -691,12 +903,17 @@ io.on('connection', (socket) => {
   if (gameStarted) {
     io.sockets.emit('load event', {
       currentEvent,
+      topVote,
+      rng: 0,
       fool,
     });
   }
 
   socket.on('start game', () => {
     if (gameStarted == false) {
+      io.sockets.emit('vote timer', {
+        voteTimer: voteTimer,
+      });
       /*
       let randomEvent = 0;
 
@@ -716,18 +933,28 @@ io.on('connection', (socket) => {
       });
 
       gameStarted = true;
-      */
-
-      for (let i = 0; i < 4; i++) {
-        magician_Main.completedOptions[i] = 0;
+     */
+ 
+      for (let i = 0; i < allMagicianEvents.length; i++) {
+        for(let j = 0; j < 4; j++){
+           allMagicianEvents[i].completedOptions[j] = allMagicianEvents[i].completedOptionsStart[j];
+        }
       }
-
+ 
       currentEvent = magician_Main;
+      
+   
+      gameOver = false;
+      
 
       io.sockets.emit('load event', {
         currentEvent,
+        topVote,
+        rng: 0,
         fool,
       });
+      
+      
 
       gameStarted = true;
     }
