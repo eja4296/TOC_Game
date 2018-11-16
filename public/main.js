@@ -731,9 +731,8 @@ $(() => {
 
         if(!eventCard.effectStats[rng]){
           
-          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>Nothing happened...</div>";
-          
           document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " </div>";
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>Nothing happened...</div>";
           document.querySelector("#eventDescriptionTLDR").innerHTML += " Nothing happened...";
         }
         else{

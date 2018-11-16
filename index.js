@@ -729,8 +729,13 @@ setInterval(() => {
       currentEvent.completedOptions[finalVoteNum] = 1;
 
 
+      if(allMagicianEvents[currentEvent.connections[finalVoteNum]]){
+        currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
+      }
+      else{
+        currentEvent = allMagicianEvents[currentEvent.connections[0]]
+      }
       
-      currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
       
       let completionCheck = true;
       for(var i = 0; i < currentEvent.completedOptions.length; i++){
