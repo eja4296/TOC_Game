@@ -71,8 +71,18 @@ const foolMax = {
   gold: 100,
 };
 
-
+const allEvents[];
 const allMagicianEvents = [];
+const allEmpressEvents = [];
+const allHighPreistessEvents = [];
+
+const allMagicianEvents2 = {
+  events: [],
+  constraint: {
+    name: "Magician is alive",
+    isTrue: true,
+  }
+}
 
 const magician_Main = {
   title: 'The Magician',
@@ -116,7 +126,7 @@ const magician_wand = {
   tldrDescription: 'There is an Iron book, Floating book, and Worn book. Should the adventurer open one, or leave?',
   options: ['Iron', 'Floating', 'Worn', 'Leave'],
   optionsFlavor: ['Open the iron book.', 'Open the floating book.', 'Open the worn book.', 'These books could be dangerous like the witch said, better leave them where we found them.'],
-  voteOption: ['Sword', 'Wand', 'Cup', 'Leave'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [5, 6, 7, 8],
@@ -131,11 +141,11 @@ const magician_cup = {
   type: 'voting',
   flavorTextDescription: 'The witch begins, “There are few places in the world that seep evil energy as this place does - I only stay here for the immense amount of mana and magical resources it provides.” She pauses. “I sense that you are here to end this wretched place. I know little but I’m willing to impart on you what I can, though just knowing this information could prove dangerous. Are you sure you wish to know regardless?”',
   tldrDescription: 'The witch offers to enlighten the adventurer with her knowledge. Should he accept?',
-  options: ['Yes', 'No'],
+  options: ['Say Yes', 'Say No'],
   optionsFlavor: ["We should accept. The witch's knowledge could prove to be invaluable", 'It would be best to decline. Knowledge can be dangerous.'],
-  voteOption: ['Say Yes', 'Say No'],
-  completedOptions: [0, 0, 1, 1],
-  completedOptionsStart: [0, 0, 1, 1],
+  voteOption: ['Cup', 'Coin'],
+  completedOptions: [1, 1, 0, 0],
+  completedOptionsStart: [1, 1, 0, 0],
   connections: [9, 10],
 
 };
@@ -298,7 +308,7 @@ const magician_cup_yes = {
 
   text: ['The witch lowers her voice to barely audible from where the adventurer is standing, and tells him of her experiences over the many years of the dungeon. Of the power of swords, cups, wands, and coins having influence on all of the happenings in the realm, and of constantly shifting rooms with constantly shifting happenings and unknown futures in each of them.', 'She begins to speak, but a purple mist rises from the floor and the temperature in the room drops drastically. The tainted air finds its way into her nose and fills her lungs. The witch twitches and writhes in unnatural ways until she succumbs to suffocation. As if to hint at what’s coming, the remaining haze attacks the adventurer.'],
   dice: 4,
-  threshold: [15, 10],
+  threshold: [7, 0],
   statNeeded: "Charisma",
   outcomes: 2,
   effectStats: [
@@ -404,6 +414,162 @@ const magician_sword_wand = {
 
 
 allMagicianEvents.push(magician_sword_wand);
+
+// HIGH PREISTESS EVENTS
+
+const highPriestess_Main = {
+  title: 'The High Preistess',
+  name: 'highPriestess',
+  type: 'voting',
+  flavorTextDescription: 'Immediately upon entering this room, the adventurer is struck with the sight of a beautiful stone statue of a weeping angel as well as the soothing sound of rushing water. The entire floor is wet as the angel cries pure tears onto the marble floor, and the ripples it causes feel good against the adventurer’s feet. The water gleams onto the similarly pearl-colored walls thanks to an unknown light source. The deeper pool of water surrounding the statue is home to a group of calm fish. The only interruption to the flow of water on the ground is by a small altar made of the same material as the fountain, facing it. It’s surprising that such a heavenly space could possibly exist such a demonic place, making it seem almost unsettling. However the soothing nature of the aura in the room expels that thought from the adventurer’s mind and leaves him in a place of zen.',
+  tldrDescription: 'The adventurer emerges in a room with a fountain that spouts water onto the floor, and an altar next to it. Surrounding the statue is a pool containing some fish. What should he do?',
+  options: ['Fish', 'Investigate', 'Pray', 'Wish'],
+  optionsFlavor: ['Who knows when we’ll be able to eat in here, and it’s eat or be eaten - time to go fishing!', 'Where did all of this water coming from? There might be something here causing it that could help in the future.', 'There is still a long and difficult journey ahead, a moment of silence and prayer at the altar is warranted.', 'Toss a coin in the fountain. Might turn out to be lucky!'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+
+  connections: [1, 2, 3, 4],
+};
+
+allHighPreistessEvents.push(highPriestess_Main);
+
+const highPreistess_sword = {
+  title: 'The High Priestess',
+  name: 'highPriestess',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to go fishing in the fountain.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [5, 6],
+  text: ['The adventurer manages to snag a large fish, and use a bit of fire magic he picked up before entering this hellhole to roast it.', 'The fish prove to be too slippery. The adventurer wasn’t that hungry anyways.', 'The adventurer trips over his own feet and plunges head first into the pool, also knocking his head on the way down. He could not have failed more spectacularly. The eyes of the fish followed him as he pulled himself out, almost teasing him at his failure to make a meal out of one from their ranks.'],
+  dice: 3,
+  threshold: [8, 4, 0],
+  statNeeded: "Strength",
+  outcomes: 3,
+  effectStats: [
+    ['Healht', 'Strength'],
+    [],
+    ['Health','Strength']
+  ],  
+  effectPower: [
+    [10, 1],
+    [],
+    [-3, -1],
+  ],
+};
+
+allHighPreistessEvents.push(highPreistess_sword);
+
+const highPreistess_cup = {
+  title: 'The High Priestess',
+  name: 'highPriestess',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to go fishing in the fountain.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [5, 6],
+  text: ['Divine powers flows from the water and into the adventurer, coursing through his body starting with his feet and slowly making its way upward.', 'The water rushes a little harder on the ground and also seems to be pleased.'],
+  dice: 3,
+  threshold: [8, 4, 0],
+  statNeeded: "Strength",
+  outcomes: 2,
+  effectStats: [
+    ['Healht', 'Strength'],
+
+    ['Health','Strength']
+  ],  
+  effectPower: [
+    [10, 1],
+  
+    [-3, -1],
+  ],
+};
+
+allHighPreistessEvents.push(highPreistess_cup);
+
+
+
+// EMPRESS EVENTS
+
+const empress_Main = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'voting',
+  flavorTextDescription: 'The adventurer is greeted by a sea of green after entering this room - grass twice as tall as the average person. He presses forward until a muffled and out of place sound catches his ear. Having no clear path to the exit, he decides to investigate the noise. It leads him to an open clearing with normal, average-sized grass. Across the field stands a willow tree with twisted and contorted branches, forking in various directions. At its base sits the source of the noise, a young woman wrapped in peasant’s clothing. Her knees are bent to her chest and she rests her face on them, obscured by her lengthy amber hair. The adventurer realizes upon seeing her that the suppressed noises he heard before were actually sobs. The maiden doesn’t acknowledge the adventurer’s presence, but stops crying after she hears the rustling of footsteps.',
+  tldrDescription: 'The adventurer stumbles upon a young woman crying beneath a willow tree. What should he do?',
+  options: ['Attack', 'Investigate', 'Befriend', 'Leave'],
+  optionsFlavor: ['Something is off putting about this woman. What is she even doing in a place like this to begin with? We’re not feeling lucky, this is almost certainly a trap. Better get the jump on her.', 'Better not to rush in too quickly, it can’t hurt to take a quick look around.', 'She looks like she could use a friend.', 'No reason to stay, need to find that exit somewhere in this grass.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+
+  connections: [1, 2, 3, 4],
+};
+
+allEmpressEvents.push(empress_Main);
+
+
+const empress_sword = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'resolution',
+  flavorTextDescription: 'You attack the woman.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [5, 6],
+  text: ['The woman gets up quickly at the sound of the adventurer’s weapon being unsheathed and reveals crooked, gnashing teeth. Clearly this creature is not a human woman but instead a siren. Before she can unleash her scream, the adventurer rushes forward and attacks.', 'There’s no reaction from the woman as the adventurer’s weapon leaves its holster, and she makes no move to defend herself as it comes swinging down, silencing her sobs permanently. Her body slumps and red blood - human blood - spills from it. A loud, deep bellow booms from somewhere in the clearing and is powerful enough to make the surrounding grass bend back in reaction to its might. The tree that was once the sanctuary of the adventurer’s victim begins to take a new, humanoid form. He barely registers that this new arrival is a druid (and is none too happy about his friend being executed) before it lunges for him with a bark covered hand.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', 'Strength'],
+    ['Intelligence', 'Strength']
+  ],  
+  effectPower: [
+    [2, 2],
+    [-1, -1],
+  ],
+};
+
+allEmpressEvents.push(empress_sword);
+
+
+const empress_wand = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'resolution',
+  flavorTextDescription: 'You investigate the woman.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
+  connections: [0],
+  text: ['The woman gets up quickly at the sound of the adventurer’s weapon being unsheathed and reveals crooked, gnashing teeth. Clearly this creature is not a human woman but instead a siren. Before she can unleash her scream, the adventurer rushes forward and attacks.', 'There’s no reaction from the woman as the adventurer’s weapon leaves its holster, and she makes no move to defend herself as it comes swinging down, silencing her sobs permanently. Her body slumps and red blood - human blood - spills from it. A loud, deep bellow booms from somewhere in the clearing and is powerful enough to make the surrounding grass bend back in reaction to its might. The tree that was once the sanctuary of the adventurer’s victim begins to take a new, humanoid form. He barely registers that this new arrival is a druid (and is none too happy about his friend being executed) before it lunges for him with a bark covered hand.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', 'Strength'],
+    ['Intelligence', 'Strength']
+  ],  
+  effectPower: [
+    [2, 2],
+    [-1, -1],
+  ],
+
+
+};
+
+allEmpressEvents.push(empress_wand);
 
 
 // Timer for different phases
