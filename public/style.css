@@ -305,8 +305,8 @@ ul {
     position: relative;
     width: 90%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 10px;
     overflow-y: scroll;
     height: 74px;
   }

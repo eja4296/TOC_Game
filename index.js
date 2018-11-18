@@ -32,6 +32,7 @@ const usedEvents = [];
 let gameStarted = false;
 
 let currentEvent;
+let previousEvent;
 const allEvents = [];
 
 let swordVotes = [];
@@ -967,11 +968,14 @@ setInterval(() => {
       currentEvent.completedOptions[finalVoteNum] = 1;
 
 
-
+      previousEvent = currentEvent;
+      
       if(currentEvent.connections[0] == 0){
+        
         currentEvent = allMagicianEvents[currentEvent.connections[0]];
       }
       else{
+        
         currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
       }
       
@@ -1161,11 +1165,14 @@ setInterval(() => {
         coinVotes = [];
         numUsersVoted = 0;
 
-        io.emit('resetVotes', {
-          finalVote: finalVote,
-          usernames,
-        });
-
+        
+        if(previousEvent.type == "voting"){
+          io.emit('resetVotes', {
+            finalVote: finalVote,
+            usernames,
+          });
+        }
+        
         finalVote = "";
         
         if(currentEvent.type == "voting"){
