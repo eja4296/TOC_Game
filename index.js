@@ -71,17 +71,19 @@ const foolMax = {
   gold: 100,
 };
 
-const allEvents[];
+
 const allMagicianEvents = [];
 const allEmpressEvents = [];
 const allHighPreistessEvents = [];
 
 const allMagicianEvents2 = {
   events: [],
-  constraint: {
-    name: "Magician is alive",
-    isTrue: true,
-  }
+  constraint: [
+    {
+      name: "isAlive",
+      isTrue: true,
+    }
+  ],
 }
 
 const magician_Main = {
@@ -89,14 +91,21 @@ const magician_Main = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The adventurer enters a dimly lit and cramped room. The walls are lined with shelves of books, many of which display runes from a long lost ancient language. In the center of the room stands a large black cauldron, which has vapor rising from the top and makes a quiet simmering noise. On the side of the pot opposite to the adventurer is an elven witch dressed in mage’s robes, adding ingredients to the elixir and occasionally stirring it. Though her wrinkles and grey hair betray her age, she stands tall with dignity and you can see the vast amount of knowledge she’s gained over countless years (and perhaps centuries) in her eyes.',
+  
   tldrDescription: 'The adventurer encounters a witch crafting a potion in a room populated with books. What should he do?',
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 1, 0],
+  constraintOptionsFlavor: [],
   options: ['Attack', 'Investigate', 'Inquire', 'Taste'],
+  
   optionsFlavor: ['This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.', 'We may be able to learn something useful from the books around the room, they may be worth taking a look at.', 'The witch may know something about this place we’re in, we should ask her some questions.', 'That draught looks very enticing...should we take a sip?'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
 
   connections: [1, 2, 3, 4],
+  constraintTrigger: [-1, -1, -1, -1],
 };
 
 allMagicianEvents.push(magician_Main);
@@ -107,13 +116,18 @@ const magician_sword = {
   type: 'voting',
   flavorTextDescription: 'The adventurer rushes up to the witch and in his haste knocks the cauldron of liquid and spills it on her! Enraged, she draws her staff and combat spellbook and prepares to fight.',
   tldrDescription: 'The adventurer decides to attack the witch. How should he engage her in combat?',
+  
   options: ['Slash', 'Cast a Spell'],
   optionsFlavor: ['The witch will be no match for my raw strength. I will cut her down where she stands.', 'The witch is old and her mind is frayed. I will use magic to incapacitate her.'],
   voteOption: ['Sword', 'Wand'],
   completedOptions: [0, 0, 1, 1],
   completedOptionsStart: [0, 0, 1, 1],
   connections: [11, 12],
-
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintTrigger: [-1, -1, -1, -1],
 
 };
 
@@ -122,15 +136,20 @@ const magician_wand = {
   title: 'The Magician',
   name: 'magician',
   type: 'voting',
-  flavorTextDescription: 'The witch calls out to the adventurer, “Weary traveller I do not mind if you look through my library but be warned that some of those tomes contain dangerous knowledge. Proceed at your own risk.” The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
+  flavorTextDescription: 'The witch calls out to the adventurer, “Weary traveller I do not mind if you look through my library but be warned that some of those tomes contain dangerous knowledge. Proceed at your own risk.” ',
   tldrDescription: 'There is an Iron book, Floating book, and Worn book. Should the adventurer open one, or leave?',
+  
   options: ['Iron', 'Floating', 'Worn', 'Leave'],
   optionsFlavor: ['Open the iron book.', 'Open the floating book.', 'Open the worn book.', 'These books could be dangerous like the witch said, better leave them where we found them.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [5, 6, 7, 8],
- 
+  constraintFlavorTextDescription: 'The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintTrigger: [-1, -1, -1, -1],
 };
 
 allMagicianEvents.push(magician_wand);
@@ -141,13 +160,18 @@ const magician_cup = {
   type: 'voting',
   flavorTextDescription: 'The witch begins, “There are few places in the world that seep evil energy as this place does - I only stay here for the immense amount of mana and magical resources it provides.” She pauses. “I sense that you are here to end this wretched place. I know little but I’m willing to impart on you what I can, though just knowing this information could prove dangerous. Are you sure you wish to know regardless?”',
   tldrDescription: 'The witch offers to enlighten the adventurer with her knowledge. Should he accept?',
+  
   options: ['Say Yes', 'Say No'],
   optionsFlavor: ["We should accept. The witch's knowledge could prove to be invaluable", 'It would be best to decline. Knowledge can be dangerous.'],
-  voteOption: ['Cup', 'Coin'],
-  completedOptions: [1, 1, 0, 0],
-  completedOptionsStart: [1, 1, 0, 0],
+  voteOption: ['Sword', 'Wand'],
+  completedOptions: [0, 0, 1, 1],
+  completedOptionsStart: [0, 0, 1, 1],
   connections: [9, 10],
-
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintTrigger: [-1, -1, -1, -1],
 };
 
 allMagicianEvents.push(magician_cup);
@@ -156,8 +180,10 @@ const magician_coin = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'The witch notices the adventurer eyeing the cerulean mixture she has been so carefully crafting. “Care for a taste?” she asks as she extends a sturdy but boney hand towards him, clasping a vial of her work. The adventurer scoops his hands into the cauldron, and brings some of the cerulean mixture up to his mouth. Surprisingly, it’s no longer hot, likely because it’s no longer being disturbed.',
+  flavorTextDescription: 'The witch notices the adventurer eyeing the cerulean mixture she has been so carefully crafting. “Care for a taste?” she asks as she extends a sturdy but boney hand towards him, clasping a vial of her work.',
   tldrDescription: '',
+  
+  
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
@@ -175,7 +201,12 @@ const magician_coin = {
     [1, 1, 30],
     [-1, -1, -5],
   ],
-
+  constraintFlavorTextDescription: 'The adventurer scoops his hands into the cauldron, and brings some of the cerulean mixture up to his mouth. Surprisingly, it’s no longer hot, likely because it’s no longer being disturbed.',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintText: [],
+  constraintTrigger: [-1, -1, -1, -1],
 };
 
 allMagicianEvents.push(magician_coin);
@@ -205,7 +236,12 @@ const magician_wand_sword = {
     [],
     [-3, -1],
   ],
- 
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintText: [],
+  constraintTrigger: [-1, -1, -1, -1],
 
 };
 allMagicianEvents.push(magician_wand_sword);
@@ -220,7 +256,7 @@ const magician_wand_wand = {
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
 
-  text: ['The magic book slams open and attempts to assault the adventurer with dark magic, but he uses his own power to bend the book to his will, letting him access its harbored secrets without resistance.', 'The adventurer clasps the levitating book in his hands, but the book refuses to open, and the whispers emanating from it have gone silent. It seems the adventurer is not quite worthy of its secrets just yet.', 'The adventurer extends a hand to the floating book and the room fills with a high pitched scream coming from the book itself, replacing the almost ambient whispers that it conjured previously. It dissolves into ash, but not before thoroughly leaving the adventurer’s head rattled and ears ringing. The witch looks over at the adventurer, gives a shrug, and continues to stir her pot.'],
+  text: ['The magic book slams open and attempts to assault the adventurer with dark magic, but he uses his own power to bend the book to his will, letting him access its harbored secrets without resistance.', 'The adventurer clasps the levitating book in his hands, but the book refuses to open, and the whispers emanating from it have gone silent. It seems the adventurer is not quite worthy of its secrets just yet.', 'The adventurer extends a hand to the floating book and the room fills with a high pitched scream coming from the book itself, replacing the almost ambient whispers that it conjured previously. It dissolves into ash, but not before thoroughly leaving the adventurer’s head rattled and ears ringing.'],
   dice: 4,
   threshold: [8, 4, 0],
   statNeeded: "Intelligence",
@@ -235,7 +271,12 @@ const magician_wand_wand = {
     [],
     [-3, -1],
   ],
-  
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintText: [],
+  constraintTrigger: [-1, -1, -1, -1],
 
 };
 allMagicianEvents.push(magician_wand_wand);
@@ -264,7 +305,12 @@ const magician_wand_cup = {
     [1, 1, 5],
     [],
   ],
-  
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintText: [],
+  constraintTrigger: [-1, -1, -1, -1],
 
 };
 allMagicianEvents.push(magician_wand_cup);
@@ -290,7 +336,12 @@ const magician_wand_leave = {
   effectPower: [
 
   ],
-
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintText: [],
+  constraintTrigger: [-1, -1, -1, -1],
   
 };
 allMagicianEvents.push(magician_wand_leave);
@@ -319,7 +370,12 @@ const magician_cup_yes = {
     [2, 2],
     [-1, -5],
   ],
-
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintText: [],
+  constraintTrigger: [-1, -1, -1, -1],
 
 };
 allMagicianEvents.push(magician_cup_yes);
@@ -346,7 +402,12 @@ const magician_cup_no = {
   effectPower: [
 
   ],
-  
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintText: [],
+  constraintTrigger: [-1, -1, -1, -1],
 
 };
 
@@ -376,7 +437,12 @@ const magician_sword_sword = {
     [2, 2],
     [-5, -1],
   ],
- 
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintText: [],
+  constraintTrigger: [0, -1, -1, -1],
 
 
 };
@@ -407,7 +473,12 @@ const magician_sword_wand = {
     [2, 2],
     [-5, -1],
   ],
-  
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 0, 0],
+  constraintOptionsFlavor: [],
+  constraintText: [],
+  constraintTrigger: [0, -1, -1, -1],
  
 
 };
@@ -807,9 +878,10 @@ document.querySelector(""
 
 
 
-const timeToVote = 15;
+const timeToVote = 10;
+const timeToWait = 10;
 
-let voteTimer = timeToVote + 1;
+let voteTimer = timeToVote;
 
 setInterval(() => {
   if(gameStarted && gameOver == false){
@@ -895,8 +967,13 @@ setInterval(() => {
       currentEvent.completedOptions[finalVoteNum] = 1;
 
 
+      if(currentEvent.connections[0] == 0){
+        currentEvent = allMagicianEvents[currentEvent.connections[0]];
+      }
+      else{
+        currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
+      }
       
-      currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
       
       let completionCheck = true;
       for(var i = 0; i < currentEvent.completedOptions.length; i++){
@@ -1074,6 +1151,7 @@ setInterval(() => {
           rng,
           fool,
           foolMax,
+          finalVote,
         });
 
         swordVotes = [];
@@ -1088,8 +1166,14 @@ setInterval(() => {
         });
 
         finalVote = "";
-
-        voteTimer = timeToVote;
+        
+        if(currentEvent.type == "voting"){
+          voteTimer = timeToVote;
+        }
+        else{
+          voteTimer = timeToWait;
+        }
+        
       }
       else{
         gameOver = true;
@@ -1118,6 +1202,7 @@ io.on('connection', (socket) => {
       rng: 0,
       fool,
       foolMax,
+      finalVote,
     });
   }
 

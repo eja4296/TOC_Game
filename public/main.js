@@ -680,28 +680,38 @@ $(() => {
   });
   
   
-    const loadEvent = (eventCard, topVote, rng, fool, foolMax) => {
+    const loadEvent = (eventCard, topVote, rng, fool, foolMax, finalVote) => {
       
         document.querySelector('#health').innerHTML = fool.health;
-        document.querySelector('#health').style.color = "hsl(" + (fool.health / foolMax.health) * 120 + ", 100%, 50%)";
+        document.querySelector('#health').style.color = "hsl(" + (fool.health / foolMax.health) * 120 + ", 50%, 50%)";
         document.querySelector('#strength').innerHTML = fool.strength;
-        document.querySelector('#strength').style.color = "hsl(" + (fool.strength / foolMax.strength) * 120 + ", 100%, 50%)";
+        document.querySelector('#strength').style.color = "hsl(" + (fool.strength / foolMax.strength) * 120 + ", 50%, 50%)";
         document.querySelector('#intelligence').innerHTML = fool.intelligence;
-        document.querySelector('#intelligence').style.color = "hsl(" + (fool.intelligence / foolMax.intelligence) * 120 + ", 100%, 50%)";
+        document.querySelector('#intelligence').style.color = "hsl(" + (fool.intelligence / foolMax.intelligence) * 120 + ", 50%, 50%)";
         document.querySelector('#charisma').innerHTML = fool.charisma;
-        document.querySelector('#charisma').style.color = "hsl(" + (fool.charisma / foolMax.charisma) * 120 + ", 100%, 50%)";
+        document.querySelector('#charisma').style.color = "hsl(" + (fool.charisma / foolMax.charisma) * 120 + ", 50%, 50%)";
         document.querySelector('#luck').innerHTML = fool.luck;
-        document.querySelector('#luck').style.color = "hsl(" + (fool.luck / foolMax.luck) * 120 + ", 100%, 50%)";
+        document.querySelector('#luck').style.color = "hsl(" + (fool.luck / foolMax.luck) * 120 + ", 50%, 50%)";
         document.querySelector('#gold').innerHTML = fool.gold;
-        document.querySelector('#gold').style.color = "hsl(" + (fool.gold / foolMax.gold) * 120 + ", 100%, 50%)";
+        document.querySelector('#gold').style.color = "hsl(" + (fool.gold / foolMax.gold) * 120 + ", 50%, 50%)";
 
       if(eventCard.type == "voting"){
         document.querySelector('#eventTitle').innerHTML = eventCard.title;
         document.querySelector('#eventImage').src = `media/${eventCard.name}.jpg`;
         document.querySelector('#secondEventImage').src = `media/${eventCard.name}.jpg`;
-        document.querySelector('#eventDescriptionTLDR').innerHTML = eventCard.tldrDescription;
+        
+        if(finalVote){
+          document.querySelector('#eventDescriptionTLDR').innerHTML = "Fate has decided you will use your: " + finalVote + "<br>";
+          document.querySelector('#eventDescriptionTLDR').innerHTML += eventCard.tldrDescription;
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + "Fate has decided you will use your: " + finalVote + "</div>";
+        }
+        else{
+          document.querySelector('#eventDescriptionTLDR').innerHTML = eventCard.tldrDescription;
+        }
+        
+        
         document.querySelector('#eventDescription').innerHTML = eventCard.flavorTextDescription;
-        document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.tldrDescription + "</div>";
+        document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.tldrDescription + "</div><br><br>";
         
         for (let i = 0; i < 4; i++) {
         
@@ -721,28 +731,30 @@ $(() => {
       }
       else if(eventCard.type == "resolution"){
         
+        document.querySelector('#eventDescriptionTLDR').innerHTML = "Fate has decided you will use your: " + finalVote + "<br>";
+        document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + "Fate has decided you will use your: " + finalVote + "</div>";
+        document.querySelector('#eventDescriptionTLDR').innerHTML += eventCard.text[rng];
+        document.querySelector('#eventDescription').innerHTML = eventCard.flavorTextDescription;
         
-        document.querySelector('#eventDescriptionTLDR').innerHTML = eventCard.flavorTextDescription;
-        document.querySelector('#eventDescription').innerHTML = eventCard.text[rng];
-        
-        document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.tldrDescription + "</div>";
+        document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.text[rng] + "</div>";
 
         
 
         if(!eventCard.effectStats[rng]){
           
-          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>Nothing happened...</div>";
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>Nothing happened...</div><br><br>";
           
-          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " </div>";
+          //document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " </div>";
           document.querySelector("#eventDescriptionTLDR").innerHTML += " Nothing happened...";
         }
         else{
-          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " ";
+          //document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " ";
           for(var i = 0; i < eventCard.effectStats[rng].length; i++){
             document.querySelector("#eventDescriptionTLDR").innerHTML += " <br>" + eventCard.effectStats[rng][i] + ": " + eventCard.effectPower[rng][i] + "";
             document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.effectStats[rng][i] + ": " + eventCard.effectPower[rng][i] + "</div> ";
           }
-          document.querySelector('#secondGameLog').innerHTML += "</div>";
+          document.querySelector('#secondGameLog').innerHTML += "<br><br>";
+          //document.querySelector('#secondGameLog').innerHTML += "</div>";
         }
       }
       /*
@@ -767,7 +779,7 @@ $(() => {
   
   socket.on('load event', (data) => {
     currentEvent = data.currentEvent;
-    loadEvent(data.currentEvent, data.topVote, data.rng, data.fool, data.foolMax);
+    loadEvent(data.currentEvent, data.topVote, data.rng, data.fool, data.foolMax, data.finalVote);
 
     
   
