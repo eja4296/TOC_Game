@@ -683,17 +683,17 @@ $(() => {
     const loadEvent = (eventCard, topVote, rng, fool, foolMax, finalVote) => {
       
         document.querySelector('#health').innerHTML = fool.health;
-        document.querySelector('#health').style.color = "hsl(" + (fool.health / foolMax.health) * 120 + ", 50%, 50%)";
+        document.querySelector('#health').style.color = "hsl(" + (fool.health / foolMax.health) * 120 + ", 80%, 35%)";
         document.querySelector('#strength').innerHTML = fool.strength;
-        document.querySelector('#strength').style.color = "hsl(" + (fool.strength / foolMax.strength) * 120 + ", 50%, 50%)";
+        document.querySelector('#strength').style.color = "hsl(" + (fool.strength / foolMax.strength) * 120 + ", 80%, 35%)";
         document.querySelector('#intelligence').innerHTML = fool.intelligence;
-        document.querySelector('#intelligence').style.color = "hsl(" + (fool.intelligence / foolMax.intelligence) * 120 + ", 50%, 50%)";
+        document.querySelector('#intelligence').style.color = "hsl(" + (fool.intelligence / foolMax.intelligence) * 120 + ", 80%, 35%)";
         document.querySelector('#charisma').innerHTML = fool.charisma;
-        document.querySelector('#charisma').style.color = "hsl(" + (fool.charisma / foolMax.charisma) * 120 + ", 50%, 50%)";
+        document.querySelector('#charisma').style.color = "hsl(" + (fool.charisma / foolMax.charisma) * 120 + ", 80%, 35%)";
         document.querySelector('#luck').innerHTML = fool.luck;
-        document.querySelector('#luck').style.color = "hsl(" + (fool.luck / foolMax.luck) * 120 + ", 50%, 50%)";
+        document.querySelector('#luck').style.color = "hsl(" + (fool.luck / foolMax.luck) * 120 + ", 80%, 35%)";
         document.querySelector('#gold').innerHTML = fool.gold;
-        document.querySelector('#gold').style.color = "hsl(" + (fool.gold / foolMax.gold) * 120 + ", 50%, 50%)";
+        document.querySelector('#gold').style.color = "hsl(" + (fool.gold / foolMax.gold) * 120 + ", 80%, 35%)";
 
       if(eventCard.type == "voting"){
         document.querySelector('#eventTitle').innerHTML = eventCard.title;
@@ -738,18 +738,25 @@ $(() => {
         
         document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.text[rng] + "</div>";
 
+        for (let i = 0; i < 4; i++) {
         
+          document.querySelector(`#option${i}`).innerHTML = '';
+            document.querySelector(`#button${i}`).style.display = 'none';
+            document.querySelector(`#secondOption${i}`).innerHTML = "";
+            document.querySelector(`#secondOptionTLDR${i}`).innerHTML = "";
+          
+        }
 
         if(!eventCard.effectStats[rng]){
           
-<<<<<<< HEAD
+
           document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>Nothing happened...</div><br><br>";
           
           //document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " </div>";
-=======
+
           document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " </div>";
           document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>Nothing happened...</div>";
->>>>>>> f3240e3bd674d142f18ac562d2be1b89f011fbf1
+
           document.querySelector("#eventDescriptionTLDR").innerHTML += " Nothing happened...";
         }
         else{

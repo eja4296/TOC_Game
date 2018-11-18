@@ -967,19 +967,12 @@ setInterval(() => {
       currentEvent.completedOptions[finalVoteNum] = 1;
 
 
-<<<<<<< HEAD
+
       if(currentEvent.connections[0] == 0){
         currentEvent = allMagicianEvents[currentEvent.connections[0]];
       }
       else{
         currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
-=======
-      if(allMagicianEvents[currentEvent.connections[finalVoteNum]]){
-        currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
-      }
-      else{
-        currentEvent = allMagicianEvents[currentEvent.connections[0]]
->>>>>>> f3240e3bd674d142f18ac562d2be1b89f011fbf1
       }
       
       
