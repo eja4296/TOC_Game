@@ -673,7 +673,7 @@ $(() => {
     playerVoted = false;
     playerPreviousVote = "_";
     
-    document.querySelector("#userVoteChoice").innerHTML = "";
+    //document.querySelector("#userVoteChoice").innerHTML = "";
     totalPlayersVoted = 0;
     document.querySelector("#numOfUsersVoted").innerHTML = totalPlayersVoted + "/" + totalPlayers; 
     
@@ -682,6 +682,7 @@ $(() => {
   
     const loadEvent = (eventCard, topVote, rng, fool, foolMax, finalVote) => {
       
+        //document.querySelector("#userVoteChoice").innerHTML = "";
         document.querySelector('#health').innerHTML = fool.health;
         document.querySelector('#health').style.color = "hsl(" + (fool.health / foolMax.health) * 120 + ", 80%, 35%)";
         document.querySelector('#strength').innerHTML = fool.strength;
