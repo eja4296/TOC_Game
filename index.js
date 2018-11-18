@@ -1030,7 +1030,7 @@ setInterval(() => {
                 if(fool.health + currentEvent.effectPower[rng][i] < foolMax.health){
                     fool.health += currentEvent.effectPower[rng][i];
                 }
-                else if(fool.health + currentEvent.effectPower[rng][i] >= 0){
+                else if(fool.health + currentEvent.effectPower[rng][i] <= 0){
                   fool.health = 0;
                 }
                 else{
@@ -1042,7 +1042,7 @@ setInterval(() => {
                 if(fool.strength + currentEvent.effectPower[rng][i] < foolMax.strength){
                     fool.strength += currentEvent.effectPower[rng][i];
                 }
-                else if(fool.strength + currentEvent.effectPower[rng][i] >= 1){
+                else if(fool.strength + currentEvent.effectPower[rng][i] <= 1){
                   fool.strength = 1;
                 }
                 else{
@@ -1054,7 +1054,7 @@ setInterval(() => {
                 if(fool.intelligence + currentEvent.effectPower[rng][i] < foolMax.intelligence){
                     fool.intelligence += currentEvent.effectPower[rng][i];
                 }
-                else if(fool.intelligence + currentEvent.effectPower[rng][i] >= 1){
+                else if(fool.intelligence + currentEvent.effectPower[rng][i] <= 1){
                   fool.intelligence = 1;
                 }
                 else{
@@ -1066,7 +1066,7 @@ setInterval(() => {
                 if(fool.charisma + currentEvent.effectPower[rng][i] < foolMax.charisma){
                     fool.charisma += currentEvent.effectPower[rng][i];
                 }
-                else if(fool.charisma + currentEvent.effectPower[rng][i] >= 1){
+                else if(fool.charisma + currentEvent.effectPower[rng][i] <= 1){
                   fool.charisma = 1;
                 }
                 else{
@@ -1078,7 +1078,7 @@ setInterval(() => {
                 if(fool.luck + currentEvent.effectPower[rng][i] < foolMax.luck){
                     fool.luck += currentEvent.effectPower[rng][i];
                 }
-                else if(fool.luck + currentEvent.effectPower[rng][i] >= 1){
+                else if(fool.luck + currentEvent.effectPower[rng][i] <= 1){
                   fool.luck = 1;
                 }
                 else{
@@ -1090,7 +1090,7 @@ setInterval(() => {
                 if(fool.gold + currentEvent.effectPower[rng] [i]< foolMax.gold){
                     fool.gold += currentEvent.effectPower[rng][i];
                 }
-                else if(fool.gold + currentEvent.effectPower[rng][i] >= 0){
+                else if(fool.gold + currentEvent.effectPower[rng][i] <= 0){
                   fool.gold = 0;
                 }
                 else{
