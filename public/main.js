@@ -742,9 +742,14 @@ $(() => {
 
         if(!eventCard.effectStats[rng]){
           
+<<<<<<< HEAD
           document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>Nothing happened...</div><br><br>";
           
           //document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " </div>";
+=======
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " </div>";
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>Nothing happened...</div>";
+>>>>>>> f3240e3bd674d142f18ac562d2be1b89f011fbf1
           document.querySelector("#eventDescriptionTLDR").innerHTML += " Nothing happened...";
         }
         else{
