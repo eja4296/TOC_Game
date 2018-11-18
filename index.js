@@ -136,8 +136,8 @@ const magician_wand = {
   title: 'The Magician',
   name: 'magician',
   type: 'voting',
-  flavorTextDescription: 'The witch calls out to the adventurer, “Weary traveller I do not mind if you look through my library but be warned that some of those tomes contain dangerous knowledge. Proceed at your own risk.” ',
-  tldrDescription: 'There is an Iron book, Floating book, and Worn book. Should the adventurer open one, or leave?',
+  flavorTextDescription: 'The witch calls out to the adventurer, “Weary traveller I do not mind if you look through my library but be warned that some of those tomes contain dangerous knowledge. Proceed at your own risk.” The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
+  tldrDescription: 'The adventurer decides to invetigate the room. There is an Iron book, Floating book, and Worn book. Should the adventurer open one, or leave?',
   
   options: ['Iron', 'Floating', 'Worn', 'Leave'],
   optionsFlavor: ['Open the iron book.', 'Open the floating book.', 'Open the worn book.', 'These books could be dangerous like the witch said, better leave them where we found them.'],
@@ -159,7 +159,7 @@ const magician_cup = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The witch begins, “There are few places in the world that seep evil energy as this place does - I only stay here for the immense amount of mana and magical resources it provides.” She pauses. “I sense that you are here to end this wretched place. I know little but I’m willing to impart on you what I can, though just knowing this information could prove dangerous. Are you sure you wish to know regardless?”',
-  tldrDescription: 'The witch offers to enlighten the adventurer with her knowledge. Should he accept?',
+  tldrDescription: 'The adventurer decides to inquire the witch. The witch offers to enlighten the adventurer with her knowledge. Should he accept?',
   
   options: ['Say Yes', 'Say No'],
   optionsFlavor: ["We should accept. The witch's knowledge could prove to be invaluable", 'It would be best to decline. Knowledge can be dangerous.'],
@@ -188,7 +188,7 @@ const magician_coin = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0],
-  text: ['The adventurer feels rejuvenated, possibly more alive than he has in a while.', 'The adventurer almost immediately feels sick - clearly the potion hadn’t been finished quite yet.'],
+  text: ['The adventurer decides to taste the mixture. He feels rejuvenated, possibly more alive than he has in a while.', 'The adventurer decides to taste the mixture. He almost immediately feels sick - clearly the potion hadn’t been finished quite yet.'],
   dice: 4,
   threshold: [15, 0],
   statNeeded: 'Luck',
@@ -878,8 +878,8 @@ document.querySelector(""
 
 
 
-const timeToVote = 10;
-const timeToWait = 10;
+const timeToVote = 30;
+const timeToWait = 15;
 
 let voteTimer = timeToVote;
 
