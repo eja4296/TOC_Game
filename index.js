@@ -44,6 +44,7 @@ let finalVote = "";
 let topVote = 0;
 
 let gameOver = false;
+let eventConstraint = false;
 
 let fool = {
   health: 40,
@@ -108,6 +109,9 @@ const magician_Main = {
   connections: [1, 2, 3, 4],
   constraintTrigger: [-1, -1, -1, -1],
 };
+
+
+
 
 allMagicianEvents.push(magician_Main);
 
@@ -423,11 +427,11 @@ const magician_sword_sword = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0],
+  connections: [13, 0],
 
   text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer swings his sword at the witch, she counters with her staff and deals blow to his gut, knockiing the wind out of him. The witch refrains from dealing further damage, as she knows he is no match for her.'],
   dice: 4,
-  threshold: [7, 0],
+  threshold: [2, 0],
   statNeeded: "Strength",
   outcomes: 2,
   effectStats: [
@@ -444,7 +448,7 @@ const magician_sword_sword = {
   constraintOptionsFlavor: [],
   constraintText: [],
   constraintTrigger: [0, -1, -1, -1],
-
+  constraint: true,
 
 };
 
@@ -459,7 +463,7 @@ const magician_sword_wand = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0],
+  connections: [13, 0],
  
   text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer casts his spell at the witch, she effortlessly counters with a spell of her own knocking the adveturer off his feet. The witch refrains from dealing further damage, as she knows he is no match for her.'],
   dice: 4,
@@ -480,12 +484,37 @@ const magician_sword_wand = {
   constraintOptionsFlavor: [],
   constraintText: [],
   constraintTrigger: [0, -1, -1, -1],
- 
+  constraint: true,
 
 };
 
 
 allMagicianEvents.push(magician_sword_wand);
+
+
+const magician_Main_Alt = {
+  title: 'The Magician',
+  name: 'magician',
+  type: 'voting',
+  flavorTextDescription: 'The walls are lined with shelves of books, many of which display runes from a long lost ancient language. In the center of the room stands a large black cauldron, which has vapor rising from the top and makes a quiet simmering noise.',
+  
+  tldrDescription: 'The witch is dead so the adventurer is free to explore. What should he do?',
+  constraintFlavorTextDescription: '',
+  constraintTLDRDescription: '',
+  constraintOptions: [0, 0, 1, 0],
+  constraintOptionsFlavor: [],
+  options: ['Attack', 'Investigate', 'Inquire', 'Taste'],
+  
+  optionsFlavor: ['This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.', 'We may be able to learn something useful from the books around the room, they may be worth taking a look at.', 'The witch may know something about this place we’re in, we should ask her some questions.', 'That draught looks very enticing...should we take a sip?'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [1, 0, 1, 0],
+  completedOptionsStart: [1, 0, 1, 0],
+
+  connections: [1, 2, 3, 4],
+  constraintTrigger: [-1, -1, -1, -1],
+};
+
+allMagicianEvents.push(magician_Main_Alt);
 
 // HIGH PREISTESS EVENTS
 
@@ -879,8 +908,8 @@ document.querySelector(""
 
 
 
-const timeToVote = 30;
-const timeToWait = 15;
+const timeToVote = 10;
+const timeToWait = 10;
 
 let voteTimer = timeToVote;
 
@@ -970,9 +999,17 @@ setInterval(() => {
 
       previousEvent = currentEvent;
       
+      
+      
       if(currentEvent.connections[0] == 0){
         
         currentEvent = allMagicianEvents[currentEvent.connections[0]];
+      }
+      else if(currentEvent.constraint == true){
+        eventConstraint = true;
+      }
+      else if(eventConstraint == true){
+        currentEvent = allMagicianEvents[allMagicianEvents.length - 1];
       }
       else{
         
@@ -1105,6 +1142,11 @@ setInterval(() => {
                 break;
             }   
           }
+        }
+        
+        if(eventConstraint){
+          currentEvent = allMagicianEvents[currentEvent.connections[rng]];
+          //currentEvent.completedOptions = previousEvent.completedOptions;
         }
         
         
@@ -1258,7 +1300,7 @@ io.on('connection', (socket) => {
       fool.luck = foolBase.luck;
       fool.gold = foolBase.gold;
       
-      
+      eventConstraint = false;
 
       io.sockets.emit('load event', {
         currentEvent,
