@@ -908,8 +908,8 @@ document.querySelector(""
 
 
 
-const timeToVote = 10;
-const timeToWait = 10;
+const timeToVote = 5;
+const timeToWait = 5;
 
 let voteTimer = timeToVote;
 
@@ -994,6 +994,13 @@ setInterval(() => {
           break;
       }
       //console.log(allVotes[randomNum]);
+        let completionCheck = true;
+        for(var i = 0; i < currentEvent.completedOptions.length; i++){
+          if(currentEvent.completedOptions[i] == 0){
+            completionCheck = false;
+          }
+        }
+      
       currentEvent.completedOptions[finalVoteNum] = 1;
 
 
@@ -1001,15 +1008,15 @@ setInterval(() => {
       
       
       
-      if(currentEvent.connections[0] == 0){
+      if(currentEvent.connections[0] == 0 && eventConstraint == false){
         
         currentEvent = allMagicianEvents[currentEvent.connections[0]];
       }
-      else if(currentEvent.constraint == true){
+      //else if(eventConstraint == true && currentEvent.connections[0] == 0){
+        //currentEvent = allMagicianEvents[allMagicianEvents.length - 1];
+      //}
+      else if(currentEvent.constraint == true && currentEvent.connections[0] != 0){
         eventConstraint = true;
-      }
-      else if(eventConstraint == true){
-        currentEvent = allMagicianEvents[allMagicianEvents.length - 1];
       }
       else{
         
@@ -1017,12 +1024,7 @@ setInterval(() => {
       }
       
       
-      let completionCheck = true;
-      for(var i = 0; i < currentEvent.completedOptions.length; i++){
-        if(currentEvent.completedOptions[i] == 0){
-          completionCheck = false;
-        }
-      }
+
       
       let rng = 0;
       if(currentEvent.type == "resolution"){
@@ -1146,7 +1148,13 @@ setInterval(() => {
         
         if(eventConstraint){
           currentEvent = allMagicianEvents[currentEvent.connections[rng]];
-          //currentEvent.completedOptions = previousEvent.completedOptions;
+          for(var i = 0; i < currentEvent.completedOptions.length; i++){
+            console.dir(allMagicianEvents[0].completedOptions[i]);
+            if(allMagicianEvents[0].completedOptions[i] == 1){
+              currentEvent.completedOptions[i] = 1;
+            }
+          }
+          //eventConstraint = false;
         }
         
         
