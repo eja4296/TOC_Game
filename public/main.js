@@ -698,8 +698,8 @@ $(() => {
 
       if(eventCard.type == "voting"){
         document.querySelector('#eventTitle').innerHTML = eventCard.title;
-        document.querySelector('#eventImage').src = `media/${eventCard.name}.jpg`;
-        document.querySelector('#secondEventImage').src = `media/${eventCard.name}.jpg`;
+        document.querySelector('#eventPicture').src = `media/${eventCard.name}.jpg`;
+        document.querySelector('#secondEventPicture').src = `media/${eventCard.name}.jpg`;
         
         if(finalVote){
           document.querySelector('#eventDescriptionTLDR').innerHTML = "Fate has decided you will use your: " + finalVote + "<br>";

@@ -33,7 +33,7 @@ let gameStarted = false;
 
 let currentEvent;
 let previousEvent;
-const allEvents = [];
+
 
 let swordVotes = [];
 let wandVotes = [];
@@ -73,6 +73,10 @@ const foolMax = {
   gold: 100,
 };
 
+let currentMainEvent = 1;
+const allEvents = [];
+
+let completedMainEvents = [];
 
 const allMagicianEvents = [];
 const allEmpressEvents = [];
@@ -95,10 +99,7 @@ const magician_Main = {
   flavorTextDescription: 'The adventurer enters a dimly lit and cramped room. The walls are lined with shelves of books, many of which display runes from a long lost ancient language. In the center of the room stands a large black cauldron, which has vapor rising from the top and makes a quiet simmering noise. On the side of the pot opposite to the adventurer is an elven witch dressed in mage’s robes, adding ingredients to the elixir and occasionally stirring it. Though her wrinkles and grey hair betray her age, she stands tall with dignity and you can see the vast amount of knowledge she’s gained over countless years (and perhaps centuries) in her eyes.',
   
   tldrDescription: 'The adventurer encounters a witch crafting a potion in a room populated with books. What should he do?',
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 1, 0],
-  constraintOptionsFlavor: [],
+
   options: ['Attack', 'Investigate', 'Inquire', 'Taste'],
   
   optionsFlavor: ['This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.', 'We may be able to learn something useful from the books around the room, they may be worth taking a look at.', 'The witch may know something about this place we’re in, we should ask her some questions.', 'That draught looks very enticing...should we take a sip?'],
@@ -107,7 +108,7 @@ const magician_Main = {
   completedOptionsStart: [0, 0, 0, 0],
 
   connections: [1, 2, 3, 4],
-  constraintTrigger: [-1, -1, -1, -1],
+
 };
 
 
@@ -128,11 +129,7 @@ const magician_sword = {
   completedOptions: [0, 0, 1, 1],
   completedOptionsStart: [0, 0, 1, 1],
   connections: [11, 12],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
 
 };
 
@@ -150,11 +147,7 @@ const magician_wand = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [5, 6, 7, 8],
-  constraintFlavorTextDescription: 'The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
 };
 
 allMagicianEvents.push(magician_wand);
@@ -172,11 +165,7 @@ const magician_cup = {
   completedOptions: [0, 0, 1, 1],
   completedOptionsStart: [0, 0, 1, 1],
   connections: [9, 10],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
 };
 
 allMagicianEvents.push(magician_cup);
@@ -192,7 +181,7 @@ const magician_coin = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0],
+  connections: [0, 13],
   text: ['The adventurer decides to taste the mixture. He feels rejuvenated, possibly more alive than he has in a while.', 'The adventurer decides to taste the mixture. He almost immediately feels sick - clearly the potion hadn’t been finished quite yet.'],
   dice: 4,
   threshold: [15, 0],
@@ -206,12 +195,7 @@ const magician_coin = {
     [1, 1, 30],
     [-1, -1, -5],
   ],
-  constraintFlavorTextDescription: 'The adventurer scoops his hands into the cauldron, and brings some of the cerulean mixture up to his mouth. Surprisingly, it’s no longer hot, likely because it’s no longer being disturbed.',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintText: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
 };
 
 allMagicianEvents.push(magician_coin);
@@ -225,7 +209,7 @@ const magician_wand_sword = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0],
+  connections: [0, 13],
   text: ['The adventurer forces the book open and feels his muscles surge with power as he reads its contents.', 'The adventurer tries his damndest to open the book but it takes all of his might to just hold it. He uses his last ounce of strength to reshelve it, and decides to move on.', 'The adventurer tugs the book from its place but can’t muster the power to keep it in his hands. It ungracefully tumbles from the rack and lands on the adventurer’s feet.'],
   dice: 4,
   threshold: [8, 4, 0],
@@ -241,12 +225,7 @@ const magician_wand_sword = {
     [],
     [-3, -1],
   ],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintText: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
 
 };
 allMagicianEvents.push(magician_wand_sword);
@@ -259,7 +238,7 @@ const magician_wand_wand = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0],
+  connections: [0, 13],
 
   text: ['The magic book slams open and attempts to assault the adventurer with dark magic, but he uses his own power to bend the book to his will, letting him access its harbored secrets without resistance.', 'The adventurer clasps the levitating book in his hands, but the book refuses to open, and the whispers emanating from it have gone silent. It seems the adventurer is not quite worthy of its secrets just yet.', 'The adventurer extends a hand to the floating book and the room fills with a high pitched scream coming from the book itself, replacing the almost ambient whispers that it conjured previously. It dissolves into ash, but not before thoroughly leaving the adventurer’s head rattled and ears ringing.'],
   dice: 4,
@@ -276,12 +255,7 @@ const magician_wand_wand = {
     [],
     [-3, -1],
   ],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintText: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
 
 };
 allMagicianEvents.push(magician_wand_wand);
@@ -294,7 +268,7 @@ const magician_wand_cup = {
   options: [''],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0],
+  connections: [0, 13],
 
   text: ['“It’s just my recipe book!” she replies. “I hardly use it anymore - I have all of my concoctions in my head nowadays. I’d be happy to let you use it.” She extends the book over her cauldron, which sufficiently heats it to reveal writing that was previously invisible. “Can’t just let anyone have these secrets, can I?”. She points to the simplest formula, a healing elixir, and provides the adventurer the ingredients and flask to make one.', 'The witch doesn’t respond, too absorbed in her work. After some initial pestering, the adventurer gives up and places the pages back with the other books.'],
   dice: 4,
@@ -310,12 +284,7 @@ const magician_wand_cup = {
     [1, 1, 5],
     [],
   ],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintText: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
 
 };
 allMagicianEvents.push(magician_wand_cup);
@@ -328,7 +297,7 @@ const magician_wand_leave = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0],
+  connections: [0, 13],
   
   text: ['It was probably a good idea to leave those books alone.'],
   dice: 0,
@@ -341,12 +310,7 @@ const magician_wand_leave = {
   effectPower: [
 
   ],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintText: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
   
 };
 allMagicianEvents.push(magician_wand_leave);
@@ -360,7 +324,7 @@ const magician_cup_yes = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0],
+  connections: [0, 13],
 
   text: ['The witch lowers her voice to barely audible from where the adventurer is standing, and tells him of her experiences over the many years of the dungeon. Of the power of swords, cups, wands, and coins having influence on all of the happenings in the realm, and of constantly shifting rooms with constantly shifting happenings and unknown futures in each of them.', 'She begins to speak, but a purple mist rises from the floor and the temperature in the room drops drastically. The tainted air finds its way into her nose and fills her lungs. The witch twitches and writhes in unnatural ways until she succumbs to suffocation. As if to hint at what’s coming, the remaining haze attacks the adventurer.'],
   dice: 4,
@@ -375,12 +339,7 @@ const magician_cup_yes = {
     [2, 2],
     [-1, -5],
   ],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintText: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
 
 };
 allMagicianEvents.push(magician_cup_yes);
@@ -394,7 +353,7 @@ const magician_cup_no = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0],
+  connections: [0, 13],
  
   text: ['“I see,” the witch says somewhat disheartened. “Perhaps then you are not the adventurer that I was expecting to liberate this place.”'],
   dice: 0,
@@ -407,12 +366,7 @@ const magician_cup_no = {
   effectPower: [
 
   ],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintText: [],
-  constraintTrigger: [-1, -1, -1, -1],
+
 
 };
 
@@ -427,7 +381,7 @@ const magician_sword_sword = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [13, 0],
+  connections: [0, 13],
 
   text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer swings his sword at the witch, she counters with her staff and deals blow to his gut, knockiing the wind out of him. The witch refrains from dealing further damage, as she knows he is no match for her.'],
   dice: 4,
@@ -442,13 +396,9 @@ const magician_sword_sword = {
     [2, 2],
     [-5, -1],
   ],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintText: [],
-  constraintTrigger: [0, -1, -1, -1],
+
   constraint: true,
+  constraintResult: [1, 0]
 
 };
 
@@ -463,7 +413,7 @@ const magician_sword_wand = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [13, 0],
+  connections: [0, 13],
  
   text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer casts his spell at the witch, she effortlessly counters with a spell of her own knocking the adveturer off his feet. The witch refrains from dealing further damage, as she knows he is no match for her.'],
   dice: 4,
@@ -478,13 +428,9 @@ const magician_sword_wand = {
     [2, 2],
     [-5, -1],
   ],
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 0, 0],
-  constraintOptionsFlavor: [],
-  constraintText: [],
-  constraintTrigger: [0, -1, -1, -1],
+
   constraint: true,
+  constraintResult: [1, 0]
 
 };
 
@@ -499,10 +445,7 @@ const magician_Main_Alt = {
   flavorTextDescription: 'The walls are lined with shelves of books, many of which display runes from a long lost ancient language. In the center of the room stands a large black cauldron, which has vapor rising from the top and makes a quiet simmering noise.',
   
   tldrDescription: 'The witch is dead so the adventurer is free to explore. What should he do?',
-  constraintFlavorTextDescription: '',
-  constraintTLDRDescription: '',
-  constraintOptions: [0, 0, 1, 0],
-  constraintOptionsFlavor: [],
+
   options: ['Attack', 'Investigate', 'Inquire', 'Taste'],
   
   optionsFlavor: ['This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.', 'We may be able to learn something useful from the books around the room, they may be worth taking a look at.', 'The witch may know something about this place we’re in, we should ask her some questions.', 'That draught looks very enticing...should we take a sip?'],
@@ -511,10 +454,12 @@ const magician_Main_Alt = {
   completedOptionsStart: [1, 0, 1, 0],
 
   connections: [1, 2, 3, 4],
-  constraintTrigger: [-1, -1, -1, -1],
+
 };
 
 allMagicianEvents.push(magician_Main_Alt);
+
+allEvents.push(allMagicianEvents);
 
 // HIGH PREISTESS EVENTS
 
@@ -544,14 +489,14 @@ const highPreistess_sword = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [5, 6],
-  text: ['The adventurer manages to snag a large fish, and use a bit of fire magic he picked up before entering this hellhole to roast it.', 'The fish prove to be too slippery. The adventurer wasn’t that hungry anyways.', 'The adventurer trips over his own feet and plunges head first into the pool, also knocking his head on the way down. He could not have failed more spectacularly. The eyes of the fish followed him as he pulled himself out, almost teasing him at his failure to make a meal out of one from their ranks.'],
+  connections: [0, 7],
+  text: ['The adventurer manages to snag a large fish, and use a bit of fire magic he picked up before entering this hellhole to roast it.', 'The fish proves to be too slippery. The adventurer wasn’t that hungry anyways.', 'The adventurer trips over his own feet and plunges head first into the pool, also knocking his head on the way down. He could not have failed more spectacularly. The eyes of the fish followed him as he pulled himself out, almost teasing him at his failure to make a meal out of one from their ranks.'],
   dice: 3,
   threshold: [8, 4, 0],
   statNeeded: "Strength",
   outcomes: 3,
   effectStats: [
-    ['Healht', 'Strength'],
+    ['Health', 'Strength'],
     [],
     ['Health','Strength']
   ],  
@@ -564,34 +509,233 @@ const highPreistess_sword = {
 
 allHighPreistessEvents.push(highPreistess_sword);
 
+const highPriestess_wand = {
+  title: 'The High Preistess',
+  name: 'highPriestess',
+  type: 'voting',
+  flavorTextDescription: 'Tucked away between the wings of the statue, where the small of her back would be if she was indeed a real angel, was a teardrop shaped crystal. Taking it would likely stop the flow of water in the room but it’s loose enough to do so. Take it?',
+  tldrDescription: 'There is a crystal on the statue. Should we take it?',
+  options: ['Yes', 'No'],
+  optionsFlavor: ['Take the crystal. It could prove to be valuable.', 'Leave the crystal. We would not want to disturb such a divine place.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 1, 1],
+  completedOptionsStart: [0, 0, 1, 1],
+
+  connections: [5, 6],
+};
+
+allHighPreistessEvents.push(highPriestess_wand);
+
 const highPreistess_cup = {
   title: 'The High Priestess',
   name: 'highPriestess',
   type: 'resolution',
-  flavorTextDescription: 'You decide to go fishing in the fountain.',
+  flavorTextDescription: 'You decide to pray at the altar.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [5, 6],
-  text: ['Divine powers flows from the water and into the adventurer, coursing through his body starting with his feet and slowly making its way upward.', 'The water rushes a little harder on the ground and also seems to be pleased.'],
+  connections: [0, 7],
+  text: ['Divine powers flows from the water and into the adventurer, coursing through his body starting with his feet and slowly making its way upward.', 'Nothing happens, but if nothing else the adventurer feels slightly better. The water rushes a little harder on the ground and also seems to be pleased.'],
   dice: 3,
-  threshold: [8, 4, 0],
-  statNeeded: "Strength",
+  threshold: [7, 0],
+  statNeeded: "Charisma",
   outcomes: 2,
   effectStats: [
-    ['Healht', 'Strength'],
+    ['Health', 'Charisma'],
 
-    ['Health','Strength']
+    ['Health']
   ],  
   effectPower: [
     [10, 1],
   
-    [-3, -1],
+    [5],
   ],
 };
 
 allHighPreistessEvents.push(highPreistess_cup);
+
+const highPreistess_coin = {
+  title: 'The High Priestess',
+  name: 'highPriestess',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to toss a coin in the fountain.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 7],
+  text: ['The coin makes a splash, and the adventurer feels...empowered.', 'The coin makes a splash. Nothing happens.'],
+  dice: 4,
+  threshold: [15, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Luck', 'charisma', "Gold"],
+
+    ['Luck', "Gold"]
+  ],  
+  effectPower: [
+    [1, 2, -1],
+
+    [-1, -1],
+  ],
+};
+
+allHighPreistessEvents.push(highPreistess_coin);
+
+
+
+const highPreistess_wand_yes = {
+  title: 'The High Priestess',
+  name: 'highPriestess',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to try and take the crystal.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 7],
+  text: ['The adventurer removes the stone, and quickly places it in a spare flask which immediately fills with water. The fountain runs dry, and the fish find themselves unable to breathe and flopping on the bottom of the very deep pool floor.', 'The stone is stuck, imbued with holy energy. Maybe it was not meant to be removed.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Strength",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', "Gold"],
+    ['Strength', "Charisma"]
+  ],  
+  effectPower: [
+    [1, 10],
+  
+    [-1, -1],
+  ],
+  constraint: true,
+  constraintResult: [1, 0]
+};
+
+allHighPreistessEvents.push(highPreistess_wand_yes);
+
+const highPreistess_wand_no = {
+  title: 'The High Priestess',
+  name: 'highPriestess',
+  type: 'resolution',
+  flavorTextDescription: 'You decide not to try and take the crystal.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 7],
+  text: ['The adventurer leaves the crystal in its rightful place. Better not to disturb the natural flow of the room.'],
+  dice: 10,
+  threshold: [0],
+  statNeeded: "Intelligence",
+  outcomes: 1,
+  effectStats: [
+    ['Intelligence']
+  ],  
+  effectPower: [
+    [2]
+  ],
+};
+
+allHighPreistessEvents.push(highPreistess_wand_no);
+
+const highPriestess_Main_Alt = {
+  title: 'The High Preistess',
+  name: 'highPriestess',
+  type: 'voting',
+  flavorTextDescription: 'The adventurer is in a room with a beautiful stone statue of a once weeping angel. The entire floor is damp from the angels tears. The fish that swam peacfully in the surrounding water are now flopping and gasping for life. There is a small altar made of the same material as the fountain, facing it. It’s surprising that such a heavenly space could possibly exist such a demonic place, making it seem almost unsettling. However the soothing nature of the aura in the room expels that thought from the adventurer’s mind and leaves him in a place of zen.',
+  tldrDescription: 'The adventurer sits in the room with the fountain that is no longer spouting water. There is an altar next to it. Several fish are flopping around the basin of the empty founatin. What should he do?',
+  options: ['Fish', 'Investigate', 'Pray', 'Wish'],
+  optionsFlavor: ['Who knows when we’ll be able to eat in here, and it’s eat or be eaten - time to go fishing!', 'Where did all of this water coming from? There might be something here causing it that could help in the future.', 'There is still a long and difficult journey ahead, a moment of silence and prayer at the altar is warranted.', 'Toss a coin in the fountain. Might turn out to be lucky!'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 1, 0, 0],
+  completedOptionsStart: [0, 1, 0, 0],
+
+  connections: [8, 2, 9, 10],
+};
+
+allHighPreistessEvents.push(highPriestess_Main_Alt);
+
+const highPreistess_sword_alt = {
+  title: 'The High Priestess',
+  name: 'highPriestess',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to go fishing.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 7],
+  text: ['The adventurer manages to snag a large fish, and use a bit of fire magic he picked up before entering this hellhole to roast it.', 'The fish proves to be too slippery. The adventurer wasn’t that hungry anyways.'],
+  dice: 3,
+  threshold: [7, 0],
+  statNeeded: "Strength",
+  outcomes: 2,
+  effectStats: [
+    ['Health', 'Strength'],
+    []
+  ],  
+  effectPower: [
+    [10, 1],
+    []
+  ],
+};
+
+allHighPreistessEvents.push(highPreistess_sword_alt);
+
+const highPreistess_cup_alt = {
+  title: 'The High Priestess',
+  name: 'highPriestess',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to pray at the altar.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 7],
+  text: ['Nothing happens, but if nothing else the adventurer feels slightly better.'],
+  dice: 3,
+  threshold: [0],
+  statNeeded: "Charisma",
+  outcomes: 1,
+  effectStats: [
+    ['Health']
+  ],  
+  effectPower: [
+    [5],
+  ],
+};
+
+allHighPreistessEvents.push(highPreistess_cup_alt);
+
+const highPreistess_coin_alt = {
+  title: 'The High Priestess',
+  name: 'highPriestess',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to toss a coin in the fountain.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 7],
+  text: ["The adventurer tosses several coins into the fountain, but nothing happens. Maybe we shoudln't have taken the crystal?"],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Luck",
+  outcomes: 1,
+  effectStats: [
+    ['Luck', "Gold"],
+  ],  
+  effectPower: [
+    [-1, -5],
+  ],
+};
+
+allHighPreistessEvents.push(highPreistess_coin_alt);
+
+allEvents.push(allHighPreistessEvents);
 
 
 
@@ -610,6 +754,7 @@ const empress_Main = {
   completedOptionsStart: [0, 0, 0, 0],
 
   connections: [1, 2, 3, 4],
+  
 };
 
 allEmpressEvents.push(empress_Main);
@@ -672,240 +817,7 @@ const empress_wand = {
 
 allEmpressEvents.push(empress_wand);
 
-
-// Timer for different phases
-
-/*
-setInterval(() => {
-
-
-  if (gameStarted) {
-    // Vote timer is default
-    // As long as it is > 0, it is the voting phase
-    if (voteTimer > 0) {
-      voteTimer -= 1;
-
-
-      // Call voting phase on client side
-      io.sockets.emit('voting phase', {
-        time: voteTimer,
-
-      });
-    } else if (eventResolutionTimer > 0) {
-      if (resolutionBool == false) {
-        let eventResolutionIndex = 0;
-        let die = currentEvent.resolution.dice;
-        let looping = true;
-        die *= Math.floor(Math.random() * die);
-        for (var i = 0; i < currentEvent.resolution.effectStats.length; i++) {
-          if (looping && currentEvent.resolution.statNeeded * die > currentEvent.resolution.threshold[i]) {
-            eventResolutionIndex = i;
-            looping = false;
-          }
-        }
-
-
-        switch (currentEvent.resolution.effectStats[eventResolutionIndex]) {
-          case 'health':
-            fool.health += currentEvent.resolution.effectPower[eventResolutionIndex];
-            break;
-          case 'strength':
-            fool.strength += currentEvent.resolution.effectPower[eventResolutionIndex];
-            break;
-          case 'intelligence':
-            fool.intelligence += currentEvent.resolution.effectPower[eventResolutionIndex];
-            break;
-          case 'charisma':
-            fool.charisma += currentEvent.resolution.effectPower[eventResolutionIndex];
-            break;
-          case 'luck':
-            fool.luck += currentEvent.resolution.effectPower[eventResolutionIndex];
-            break;
-          case 'gold':
-            fool.gold += currentEvent.resolution.effectPower[eventResolutionIndex];
-            break;
-          default:
-            break;
-        }
-
-
-        io.sockets.emit('voting resolution', {
-          topVote,
-          fool,
-          resIndex: eventResolutionIndex,
-        });
-
-        resolutionBool = true;
-      }
-
-
-      io.sockets.emit('event intermission', {
-        timer: eventResolutionTimer,
-      });
-
-      eventResolutionTimer -= 1;
-    } else {
-      // Once the vote timer reaches zero
-      // Find which option was voted for
-      // Handle event resolution
-      if (changeEventTimer == -1) {
-        topVote = 0;
-
-        let maxVotes = 0;
-
-        // Get top vote
-        // Need to add our voting logic here, currently doesn't "add everything to a deck and shuffle it"
-        for (var i = 0; i < votesArray.length; i++) {
-          if (maxVotes < votesArray[i]) {
-            maxVotes = votesArray[i];
-            topVote = i;
-          }
-        }
-
-        // EVENT RESOLUTION
-
-        switch(currentEvent.effectStat[topVote]){
-          case "health":
-            fool.health += currentEvent.effectPower[topVote];
-            break;
-          case "strength":
-            fool.strength += currentEvent.effectPower[topVote];
-            break;
-          case "defense":
-            fool.defense += currentEvent.effectPower[topVote];
-            break;
-          case "intelligence":
-            fool.intelligence += currentEvent.effectPower[topVote];
-            break;
-          case "gold":
-            fool.gold += currentEvent.effectPower[topVote];
-            break;
-          default:
-            break;
-        }
-
-
-        // Call voting complete on client side
-        io.sockets.emit('voting complete', {
-          topVote,
-          fool,
-
-        });
-
-        // eventResIndex = -1;
-        // Rest all votes to 0
-        for (let i = 0; i < votesArray.length; i++) {
-          votesArray[i] = 0;
-        }
-
-        // Set the timer for the next phase (changing event intermission)
-        changeEventTimer = 10;
-      } else if (changeEventTimer > 0) {
-        // Now, each frame the change event timer will count down
-        changeEventTimer -= 1;
-
-        // Call event intermission on client side
-        io.sockets.emit('event intermission', {
-          timer: changeEventTimer,
-        });
-      } else {
-        // Once the change event timer hits 0
-        // Call reset voting on client side
-        io.sockets.emit('resetVoting', {
-          votes: votesArray,
-        });
-
-
-        // Randomly select a new event from the list of events
-        let randomEvent = 0;
-        if(numOfEvents.length != usedNums.length){
-
-          randomEvent = Math.floor(Math.random() * numOfEvents.length);
-
-          // Make sure the new event is not one that was already chosen
-          while(usedNums.includes(randomEvent)){
-            randomEvent = Math.floor(Math.random() * numOfEvents.length);
-          }
-          usedNums.push(randomEvent);
-
-        }
-        else{
-          // If all events have been chosen once, add all events back to main list and select a random event from that
-          let length = usedNums.length
-          for(var i = 0; i < length; i++){
-            usedNums.pop();
-          }
-
-          randomEvent = Math.floor(Math.random() * numOfEvents.length);
-
-          while(usedNums[randomEvent]){
-            randomEvent = Math.floor(Math.random() * numOfEvents.length);
-          }
-
-        }
-
-        currentEvent = allEvents[randomEvent];
-
-
-        let endGame = true;
-
-        for (var i = 0; i < 4; i++) {
-          if (magician_Main.completedOptions[i] == 0) {
-            endGame = false;
-          }
-        }
-
-
-        if (endGame) {
-          gameStarted = false;
-          console.log('end game');
-
-          io.sockets.emit('end game', {
-            fool,
-          });
-        }
-
-        console.dir(currentEvent);
-
-        if (currentEvent == magician_Main) {
-          currentEvent.completedOptions[topVote] = 1;
-          currentEvent = allMagicianEvents[currentEvent.connections[topVote]];
-        } else if (currentEvent.connections.length > 1) {
-          currentEvent = allMagicianEvents[currentEvent.connections[topVote]];
-        } else {
-          currentEvent = allMagicianEvents[currentEvent.connections[0]];
-        }
-
-        if (currentEvent.type == 'resolution') {
-          eventResolutionTimer = 15;
-          resolutionBool = false;
-        } else {
-          changeEventTimer = -1;
-          voteTimer = 30;
-        }
-
-        // Call new event on client side
-
-        if (!endGame) {
-          io.sockets.emit('load event', {
-            currentEvent,
-            fool,
-          });
-        }
-
-        // Set change event timer to -1
-document.querySelector(""
-        // Set vote timer to 10 (or whatever we decide)
-        // This will restart the entire loop
-      }
-    }
-  }
-
-
-// Interval happens once a second
-}, 1000);
-*/
-
+allEvents.push(allEmpressEvents);
 
 
 const timeToVote = 5;
@@ -994,12 +906,7 @@ setInterval(() => {
           break;
       }
       //console.log(allVotes[randomNum]);
-        let completionCheck = true;
-        for(var i = 0; i < currentEvent.completedOptions.length; i++){
-          if(currentEvent.completedOptions[i] == 0){
-            completionCheck = false;
-          }
-        }
+
       
       currentEvent.completedOptions[finalVoteNum] = 1;
 
@@ -1008,238 +915,323 @@ setInterval(() => {
       
       
       
-      if(currentEvent.connections[0] == 0 && eventConstraint == false){
+      if(currentEvent.connections[0] == 0 && eventConstraint == false && currentEvent.constraint == false){
         
-        currentEvent = allMagicianEvents[currentEvent.connections[0]];
+        currentEvent = allEvents[currentMainEvent][currentEvent.connections[0]];
       }
-      //else if(eventConstraint == true && currentEvent.connections[0] == 0){
-        //currentEvent = allMagicianEvents[allMagicianEvents.length - 1];
-      //}
-      else if(currentEvent.constraint == true && currentEvent.connections[0] != 0){
+      else if(eventConstraint == true && currentEvent.connections[0] == 0){
+        currentEvent = allEvents[currentMainEvent][currentEvent.connections[1]];
+      }
+      else if(currentEvent.constraint == true){
         eventConstraint = true;
       }
       else{
         
-        currentEvent = allMagicianEvents[currentEvent.connections[finalVoteNum]];
+        currentEvent = allEvents[currentMainEvent][currentEvent.connections[finalVoteNum]];
       }
       
-      
-
-      
-      let rng = 0;
-      if(currentEvent.type == "resolution"){
-        let die = currentEvent.dice;
-        let stat;
-        
-        switch (currentEvent.statNeeded){
-          case "Health":
-            stat = fool.health;
-            break;
-          case "Strength":
-            stat = fool.strength;
-            break;
-          case "Intelligence":
-            stat = fool.intelligence;
-            break;
-          case "Charisma":
-            stat = fool.charisma;
-            break;
-          case "Luck":
-            stat = fool.luck;
-            break;
-          case "Gold":
-            stat = fool.gold;
-            break;
-          default:
-            break;
+      let completionCheck = true;
+      for(var i = 0; i < currentEvent.completedOptions.length; i++){
+        if(currentEvent.completedOptions[i] == 0){
+          completionCheck = false;
         }
-        
-        let roll = Math.floor(Math.random() * die) + stat;
-        let looping = true;
-        let result = 0;
-        for(let i = 0; i < currentEvent.threshold.length; i++){
-          if(looping && roll > currentEvent.threshold[i]){
-            looping = false;
-            result = i;
-          }
-        }
-        
-        rng = result;
-        
-        if(currentEvent.effectStats[rng]){
-          for(let i = 0; i < currentEvent.effectStats[rng].length; i++){
-            switch(currentEvent.effectStats[rng][i]){
-              case "Health":
-                if(fool.health + currentEvent.effectPower[rng][i] < foolMax.health){
-                    fool.health += currentEvent.effectPower[rng][i];
-                }
-                else if(fool.health + currentEvent.effectPower[rng][i] <= 0){
-                  fool.health = 0;
-                }
-                else{
-                  fool.health = foolMax.health;
-                }
-                break;
-              case "Strength":
-
-                if(fool.strength + currentEvent.effectPower[rng][i] < foolMax.strength){
-                    fool.strength += currentEvent.effectPower[rng][i];
-                }
-                else if(fool.strength + currentEvent.effectPower[rng][i] <= 1){
-                  fool.strength = 1;
-                }
-                else{
-                  fool.strength = foolMax.strength;
-                } 
-                break;
-              case "Intelligence":
-
-                if(fool.intelligence + currentEvent.effectPower[rng][i] < foolMax.intelligence){
-                    fool.intelligence += currentEvent.effectPower[rng][i];
-                }
-                else if(fool.intelligence + currentEvent.effectPower[rng][i] <= 1){
-                  fool.intelligence = 1;
-                }
-                else{
-                  fool.intelligence = foolMax.intelligence;
-                }
-                break;
-              case "Charisma":
-
-                if(fool.charisma + currentEvent.effectPower[rng][i] < foolMax.charisma){
-                    fool.charisma += currentEvent.effectPower[rng][i];
-                }
-                else if(fool.charisma + currentEvent.effectPower[rng][i] <= 1){
-                  fool.charisma = 1;
-                }
-                else{
-                  fool.charisma = foolMax.charisma;
-                }
-                break;
-              case "Luck":
-
-                if(fool.luck + currentEvent.effectPower[rng][i] < foolMax.luck){
-                    fool.luck += currentEvent.effectPower[rng][i];
-                }
-                else if(fool.luck + currentEvent.effectPower[rng][i] <= 1){
-                  fool.luck = 1;
-                }
-                else{
-                  fool.luck = foolMax.luck;
-                }
-                break;
-              case "Gold":
-
-                if(fool.gold + currentEvent.effectPower[rng] [i]< foolMax.gold){
-                    fool.gold += currentEvent.effectPower[rng][i];
-                }
-                else if(fool.gold + currentEvent.effectPower[rng][i] <= 0){
-                  fool.gold = 0;
-                }
-                else{
-                  fool.gold = foolMax.gold;
-                }
-                break;
-              default:
-                break;
-            }   
-          }
-        }
-        
-        if(eventConstraint){
-          currentEvent = allMagicianEvents[currentEvent.connections[rng]];
-          for(var i = 0; i < currentEvent.completedOptions.length; i++){
-            console.dir(allMagicianEvents[0].completedOptions[i]);
-            if(allMagicianEvents[0].completedOptions[i] == 1){
-              currentEvent.completedOptions[i] = 1;
-            }
-          }
-          //eventConstraint = false;
-        }
-        
-        
-   
-        
-        
-        /*
-        let eventResolutionIndex = 0;
-        let die = currentEvent.dice;
-        let looping = true;
-        die *= Math.floor(Math.random() * die);
-        for (var i = 0; i < currentEvent.effectStats.length; i++) {
-          if (looping && currentEvent.statNeeded * die > currentEvent.threshold[i]) {
-            eventResolutionIndex = i;
-            looping = false;
-          }
-        }
-
-
-        switch (currentEvent.effectStats[eventResolutionIndex]) {
-          case 'health':
-            fool.health += currentEvent.effectPower[eventResolutionIndex];
-            break;
-          case 'strength':
-            fool.strength += currentEvent.effectPower[eventResolutionIndex];
-            break;
-          case 'intelligence':
-            fool.intelligence += currentEvent.effectPower[eventResolutionIndex];
-            break;
-          case 'charisma':
-            fool.charisma += currentEvent.effectPower[eventResolutionIndex];
-            break;
-          case 'luck':
-            fool.luck += currentEvent.effectPower[eventResolutionIndex];
-            break;
-          case 'gold':
-            fool.gold += currentEvent.effectPower[eventResolutionIndex];
-            break;
-          default:
-            break;
-        }
-        */
       }
+
+      
+      
       
       if(completionCheck == false){
-        io.sockets.emit('load event', {
-          currentEvent,
-          finalVoteNum,
-          rng,
-          fool,
-          foolMax,
-          finalVote,
-        });
-
-        swordVotes = [];
-        wandVotes = [];
-        cupVotes = [];
-        coinVotes = [];
-        numUsersVoted = 0;
-
         
-        if(previousEvent.type == "voting"){
-          io.emit('resetVotes', {
-            finalVote: finalVote,
-            usernames,
-          });
+        let rng = 0;
+        if(currentEvent.type == "resolution"){
+          let die = currentEvent.dice;
+          let stat;
+
+          switch (currentEvent.statNeeded){
+            case "Health":
+              stat = fool.health;
+              break;
+            case "Strength":
+              stat = fool.strength;
+              break;
+            case "Intelligence":
+              stat = fool.intelligence;
+              break;
+            case "Charisma":
+              stat = fool.charisma;
+              break;
+            case "Luck":
+              stat = fool.luck;
+              break;
+            case "Gold":
+              stat = fool.gold;
+              break;
+            default:
+              break;
+          }
+
+          let roll = Math.floor(Math.random() * die) + stat;
+          let looping = true;
+          let result = 0;
+          for(let i = 0; i < currentEvent.threshold.length; i++){
+            if(looping && roll > currentEvent.threshold[i]){
+              looping = false;
+              result = i;
+            }
+          }
+
+          rng = result;
+
+          if(currentEvent.effectStats[rng]){
+            for(let i = 0; i < currentEvent.effectStats[rng].length; i++){
+              switch(currentEvent.effectStats[rng][i]){
+                case "Health":
+                  if(fool.health + currentEvent.effectPower[rng][i] < foolMax.health){
+                      fool.health += currentEvent.effectPower[rng][i];
+                  }
+                  else if(fool.health + currentEvent.effectPower[rng][i] <= 0){
+                    fool.health = 0;
+                  }
+                  else{
+                    fool.health = foolMax.health;
+                  }
+                  break;
+                case "Strength":
+
+                  if(fool.strength + currentEvent.effectPower[rng][i] < foolMax.strength){
+                      fool.strength += currentEvent.effectPower[rng][i];
+                  }
+                  else if(fool.strength + currentEvent.effectPower[rng][i] <= 1){
+                    fool.strength = 1;
+                  }
+                  else{
+                    fool.strength = foolMax.strength;
+                  } 
+                  break;
+                case "Intelligence":
+
+                  if(fool.intelligence + currentEvent.effectPower[rng][i] < foolMax.intelligence){
+                      fool.intelligence += currentEvent.effectPower[rng][i];
+                  }
+                  else if(fool.intelligence + currentEvent.effectPower[rng][i] <= 1){
+                    fool.intelligence = 1;
+                  }
+                  else{
+                    fool.intelligence = foolMax.intelligence;
+                  }
+                  break;
+                case "Charisma":
+
+                  if(fool.charisma + currentEvent.effectPower[rng][i] < foolMax.charisma){
+                      fool.charisma += currentEvent.effectPower[rng][i];
+                  }
+                  else if(fool.charisma + currentEvent.effectPower[rng][i] <= 1){
+                    fool.charisma = 1;
+                  }
+                  else{
+                    fool.charisma = foolMax.charisma;
+                  }
+                  break;
+                case "Luck":
+
+                  if(fool.luck + currentEvent.effectPower[rng][i] < foolMax.luck){
+                      fool.luck += currentEvent.effectPower[rng][i];
+                  }
+                  else if(fool.luck + currentEvent.effectPower[rng][i] <= 1){
+                    fool.luck = 1;
+                  }
+                  else{
+                    fool.luck = foolMax.luck;
+                  }
+                  break;
+                case "Gold":
+
+                  if(fool.gold + currentEvent.effectPower[rng] [i]< foolMax.gold){
+                      fool.gold += currentEvent.effectPower[rng][i];
+                  }
+                  else if(fool.gold + currentEvent.effectPower[rng][i] <= 0){
+                    fool.gold = 0;
+                  }
+                  else{
+                    fool.gold = foolMax.gold;
+                  }
+                  break;
+                default:
+                  break;
+              }   
+            }
+          }
+
+          if(eventConstraint && currentEvent.constraint == true){
+
+            if(currentEvent.constraintResult[rng] == 1){
+              currentEvent = allEvents[currentMainEvent][currentEvent.connections[1]];
+              
+              for(var i = 0; i < currentEvent.completedOptions.length; i++){
+                
+                if(allEvents[currentMainEvent][0].completedOptions[i] == 1){
+                  currentEvent.completedOptions[i] = 1;
+                }
+                console.dir(currentEvent.completedOptions[i]);
+              } 
+            }
+            else {
+              eventConstraint = false;
+              currentEvent = allEvents[currentMainEvent][currentEvent.connections[0]];
+            }
+            
+
+          }
+          
+          completionCheck = true;
+          for(var i = 0; i < currentEvent.completedOptions.length; i++){
+            if(currentEvent.completedOptions[i] == 0){
+              completionCheck = false;
+            }
+          }
+
         }
         
-        finalVote = "";
-        
-        if(currentEvent.type == "voting"){
-          voteTimer = timeToVote;
+        if(completionCheck == false){
+          io.sockets.emit('load event', {
+            currentEvent,
+            finalVoteNum,
+            rng,
+            fool,
+            foolMax,
+            finalVote,
+          });
+
+          swordVotes = [];
+          wandVotes = [];
+          cupVotes = [];
+          coinVotes = [];
+          numUsersVoted = 0;
+
+
+          if(previousEvent.type == "voting"){
+            io.emit('resetVotes', {
+              finalVote: finalVote,
+              usernames,
+            });
+          }
+
+          finalVote = "";
+
+          if(currentEvent.type == "voting"){
+            voteTimer = timeToVote;
+          }
+          else{
+            voteTimer = timeToWait;
+          }
         }
         else{
-          voteTimer = timeToWait;
+          completedMainEvents[currentMainEvent] = 1;
+          
+          completionCheck = true;
+          for(let i = 0; i < completedMainEvents.length; i++){
+            if(completedMainEvents[i] == 0){
+              completionCheck = false;
+            }
+          }
+          
+          if(completionCheck == false){
+            
+            let completed = false;
+            while(completed == false){
+              let random = Math.floor(Math.random() * allEvents.length);
+            
+              if(completedMainEvents[random] == 0){
+                currentMainEvent = random;
+                currentEvent = allEvents[random][0];
+                completed = true;
+                eventConstraint = false;
+              }
+              
+            }
+            
+            io.sockets.emit('load event', {
+              currentEvent,
+              finalVoteNum,
+              rng,
+              fool,
+              foolMax,
+              finalVote,
+            });
+
+            swordVotes = [];
+            wandVotes = [];
+            cupVotes = [];
+            coinVotes = [];
+            numUsersVoted = 0;
+
+
+            if(previousEvent.type == "voting"){
+              io.emit('resetVotes', {
+                finalVote: finalVote,
+                usernames,
+              });
+            }
+
+            finalVote = "";
+
+            if(currentEvent.type == "voting"){
+              voteTimer = timeToVote;
+            }
+            else{
+              voteTimer = timeToWait;
+            }
+            
+          }
+          else{
+            gameOver = true;
+            gameStarted = false;
+            voteTimer = timeToVote;
+            io.emit('game over', {
+
+            }); 
+          }
+          
+          
         }
+        
+        
         
       }
       else{
-        gameOver = true;
-        gameStarted = false;
-        voteTimer = timeToVote;
-        io.emit('game over', {
+        completedMainEvents[currentMainEvent] = 1;
           
-        });
+          completionCheck = true;
+          for(let i = 0; i < completedMainEvents.length; i++){
+            if(completedMainEvents[i] == 0){
+              completionCheck = false;
+            }
+          }
+          
+          if(completionCheck == false){
+            
+            let completed = false;
+            while(completed == false){
+              let random = Math.floor(Math.random() * allEvents.length);
+            
+              if(completedMainEvents[random] == 0){
+                currentMainEvent = random;
+                currentEvent = allEvents[random][0];
+                completed = true;
+                eventConstraint = false;
+              }
+              
+            }
+            
+          }
+          else{
+            gameOver = true;
+            gameStarted = false;
+            voteTimer = timeToVote;
+            io.emit('game over', {
+
+            }); 
+          }
       }
       
     }
@@ -1289,14 +1281,24 @@ io.on('connection', (socket) => {
 
       gameStarted = true;
      */
- 
-      for (let i = 0; i < allMagicianEvents.length; i++) {
-        for(let j = 0; j < 4; j++){
-           allMagicianEvents[i].completedOptions[j] = allMagicianEvents[i].completedOptionsStart[j];
+      
+      for (let i = 0; i < allEvents.length; i++) {
+        
+        for(let j = 0; j < allEvents[i].length; j++){
+          for(let k = 0; k < 4; k++){
+            allEvents[i][j].completedOptions[k] = allEvents[i][j].completedOptionsStart[k];
+          } 
         }
       }
- 
-      currentEvent = magician_Main;
+      
+      
+      currentMainEvent = Math.floor(Math.random() * allEvents.length);
+      currentEvent = allEvents[currentMainEvent][0];
+      
+      for(let i = 0; i < allEvents.length; i++){
+        completedMainEvents[i] = 0;
+        
+      }
       
    
       gameOver = false;
