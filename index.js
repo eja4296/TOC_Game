@@ -764,7 +764,7 @@ const empress_sword = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
-  flavorTextDescription: 'You attack the woman.',
+  flavorTextDescription: 'You attack the maiden.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -792,26 +792,29 @@ const empress_wand = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
-  flavorTextDescription: 'You investigate the woman.',
+  flavorTextDescription: 'You investigate the maiden.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 1],
   completedOptionsStart: [0, 0, 0, 1],
-  connections: [0],
-  text: ['The woman gets up quickly at the sound of the adventurer’s weapon being unsheathed and reveals crooked, gnashing teeth. Clearly this creature is not a human woman but instead a siren. Before she can unleash her scream, the adventurer rushes forward and attacks.', 'There’s no reaction from the woman as the adventurer’s weapon leaves its holster, and she makes no move to defend herself as it comes swinging down, silencing her sobs permanently. Her body slumps and red blood - human blood - spills from it. A loud, deep bellow booms from somewhere in the clearing and is powerful enough to make the surrounding grass bend back in reaction to its might. The tree that was once the sanctuary of the adventurer’s victim begins to take a new, humanoid form. He barely registers that this new arrival is a druid (and is none too happy about his friend being executed) before it lunges for him with a bark covered hand.'],
+  connections: [0, 13],
+  text: ['The adventurer squints his eyes and assesses the maiden. He concludes that she’s a siren.', 'The adventurer can’t make out from here if there’s anything suspicious going on with the lady.', 'The adventurer squints his eyes and assesses the maiden. He concludes that she’s just a regular person.'],
   dice: 4,
-  threshold: [7, 0],
-  statNeeded: "Luck",
+  threshold: [10, 6, 0],
+  statNeeded: "Intelligence",
   outcomes: 2,
   effectStats: [
-    ['Intelligence', 'Strength'],
-    ['Intelligence', 'Strength']
+    ['Intelligence'],
+    [],
+    ['Intelligence']
   ],  
   effectPower: [
-    [2, 2],
-    [-1, -1],
+    [1,],
+    [],
+    [-1],
   ],
-
+  constraint: true,
+  constraintResult: [1, 0, 0]
 
 };
 
