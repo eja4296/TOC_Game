@@ -769,19 +769,19 @@ const empress_sword = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [4, 5],
-  text: ['The woman gets up quickly at the sound of the adventurer’s weapon being unsheathed and reveals crooked, gnashing teeth. Clearly this creature is not a human woman but instead a siren.', 'There’s no reaction from the woman as the adventurer’s weapon leaves its holster, and she makes no move to defend herself while continuing to sob.'],
+  connections: [10, 10],
+  text: ['The woman gets up quickly at the sound of the adventurer’s weapon being unsheathed and reveals crooked, gnashing teeth. Clearly this creature is not a human woman but instead a siren. Before she can unleash her scream, the adventurer rushes forward and attacks.', 'There’s no reaction from the woman as the adventurer’s weapon leaves its holster, and she makes no move to defend herself as it comes swinging down, silencing her sobs permanently. Her body slumps and red blood - human blood - spills from it. A loud, deep bellow booms from somewhere in the clearing and is powerful enough to make the surrounding grass bend back in reaction to its might. The tree that was once the sanctuary of the adventurer’s victim begins to take a new, humanoid form. He barely registers that this new arrival is a druid (and is none too happy about his friend being executed) before it lunges for him with a bark covered hand.'],
   dice: 4,
   threshold: [7, 0],
   statNeeded: "Luck",
   outcomes: 2,
   effectStats: [
-    [],
-    []
+    ['Luck', 'Intelligence'],
+    ['Health', 'Intelligence']
   ],  
   effectPower: [
-    [],
-    [],
+    [2, 1],
+    [-10, -1],
   ],
   
 };
@@ -796,21 +796,21 @@ const empress_wand = {
   flavorTextDescription: 'You investigate the woman.',
   tldrDescription: '',
   options: [],
-  completedOptions: [0, 0, 0, 1],
-  completedOptionsStart: [0, 0, 0, 1],
-  connections: [8, 9],
-  text: ['The woman gets up quickly at the sound of the adventurer’s weapon being unsheathed and reveals crooked, gnashing teeth. Clearly this creature is not a human woman but instead a siren. Before she can unleash her scream, the adventurer rushes forward and attacks.', 'There’s no reaction from the woman as the adventurer’s weapon leaves its holster, and she makes no move to defend herself as it comes swinging down, silencing her sobs permanently. Her body slumps and red blood - human blood - spills from it. A loud, deep bellow booms from somewhere in the clearing and is powerful enough to make the surrounding grass bend back in reaction to its might. The tree that was once the sanctuary of the adventurer’s victim begins to take a new, humanoid form. He barely registers that this new arrival is a druid (and is none too happy about his friend being executed) before it lunges for him with a bark covered hand.'],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [4, 5],
+  text: ['The adventurer squints his eyes and assesses the maiden. He concludes that she’s just a regular person.','The adventurer squints his eyes and assesses the maiden. He concludes that she’s not human, but infact a siren!.'],
   dice: 4,
   threshold: [7, 0],
-  statNeeded: "Luck",
+  statNeeded: "Intelligence",
   outcomes: 2,
   effectStats: [
-    ['Intelligence', 'Strength'],
-    ['Intelligence', 'Strength']
+    [],
+    []
   ],  
   effectPower: [
-    [2, 2],
-    [-1, -1],
+    [],
+    [],
   ],
 
 
@@ -827,7 +827,7 @@ const empress_cup = {
   options: [],
   completedOptions: [0, 0, 0, 1],
   completedOptionsStart: [0, 0, 0, 1],
-  connections: [6, 7],
+  connections: [10, 10],
   text: ['The adventurer approaches the woman and begins to ask what is wrong, but is abruptly cut short by an incredible shriek. The adventurer collapses to his knees and clasps his ears, realizing too late that this woman is in fact a siren. When she finally finishes her cry, he brings himself to his feet again. He removes his hands from his ears and finds they are stained red with blood.', 'The adventurer approaches the woman and asks her what’s wrong. She begins to rant about her life in the walls, and how she is stuck alone in this room with only a tree to keep her company. Her tears flow like a stream down her face, and make her blue eyes glisten as she picks her head up to look at the adventurer. After some time, she concludes her story, and conjures a small vial. She allows a single tear to drop inside of it, and closes the top with a cork. “As a thank you...for your time,” she says handing it to the adventurer.'],
   dice: 4,
   threshold: [7, 0],
@@ -839,7 +839,7 @@ const empress_cup = {
   ],  
   effectPower: [
     [-10, -1],
-    [2, 2],
+    [2, 1],
   ],
 
 
@@ -847,61 +847,97 @@ const empress_cup = {
 
 allEmpressEvents.push(empress_cup);
 
-const empress_sword_sword = {
+
+
+const empress_Main_Maiden = {
   title: 'The Empress',
   name: 'empress',
   type: 'voting',
-  flavorTextDescription: 'Before the siren can unleash her scream, the adventurer readies to attack. The siren does the same, creating a stalemate.',
-  tldrDescription: 'The adventurer is ready to attack. Should he, or should he holster his weapon?',
-  options: ['Attack', 'Holster', 'Befriend', 'Leave'],
-  optionsFlavor: ['The siren is a friend to no one. She must die!', 'The siren may be too powerful. Better to step back while we have the chance.'],
+  flavorTextDescription: 'The adventurer knows the woman is just a maiden.',
+  tldrDescription: 'The adventurer looks at the woman. What should he do?',
+  options: ['Attack', 'Investigate', 'Befriend', 'Leave'],
+  optionsFlavor: ['Attack her!', 'Investigate her.', 'Befriend her.', 'Leave the room.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
-  completedOptions: [0, 0, 1, 1],
-  completedOptionsStart: [0, 0, 1, 1],
+  completedOptions: [0, 1, 0, 0],
+  completedOptionsStart: [0, 1, 0, 0],
 
-  connections: [8, 9, 3, 4],
+  connections: [6, 2, 7, 10],
   
 };
 
-allEmpressEvents.push(empress_sword_sword);
+allEmpressEvents.push(empress_Main_Maiden);
 
-const empress_sword_wand = {
+const empress_Main_Siren = {
   title: 'The Empress',
   name: 'empress',
   type: 'voting',
-  flavorTextDescription: 'The adventurer prepares to bring his sword down onto the helpless girl. She still does not react.',
-  tldrDescription: 'The adventurer is ready to attack. Should he, or should he holster his weapon?',
-  options: ['Attack', 'Holster', 'Befriend', 'Leave'],
-  optionsFlavor: ['This woman could be posing as a siren. Better to strike while we have the change!', 'This woman is no threat. Blood does not need to be shed.'],
+  flavorTextDescription: 'The adventurer knows the woman is a srien!',
+  tldrDescription: 'The adventurer looks at the siren. What should he do?',
+  options: ['Attack', 'Investigate', 'Befriend', 'Leave'],
+  optionsFlavor: ['Attack her!', 'Investigate her.', 'Befriend her.', 'Leave the room.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
-  completedOptions: [0, 0, 1, 1],
-  completedOptionsStart: [0, 0, 1, 1],
+  completedOptions: [0, 1, 0, 0],
+  completedOptionsStart: [0, 1, 0, 0],
 
-  connections: [8, 9, 3, 4],
+  connections: [8, 2, 9, 10],
   
 };
 
-allEmpressEvents.push(empress_sword_wand);
+allEmpressEvents.push(empress_Main_Siren);
 
-const empress_cup_sword= {
+const empress_Maiden_Sword = {
   title: 'The Empress',
   name: 'empress',
-  type: 'voting',
-  flavorTextDescription: 'Before the siren can unleash her scream, the adventurer readies to attack. The siren does the same, creating a stalemate.',
-  tldrDescription: 'The adventurer is ready to attack. Should he, or should he holster his weapon?',
-  options: ['Attack', 'Holster', 'Befriend', 'Leave'],
-  optionsFlavor: ['The siren is a friend to no one. She must die!', 'The siren may be too powerful. Better to step back while we have the chance.'],
-  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
-  completedOptions: [0, 0, 1, 1],
-  completedOptionsStart: [0, 0, 1, 1],
+  type: 'resolution',
+  flavorTextDescription: 'You attempt to attack the maiden.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
+  connections: [10, 10, 10, 10],
+  text: ['There’s no reaction from the woman as the adventurer’s weapon leaves its holster, and she makes no move to defend herself as it comes swinging down, silencing her sobs permanently. Her body slumps and red blood - human blood - spills from it. A loud, deep bellow booms from somewhere in the clearing and is powerful enough to make the surrounding grass bend back in reaction to its might. The tree that was once the sanctuary of the adventurer’s victim begins to take a new, humanoid form. He barely registers that this new arrival is a druid (and is none too happy about his friend being executed) before it lunges for him with a bark covered hand and makes contact. However, the adventurer bests the druid, and with no fight left in him, the druid reverts to a plant form, but not that of the weeping willow he assumed before. Instead, where his humanoid figure once stood is a tall stalk, and stunning violet flowers with protruding yellow centers adorn its top. The adventurer picks one delicately, storing it away with his other items.'],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Strength",
+  outcomes: 1,
+  effectStats: [
+    ['Health', 'Intelligence', 'Charisma']
+  ],  
+  effectPower: [
+    [-10, -1, 2],
+  ],
 
-  connections: [8, 9, 3, 4],
-  
+
 };
 
-allEmpressEvents.push(empress_sword_sword);
+allEmpressEvents.push(empress_Maiden_Sword);
 
-const empress_sword_wand_sword = {
+const empress_Maiden_Cup = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'resolution',
+  flavorTextDescription: 'You attempt to befriend the maiden.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
+  connections: [10, 10, 10, 10],
+  text: ['The adventurer approaches the woman and asks her what’s wrong. She begins to rant about her life in the walls, and how she is stuck alone in this room with only a tree to keep her company. Her tears flow like a stream down her face, and make her blue eyes glisten as she picks her head up to look at the adventurer. After some time, she concludes her story, and conjures a small vial. She allows a single tear to drop inside of it, and closes the top with a cork. “As a thank you...for your time,” she says handing it to the adventurer.'],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Charisma",
+  outcomes: 1,
+  effectStats: [
+    ['Charisma', 'Health']
+  ],  
+  effectPower: [
+    [2, 15],
+  ],
+};
+
+allEmpressEvents.push(empress_Maiden_Cup);
+
+const empress_Siren_Sword = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
@@ -910,63 +946,74 @@ const empress_sword_wand_sword = {
   options: [],
   completedOptions: [0, 0, 0, 1],
   completedOptionsStart: [0, 0, 0, 1],
-  connections: [6, 7],
-  text: ['The adventurer hears a new, sweeter voice as the siren disintegrates into ash and dust. It comes from the tree, who praises the adventurer for his heroism. “As a token of good faith for riding this place of that atrocity, please take this.” A long, thin branch slowly descends towards the adventurer, encouraging him to pluck the shiny fruit at the end. From the ashes of the siren, the adventurer pulls a necklace with a musical note hanging from it. The note head is a rich blue, made of sapphire. The adventurer brushes it off and places it around his own neck.', 'The adventurer stikes at the siren but she releases an evil shrill, imobilizing the adventurer.'],
+  connections: [10, 10, 10, 10],
+  text: ['The siren gets up quickly at the sound of the adventurer’s weapon being unsheathed and reveals crooked, gnashing teeth. Before she can unleash her scream, the adventurer rushes forward and attacks. The adventurer severs the head of the siren she immediately turns to ash. From the ashes of the siren, the adventurer pulls a necklace with a musical note hanging from it. The note head is a rich blue, made of sapphire. The adventurer brushes it off and places it around his own neck.'],
   dice: 4,
-  threshold: [7, 0],
-  statNeeded: "Charimsa",
-  outcomes: 2,
+  threshold: [0],
+  statNeeded: "Strength",
+  outcomes: 1,
   effectStats: [
-    ['Health', 'Charisma'],
-    ['Charisma', 'Strength']
+    ['Strength', 'Intelligence', 'Charisma']
   ],  
   effectPower: [
-    [-10, -1],
-    [2, 2],
+    [1, 1, 2],
   ],
 
 
 };
 
-allEmpressEvents.push(empress_cup);
+allEmpressEvents.push(empress_Siren_Sword);
 
-const empress_Main_Siren = {
+const empress_Siren_Cup = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'resolution',
+  flavorTextDescription: 'You attempt to befriend the siren.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
+  connections: [10, 10, 10, 10],
+  text: ['The adventurer approaches the woman and begins to ask what is wrong, but is abruptly cut short by an incredible shriek. The adventurer collapses to his knees and clasps his ears, realizing too late that this woman is in fact a siren. When she finally finishes her cry, he brings himself to his feet again. He removes his hands from his ears and finds they are stained red with blood. The adventurer turns to run hoping to escape with his life.'],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Charisma",
+  outcomes: 1,
+  effectStats: [
+    ['Health', 'Strength', 'Charisma']
+  ],  
+  effectPower: [
+    [-5, -1, -2],
+  ],
+
+
+};
+
+
+
+allEmpressEvents.push(empress_Siren_Cup);
+
+const empress_Leave = {
   title: 'The Empress',
   name: 'empress',
   type: 'voting',
-  flavorTextDescription: 'The adventurer knows the woman is a srien...',
-  tldrDescription: 'The adventurer looks at the siren. What should he do?',
+  flavorTextDescription: 'This should auto leave the room',
+  tldrDescription: 'This should auto leave the room',
   options: ['Attack', 'Investigate', 'Befriend', 'Leave'],
-  optionsFlavor: ['Attack her!', 'Investigate her.', 'Befriend her.', 'Leave the room.'],
+  optionsFlavor: ['Something is off putting about this woman. What is she even doing in a place like this to begin with? We’re not feeling lucky, this is almost certainly a trap. Better get the jump on her.', 'Better not to rush in too quickly, it can’t hurt to take a quick look around.', 'She looks like she could use a friend.', 'No reason to stay, need to find that exit somewhere in this grass.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
-  completedOptions: [0, 1, 0, 0],
-  completedOptionsStart: [0, 1, 0, 0],
+  completedOptions: [1, 1, 1, 1],
+  completedOptionsStart: [1, 1, 1, 1],
 
   connections: [1, 2, 3, 4],
   
 };
 
-allEmpressEvents.push(empress_Main);
+allEmpressEvents.push(empress_Leave);
 
-const empress_Main_Maiden = {
-  title: 'The Empress',
-  name: 'empress',
-  type: 'voting',
-  flavorTextDescription: 'The adventurer knows the woman is just a maiden.',
-  tldrDescription: 'The adventurer looks at the siren. What should he do?',
-  options: ['Attack', 'Investigate', 'Befriend', 'Leave'],
-  optionsFlavor: ['Attack her!', 'Investigate her.', 'Befriend her.', 'Leave the room.'],
-  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
-  completedOptions: [0, 1, 0, 0],
-  completedOptionsStart: [0, 1, 0, 0],
 
-  connections: [1, 2, 3, 4],
-  
-};
 
-allEmpressEvents.push(empress_Main);
-
-//allEvents.push(allEmpressEvents);
+allEvents.push(allEmpressEvents);
 
 
 const timeToVote = 5;
