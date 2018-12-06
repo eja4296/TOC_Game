@@ -81,16 +81,8 @@ let completedMainEvents = [];
 const allMagicianEvents = [];
 const allEmpressEvents = [];
 const allHighPreistessEvents = [];
+const allChariotEvents = [];
 
-const allMagicianEvents2 = {
-  events: [],
-  constraint: [
-    {
-      name: "isAlive",
-      isTrue: true,
-    }
-  ],
-}
 
 const magician_Main = {
   title: 'The Magician',
@@ -1014,6 +1006,209 @@ allEmpressEvents.push(empress_Leave);
 
 
 allEvents.push(allEmpressEvents);
+
+// The Chariot /////////////////////////
+
+const chariot_Main = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'voting',
+  flavorTextDescription: 'Gold light emanates from the cracks of this door as the adventurer approaches it. He staggers back after opening it, shielding his eyes. Stacks on stacks of gold, priceless goblets, and other treasures scattered across the room gleam in the light of the torches lining the wall. The main centerpiece is an ornate sarcophagus resting on a raised slab of stone. Chiseled into the rock is a message written in an older tongue, but some of the words can still be made out - “Wa..., ...iseas…, conqu…, death, yet gr… may be ...wnfall of man.” Just past this are four silver pedestals, each one with a horse made of precious gems resting upon it. The fates speak out the adventurer, and beckon him to make a choice.',
+  
+  tldrDescription: 'In a room full of treasure, four crystalline horses draw the adventurer’s attention the most.',
+
+  options: ['Ruby', 'Obsidian', 'Pearl', 'Diamond'],
+  
+  optionsFlavor: ['Take the ruby stallion, exuding power and a thirst for action.', 'Take the obsidian mare, which whispers of the rot it would inflict on your enemies, corrupting both their minds and bodies from the inside out.', 'Take the pearl equine, promising victory in battle and dominance over your adversaries.', 'Take the diamond skeleton horse, whose bones are full of smoke which clouds its true purpose.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+
+  connections: [1, 2, 3, 4],
+
+};
+
+
+allChariotEvents.push(chariot_Main);
+
+const chariot_Sword = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the ruby stallion.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 6],
+  text: ['The ruby stallion dissolves into the adventurer’s hands, sending searing pain through his muscles. Once it ebbs, the adventurer can feel newfound strength across his body, enough to take on the entire world.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  dice: 3,
+  threshold: [10, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Strength'],
+    ['Health','Strength']
+  ],  
+  effectPower: [
+    [2],
+    [-10, -1],
+  ],
+};
+
+
+allChariotEvents.push(chariot_Sword);
+
+const chariot_Wand = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the obsidian mare.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 6],
+  text: ['The obsidian mare dissolves into the adventurer’s hands, filling the adventurer’s mind with flashes of magic lost to the ages. No being can stand in his way with this knowledge at his disposal.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  dice: 3,
+  threshold: [10, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence'],
+    ['Health','Intelligence']
+  ],  
+  effectPower: [
+    [2],
+    [-10, -1],
+  ],
+};
+
+
+allChariotEvents.push(chariot_Wand);
+
+const chariot_Cup = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the pearl esquine.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 6],
+  text: ['The pearl equine dissolves into the adventurer’s hand, filling the adventurer’s body with new vigor and energy. It feels like he could crush any enemy that stands in his way with sheer willpower alone.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  dice: 3,
+  threshold: [10, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Charisma'],
+    ['Health','Charisma']
+  ],  
+  effectPower: [
+    [2],
+    [-10, -1],
+  ],
+};
+
+
+allChariotEvents.push(chariot_Cup);
+
+const chariot_Coin = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the diamond skeleton horse.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 6],
+  text: ['The diamond skeleton horse dissolves into the adventurer’s hand, leaving behind nothing but smoke. The adventurer realizes he is aware of no other feeling than emptiness, his emotions fading away like the mist in his hands, leaving only a void.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  dice: 3,
+  threshold: [10, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Luck'],
+    ['Health','Luck']
+  ],  
+  effectPower: [
+    [2],
+    [-10, -1],
+  ],
+  
+};
+
+
+allChariotEvents.push(chariot_Coin);
+
+const chariot_Leave = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to leave.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [1, 1, 1, 1],
+  completedOptionsStart: [1, 1, 1, 1],
+  connections: [7, 7, 7, 7],
+  text: ['Good idea. Best not to disturb this place any more than we already have.'],
+  dice: 3,
+  threshold: [0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Luck', 'Intelligence'],
+  ],  
+  effectPower: [
+    [1, 1],
+  ],
+};
+
+const chariot_Main_Alt_Sword = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'voting',
+  flavorTextDescription: 'Gold light emanates from the cracks of this door as the adventurer approaches it. He staggers back after opening it, shielding his eyes. Stacks on stacks of gold, priceless goblets, and other treasures scattered across the room gleam in the light of the torches lining the wall. The main centerpiece is an ornate sarcophagus resting on a raised slab of stone. Chiseled into the rock is a message written in an older tongue, but some of the words can still be made out - “Wa..., ...iseas…, conqu…, death, yet gr… may be ...wnfall of man.” Just past this are four silver pedestals, each one with a horse made of precious gems resting upon it. The fates speak out the adventurer, and beckon him to make a choice.',
+  
+  tldrDescription: 'In a room full of treasure, four crystalline horses draw the adventurer’s attention the most.',
+
+  options: ['Leave', 'Obsidian', 'Pearl', 'Diamond'],
+  
+  optionsFlavor: ['Take the ruby stallion, exuding power and a thirst for action.', 'Take the obsidian mare, which whispers of the rot it would inflict on your enemies, corrupting both their minds and bodies from the inside out.', 'Take the pearl equine, promising victory in battle and dominance over your adversaries.', 'Take the diamond skeleton horse, whose bones are full of smoke which clouds its true purpose.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+
+  connections: [5, 2, 3, 4],
+
+};
+
+
+allChariotEvents.push(chariot_Leave);
+
+const chariot_Leave_Leave = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'voting',
+  flavorTextDescription: 'Auto leave room',
+  
+  tldrDescription: 'Auto leave room',
+
+  options: ['Ruby', 'Obsidian', 'Pearl', 'Diamond'],
+  
+  optionsFlavor: [],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [1, 1, 1, 1],
+  completedOptionsStart: [1, 1, 1, 1],
+
+  connections: [1, 2, 3, 4],
+
+};
+allChariotEvents.push(chariot_Leave_Leave);
+allEvents.push(allChariotEvents);
 
 
 const timeToVote = 5;
