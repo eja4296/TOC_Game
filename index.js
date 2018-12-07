@@ -1409,7 +1409,7 @@ const emperor_Coin = {
   options: [],
  completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [5, 6, 10, 10],
+  connections: [5, 1, 10, 10],
   text: ['The adventurer chooses a direction and bolts into the darkness, leaving the shouting squadron of dwarves behind him. He follows his gut, making random right and left turns, but he can’t seem to shake the roar of footsteps closing in on his position. He needs to lose the soldiers fast. Finally the adventurer began to see light, but it comes from two diverging tunnels. The left route is shorter but blocked by a large spider-web. A little bit of fire could burn the web down but getting caught in it would spell disaster. The right route is less direct, since the exit is at the top of rock wall. It’s full of holes so the adventurer could likely climb it and leave the knights stuck at the bottom with their heavy armor.', 'The adventurer sees an opening in the group surrounding him and makes a break for it. He makes it a fair distance before he can no longer see, making navigating difficult. He is forced to slow down to find his way, but even that can’t save him from the terrain. He gets a familiar feeling as he extends a foot and fails to find the ground, tumbling into a hole with no way out. His only option now is to wait for his pursuers to rescue him, and then ambush them while they attempt to capture him again.'],
   dice: 4,
   threshold: [7, 0],
