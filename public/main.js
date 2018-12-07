@@ -734,8 +734,8 @@ $(() => {
         
         document.querySelector('#eventDescriptionTLDR').innerHTML = "Fate has decided you will use your: " + finalVote + "<br>";
         document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + "Fate has decided you will use your: " + finalVote + "</div>";
-        document.querySelector('#eventDescriptionTLDR').innerHTML += eventCard.text[rng];
-        document.querySelector('#eventDescription').innerHTML = eventCard.flavorTextDescription;
+        document.querySelector('#eventDescriptionTLDR').innerHTML += eventCard.flavorTextDescription;
+        document.querySelector('#eventDescription').innerHTML = eventCard.text[rng];
         
         document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.text[rng] + "</div>";
 

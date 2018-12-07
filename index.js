@@ -81,16 +81,9 @@ let completedMainEvents = [];
 const allMagicianEvents = [];
 const allEmpressEvents = [];
 const allHighPreistessEvents = [];
+const allChariotEvents = [];
+const allEmperorEvents = [];
 
-const allMagicianEvents2 = {
-  events: [],
-  constraint: [
-    {
-      name: "isAlive",
-      isTrue: true,
-    }
-  ],
-}
 
 const magician_Main = {
   title: 'The Magician',
@@ -750,8 +743,8 @@ const empress_Main = {
   options: ['Attack', 'Investigate', 'Befriend', 'Leave'],
   optionsFlavor: ['Something is off putting about this woman. What is she even doing in a place like this to begin with? We’re not feeling lucky, this is almost certainly a trap. Better get the jump on her.', 'Better not to rush in too quickly, it can’t hurt to take a quick look around.', 'She looks like she could use a friend.', 'No reason to stay, need to find that exit somewhere in this grass.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
-  completedOptions: [0, 0, 0, 0],
-  completedOptionsStart: [0, 0, 0, 0],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
 
   connections: [1, 2, 3, 4],
   
@@ -769,20 +762,21 @@ const empress_sword = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [5, 6],
+  connections: [10, 10],
   text: ['The woman gets up quickly at the sound of the adventurer’s weapon being unsheathed and reveals crooked, gnashing teeth. Clearly this creature is not a human woman but instead a siren. Before she can unleash her scream, the adventurer rushes forward and attacks.', 'There’s no reaction from the woman as the adventurer’s weapon leaves its holster, and she makes no move to defend herself as it comes swinging down, silencing her sobs permanently. Her body slumps and red blood - human blood - spills from it. A loud, deep bellow booms from somewhere in the clearing and is powerful enough to make the surrounding grass bend back in reaction to its might. The tree that was once the sanctuary of the adventurer’s victim begins to take a new, humanoid form. He barely registers that this new arrival is a druid (and is none too happy about his friend being executed) before it lunges for him with a bark covered hand.'],
   dice: 4,
   threshold: [7, 0],
   statNeeded: "Luck",
   outcomes: 2,
   effectStats: [
-    ['Intelligence', 'Strength'],
-    ['Intelligence', 'Strength']
+    ['Luck', 'Intelligence'],
+    ['Health', 'Intelligence']
   ],  
   effectPower: [
-    [2, 2],
-    [-1, -1],
+    [2, 1],
+    [-10, -1],
   ],
+  
 };
 
 allEmpressEvents.push(empress_sword);
@@ -795,8 +789,38 @@ const empress_wand = {
   flavorTextDescription: 'You investigate the maiden.',
   tldrDescription: '',
   options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [4, 5],
+  text: ['The adventurer squints his eyes and assesses the maiden. He concludes that she’s just a regular person.','The adventurer squints his eyes and assesses the maiden. He concludes that she’s not human, but infact a siren!.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Intelligence",
+  outcomes: 2,
+  effectStats: [
+    [],
+    []
+  ],  
+  effectPower: [
+    [],
+    [],
+  ],
+
+
+};
+
+allEmpressEvents.push(empress_wand);
+
+const empress_cup = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'resolution',
+  flavorTextDescription: 'You attempt to befriend the woman.',
+  tldrDescription: '',
+  options: [],
   completedOptions: [0, 0, 0, 1],
   completedOptionsStart: [0, 0, 0, 1],
+<<<<<<< HEAD
   connections: [0, 13],
   text: ['The adventurer squints his eyes and assesses the maiden. He concludes that she’s a siren.', 'The adventurer can’t make out from here if there’s anything suspicious going on with the lady.', 'The adventurer squints his eyes and assesses the maiden. He concludes that she’s just a regular person.'],
   dice: 4,
@@ -812,15 +836,453 @@ const empress_wand = {
     [1,],
     [],
     [-1],
+=======
+  connections: [10, 10],
+  text: ['The adventurer approaches the woman and begins to ask what is wrong, but is abruptly cut short by an incredible shriek. The adventurer collapses to his knees and clasps his ears, realizing too late that this woman is in fact a siren. When she finally finishes her cry, he brings himself to his feet again. He removes his hands from his ears and finds they are stained red with blood.', 'The adventurer approaches the woman and asks her what’s wrong. She begins to rant about her life in the walls, and how she is stuck alone in this room with only a tree to keep her company. Her tears flow like a stream down her face, and make her blue eyes glisten as she picks her head up to look at the adventurer. After some time, she concludes her story, and conjures a small vial. She allows a single tear to drop inside of it, and closes the top with a cork. “As a thank you...for your time,” she says handing it to the adventurer.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Charimsa",
+  outcomes: 2,
+  effectStats: [
+    ['Health', 'Charisma'],
+    ['Charisma', 'Strength']
+  ],  
+  effectPower: [
+    [-10, -1],
+    [2, 1],
+>>>>>>> b65e59c30e868eccc4a59625a744a35ba1a468e3
   ],
   constraint: true,
   constraintResult: [1, 0, 0]
 
 };
 
-allEmpressEvents.push(empress_wand);
+allEmpressEvents.push(empress_cup);
+
+
+
+const empress_Main_Maiden = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'voting',
+  flavorTextDescription: 'The adventurer knows the woman is just a maiden.',
+  tldrDescription: 'The adventurer looks at the woman. What should he do?',
+  options: ['Attack', 'Investigate', 'Befriend', 'Leave'],
+  optionsFlavor: ['Attack her!', 'Investigate her.', 'Befriend her.', 'Leave the room.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 1, 0, 0],
+  completedOptionsStart: [0, 1, 0, 0],
+
+  connections: [6, 2, 7, 10],
+  
+};
+
+allEmpressEvents.push(empress_Main_Maiden);
+
+const empress_Main_Siren = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'voting',
+  flavorTextDescription: 'The adventurer knows the woman is a srien!',
+  tldrDescription: 'The adventurer looks at the siren. What should he do?',
+  options: ['Attack', 'Investigate', 'Befriend', 'Leave'],
+  optionsFlavor: ['Attack her!', 'Investigate her.', 'Befriend her.', 'Leave the room.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 1, 0, 0],
+  completedOptionsStart: [0, 1, 0, 0],
+
+  connections: [8, 2, 9, 10],
+  
+};
+
+allEmpressEvents.push(empress_Main_Siren);
+
+const empress_Maiden_Sword = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'resolution',
+  flavorTextDescription: 'You attempt to attack the maiden.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
+  connections: [10, 10, 10, 10],
+  text: ['There’s no reaction from the woman as the adventurer’s weapon leaves its holster, and she makes no move to defend herself as it comes swinging down, silencing her sobs permanently. Her body slumps and red blood - human blood - spills from it. A loud, deep bellow booms from somewhere in the clearing and is powerful enough to make the surrounding grass bend back in reaction to its might. The tree that was once the sanctuary of the adventurer’s victim begins to take a new, humanoid form. He barely registers that this new arrival is a druid (and is none too happy about his friend being executed) before it lunges for him with a bark covered hand and makes contact. However, the adventurer bests the druid, and with no fight left in him, the druid reverts to a plant form, but not that of the weeping willow he assumed before. Instead, where his humanoid figure once stood is a tall stalk, and stunning violet flowers with protruding yellow centers adorn its top. The adventurer picks one delicately, storing it away with his other items.'],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Strength",
+  outcomes: 1,
+  effectStats: [
+    ['Health', 'Intelligence', 'Charisma']
+  ],  
+  effectPower: [
+    [-10, -1, 2],
+  ],
+
+
+};
+
+allEmpressEvents.push(empress_Maiden_Sword);
+
+const empress_Maiden_Cup = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'resolution',
+  flavorTextDescription: 'You attempt to befriend the maiden.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
+  connections: [10, 10, 10, 10],
+  text: ['The adventurer approaches the woman and asks her what’s wrong. She begins to rant about her life in the walls, and how she is stuck alone in this room with only a tree to keep her company. Her tears flow like a stream down her face, and make her blue eyes glisten as she picks her head up to look at the adventurer. After some time, she concludes her story, and conjures a small vial. She allows a single tear to drop inside of it, and closes the top with a cork. “As a thank you...for your time,” she says handing it to the adventurer.'],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Charisma",
+  outcomes: 1,
+  effectStats: [
+    ['Charisma', 'Health']
+  ],  
+  effectPower: [
+    [2, 15],
+  ],
+};
+
+allEmpressEvents.push(empress_Maiden_Cup);
+
+const empress_Siren_Sword = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'resolution',
+  flavorTextDescription: 'You attempt to attack the siren.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
+  connections: [10, 10, 10, 10],
+  text: ['The siren gets up quickly at the sound of the adventurer’s weapon being unsheathed and reveals crooked, gnashing teeth. Before she can unleash her scream, the adventurer rushes forward and attacks. The adventurer severs the head of the siren she immediately turns to ash. From the ashes of the siren, the adventurer pulls a necklace with a musical note hanging from it. The note head is a rich blue, made of sapphire. The adventurer brushes it off and places it around his own neck.'],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Strength",
+  outcomes: 1,
+  effectStats: [
+    ['Strength', 'Intelligence', 'Charisma']
+  ],  
+  effectPower: [
+    [1, 1, 2],
+  ],
+
+
+};
+
+allEmpressEvents.push(empress_Siren_Sword);
+
+const empress_Siren_Cup = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'resolution',
+  flavorTextDescription: 'You attempt to befriend the siren.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
+  connections: [10, 10, 10, 10],
+  text: ['The adventurer approaches the woman and begins to ask what is wrong, but is abruptly cut short by an incredible shriek. The adventurer collapses to his knees and clasps his ears, realizing too late that this woman is in fact a siren. When she finally finishes her cry, he brings himself to his feet again. He removes his hands from his ears and finds they are stained red with blood. The adventurer turns to run hoping to escape with his life.'],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Charisma",
+  outcomes: 1,
+  effectStats: [
+    ['Health', 'Strength', 'Charisma']
+  ],  
+  effectPower: [
+    [-5, -1, -2],
+  ],
+
+
+};
+
+
+
+allEmpressEvents.push(empress_Siren_Cup);
+
+const empress_Leave = {
+  title: 'The Empress',
+  name: 'empress',
+  type: 'voting',
+  flavorTextDescription: 'This should auto leave the room',
+  tldrDescription: 'This should auto leave the room',
+  options: ['Attack', 'Investigate', 'Befriend', 'Leave'],
+  optionsFlavor: ['Something is off putting about this woman. What is she even doing in a place like this to begin with? We’re not feeling lucky, this is almost certainly a trap. Better get the jump on her.', 'Better not to rush in too quickly, it can’t hurt to take a quick look around.', 'She looks like she could use a friend.', 'No reason to stay, need to find that exit somewhere in this grass.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [1, 1, 1, 1],
+  completedOptionsStart: [1, 1, 1, 1],
+
+  connections: [1, 2, 3, 4],
+  
+};
+
+allEmpressEvents.push(empress_Leave);
+
+
 
 allEvents.push(allEmpressEvents);
+
+// The Chariot /////////////////////////
+
+const chariot_Main = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'voting',
+  flavorTextDescription: 'Gold light emanates from the cracks of this door as the adventurer approaches it. He staggers back after opening it, shielding his eyes. Stacks on stacks of gold, priceless goblets, and other treasures scattered across the room gleam in the light of the torches lining the wall. The main centerpiece is an ornate sarcophagus resting on a raised slab of stone. Chiseled into the rock is a message written in an older tongue, but some of the words can still be made out - “Wa..., ...iseas…, conqu…, death, yet gr… may be ...wnfall of man.” Just past this are four silver pedestals, each one with a horse made of precious gems resting upon it. The fates speak out the adventurer, and beckon him to make a choice.',
+  
+  tldrDescription: 'In a room full of treasure, four crystalline horses draw the adventurer’s attention the most.',
+
+  options: ['Ruby', 'Obsidian', 'Pearl', 'Diamond'],
+  
+  optionsFlavor: ['Take the ruby stallion, exuding power and a thirst for action.', 'Take the obsidian mare, which whispers of the rot it would inflict on your enemies, corrupting both their minds and bodies from the inside out.', 'Take the pearl equine, promising victory in battle and dominance over your adversaries.', 'Take the diamond skeleton horse, whose bones are full of smoke which clouds its true purpose.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+
+  connections: [1, 2, 3, 4],
+
+};
+
+
+allChariotEvents.push(chariot_Main);
+
+const chariot_Sword = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the ruby stallion.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 6],
+  text: ['The ruby stallion dissolves into the adventurer’s hands, sending searing pain through his muscles. Once it ebbs, the adventurer can feel newfound strength across his body, enough to take on the entire world.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  dice: 3,
+  threshold: [10, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Strength'],
+    ['Health','Strength']
+  ],  
+  effectPower: [
+    [2],
+    [-10, -1],
+  ],
+};
+
+
+allChariotEvents.push(chariot_Sword);
+
+const chariot_Wand = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the obsidian mare.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 6],
+  text: ['The obsidian mare dissolves into the adventurer’s hands, filling the adventurer’s mind with flashes of magic lost to the ages. No being can stand in his way with this knowledge at his disposal.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  dice: 3,
+  threshold: [10, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence'],
+    ['Health','Intelligence']
+  ],  
+  effectPower: [
+    [2],
+    [-10, -1],
+  ],
+};
+
+
+allChariotEvents.push(chariot_Wand);
+
+const chariot_Cup = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the pearl esquine.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 6],
+  text: ['The pearl equine dissolves into the adventurer’s hand, filling the adventurer’s body with new vigor and energy. It feels like he could crush any enemy that stands in his way with sheer willpower alone.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  dice: 3,
+  threshold: [10, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Charisma'],
+    ['Health','Charisma']
+  ],  
+  effectPower: [
+    [2],
+    [-10, -1],
+  ],
+};
+
+
+allChariotEvents.push(chariot_Cup);
+
+const chariot_Coin = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the diamond skeleton horse.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 6],
+  text: ['The diamond skeleton horse dissolves into the adventurer’s hand, leaving behind nothing but smoke. The adventurer realizes he is aware of no other feeling than emptiness, his emotions fading away like the mist in his hands, leaving only a void.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  dice: 3,
+  threshold: [10, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Luck'],
+    ['Health','Luck']
+  ],  
+  effectPower: [
+    [2],
+    [-10, -1],
+  ],
+  
+};
+
+
+allChariotEvents.push(chariot_Coin);
+
+const chariot_Leave = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to leave.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [1, 1, 1, 1],
+  completedOptionsStart: [1, 1, 1, 1],
+  connections: [7, 7, 7, 7],
+  text: ['Good idea. Best not to disturb this place any more than we already have.'],
+  dice: 3,
+  threshold: [0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Luck', 'Intelligence'],
+  ],  
+  effectPower: [
+    [1, 1],
+  ],
+};
+
+allChariotEvents.push(chariot_Leave);
+
+const chariot_Main_Alt_Sword = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'voting',
+  flavorTextDescription: 'Gold light emanates from the cracks of this door as the adventurer approaches it. He staggers back after opening it, shielding his eyes. Stacks on stacks of gold, priceless goblets, and other treasures scattered across the room gleam in the light of the torches lining the wall. The main centerpiece is an ornate sarcophagus resting on a raised slab of stone. Chiseled into the rock is a message written in an older tongue, but some of the words can still be made out - “Wa..., ...iseas…, conqu…, death, yet gr… may be ...wnfall of man.” Just past this are four silver pedestals, each one with a horse made of precious gems resting upon it. The fates speak out the adventurer, and beckon him to make a choice.',
+  
+  tldrDescription: 'In a room full of treasure, four crystalline horses draw the adventurer’s attention the most.',
+
+  options: ['Leave', 'Obsidian', 'Pearl', 'Diamond'],
+  
+  optionsFlavor: ['Take the ruby stallion, exuding power and a thirst for action.', 'Take the obsidian mare, which whispers of the rot it would inflict on your enemies, corrupting both their minds and bodies from the inside out.', 'Take the pearl equine, promising victory in battle and dominance over your adversaries.', 'Take the diamond skeleton horse, whose bones are full of smoke which clouds its true purpose.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+
+  connections: [5, 2, 3, 4],
+
+};
+
+
+allChariotEvents.push(chariot_Main_Alt_Sword);
+
+
+
+const chariot_Leave_Leave = {
+  title: 'The Chariot',
+  name: 'chariot',
+  type: 'voting',
+  flavorTextDescription: 'Auto leave room',
+  
+  tldrDescription: 'Auto leave room',
+
+  options: ['Ruby', 'Obsidian', 'Pearl', 'Diamond'],
+  
+  optionsFlavor: [],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [1, 1, 1, 1],
+  completedOptionsStart: [1, 1, 1, 1],
+
+  connections: [1, 2, 3, 4],
+
+};
+allChariotEvents.push(chariot_Leave_Leave);
+//allEvents.push(allChariotEvents);
+
+
+const emperor_Main = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'voting',
+  flavorTextDescription: 'The echo of the door creaking reverberates in the seemingly empty room as it swings open into nothingness. The adventurer pauses for only a moment before taking a step into the darkness. If the room has a floor, he fails to find it and tumbles down a long rocky slope instead. By the time he reaches its end with a solid thud, he is thoroughly disoriented. It takes the adventurer a second to realize that while the impact was hard, his fall had thankfully been broken by something. After rising to his feet he conjures a small flame to survey his surroundings. Initially all he sees are the stone walls of a cave, with hanging stalactites occasionally releasing drops of water from their sharp points. He looks to the ground to see what saved him from a harsher landing. His relief fades instantly as a crowd of horrified faces come into view, staring either directly at him or at his now crushed target - a dwarven king, dressed in royal purple garbs and a crown adorned with gems likely mined from these same caves. Dwarven knights surround the scene and point their spears at the adventurer, ready to apprehend him for his crime.',
+  
+  tldrDescription: 'The adventurer accidentally assassinated a dwarven king in front of his people and is being threatened by his loyal knights. What should he do?',
+
+  options: ['Attack', 'Investigate', 'Talk', 'Run'],
+  
+  optionsFlavor: ['You can take these knights easily. Let’s show them what for!', '', 'There’s obviously been a misunderstanding, we just need to talk this out.', 'You’ve got much longer legs than these guys and can definitely find your way out before they catch up.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 1, 0, 0],
+  completedOptionsStart: [0, 1, 0, 0],
+
+  connections: [1, 2, 3, 4],
+
+};
+
+allEmperorEvents.push(emperor_Main);
+
+const emperor_sword = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to fight.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [1, 1, 1, 1],
+  completedOptionsStart: [1, 1, 1, 1],
+  connections: [7, 7, 7, 7],
+  text: ['The knights lie on the ground at the adventurer’s feet, defeated. He bends over and pries a spear from one of the dwarves and takes it for himself. The warrior can only give a mild grunt in protest as his weapon is stolen from his grip.'],
+  dice: 3,
+  threshold: [0],
+  statNeeded: "Strength",
+  outcomes: 1,
+  effectStats: [
+    ['Strength', 'Charisma'],
+  ],  
+  effectPower: [
+    [2, 1],
+  ],
+};
+
+allEmperorEvents.push(emperor_sword);
+
+
+
 
 
 const timeToVote = 5;
