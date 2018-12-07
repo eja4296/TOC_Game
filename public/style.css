@@ -53,7 +53,7 @@ ul {
 
 /* Login Page */
 
-.login.page {
+.login.page, .main.page, .gameOver.page{
   background-color: #000;
 }
 
@@ -83,10 +83,22 @@ ul {
   
 }
 
-.login.page #loginPageTitle{
+.login.page .gameTitle, .main.page .gameTitle, .gameOver.page .gameTitle{
   font-family: 'Uncial Antiqua', cursive;
   font-size: 3em;
   margin-bottom: 100px;
+  text-align: center;
+}
+
+.gameOver.page #gameOver{
+  text-align: center;
+}
+
+.main.page button, .gameOver.page button{
+  position: relative;
+  width: 10%;
+  left: 45%;
+  padding: 10px;
 }
 
 .login.page #welcome{
@@ -107,9 +119,13 @@ ul {
 
 /* Chat page */
 
-.chat.page {
+.chat.page, .main.page, .gameOver.page {
   display: none;
   
+}
+
+.main.page, .gameOver.page{
+  color: white;
 }
 
 /* Font */
@@ -792,6 +808,13 @@ ul {
 .login.page .form .usernameInput {
 
   width: 90%;
+}
+  
+.main.page button, .gameOver.page button{
+  position: relative;
+  width: 40%;
+  left: 30%;
+  padding: 10px;
 }
   
   #voteArea{

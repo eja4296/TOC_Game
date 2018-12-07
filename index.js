@@ -84,7 +84,9 @@ const allHighPreistessEvents = [];
 const allChariotEvents = [];
 const allEmperorEvents = [];
 
+// The Magician ////////////////////
 
+// 0
 const magician_Main = {
   title: 'The Magician',
   name: 'magician',
@@ -104,11 +106,9 @@ const magician_Main = {
 
 };
 
-
-
-
 allMagicianEvents.push(magician_Main);
 
+// 1
 const magician_sword = {
   title: 'The Magician',
   name: 'magician',
@@ -127,6 +127,8 @@ const magician_sword = {
 };
 
 allMagicianEvents.push(magician_sword);
+
+// 2
 const magician_wand = {
   title: 'The Magician',
   name: 'magician',
@@ -145,6 +147,7 @@ const magician_wand = {
 
 allMagicianEvents.push(magician_wand);
 
+// 3
 const magician_cup = {
   title: 'The Magician',
   name: 'magician',
@@ -163,6 +166,7 @@ const magician_cup = {
 
 allMagicianEvents.push(magician_cup);
 
+// 4
 const magician_coin = {
   title: 'The Magician',
   name: 'magician',
@@ -193,6 +197,7 @@ const magician_coin = {
 
 allMagicianEvents.push(magician_coin);
 
+// 5
 const magician_wand_sword = {
   title: 'The Magician',
   name: 'magician',
@@ -203,25 +208,27 @@ const magician_wand_sword = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
-  text: ['The adventurer forces the book open and feels his muscles surge with power as he reads its contents.', 'The adventurer tries his damndest to open the book but it takes all of his might to just hold it. He uses his last ounce of strength to reshelve it, and decides to move on.', 'The adventurer tugs the book from its place but can’t muster the power to keep it in his hands. It ungracefully tumbles from the rack and lands on the adventurer’s feet.'],
+  text: ['The adventurer forces the book open and feels his muscles surge with power as he reads its contents.', 'The adventurer tugs the book from its place but can’t muster the power to keep it in his hands. It ungracefully tumbles from the rack and lands on the adventurer’s feet.'],
   dice: 4,
-  threshold: [8, 4, 0],
+  threshold: [7, 0],
   statNeeded: "Strength",
-  outcomes: 3,
+  outcomes: 2,
   effectStats: [
     ['Strength', 'Intelligence'],
-    [],
+
     ['Health', 'Strength']
   ],  
   effectPower: [
     [2, 1],
-    [],
+ 
     [-3, -1],
   ],
 
 
 };
 allMagicianEvents.push(magician_wand_sword);
+
+// 6
 const magician_wand_wand = {
   title: 'The Magician',
   name: 'magician',
@@ -233,25 +240,25 @@ const magician_wand_wand = {
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
 
-  text: ['The magic book slams open and attempts to assault the adventurer with dark magic, but he uses his own power to bend the book to his will, letting him access its harbored secrets without resistance.', 'The adventurer clasps the levitating book in his hands, but the book refuses to open, and the whispers emanating from it have gone silent. It seems the adventurer is not quite worthy of its secrets just yet.', 'The adventurer extends a hand to the floating book and the room fills with a high pitched scream coming from the book itself, replacing the almost ambient whispers that it conjured previously. It dissolves into ash, but not before thoroughly leaving the adventurer’s head rattled and ears ringing.'],
+  text: ['The magic book slams open and attempts to assault the adventurer with dark magic, but he uses his own power to bend the book to his will, letting him access its harbored secrets without resistance.', 'The adventurer extends a hand to the floating book and the room fills with a high pitched scream coming from the book itself, replacing the almost ambient whispers that it conjured previously. It dissolves into ash, but not before thoroughly leaving the adventurer’s head rattled and ears ringing.'],
   dice: 4,
-  threshold: [8, 4, 0],
+  threshold: [7, 0],
   statNeeded: "Intelligence",
   outcomes: 3,
   effectStats: [
     ['Intelligence'],
-    [],
     ['Health', 'Intelligence']
   ],  
   effectPower: [
     [2],
-    [],
     [-3, -1],
   ],
 
 
 };
 allMagicianEvents.push(magician_wand_wand);
+
+// 7
 const magician_wand_cup = {
   title: 'The Magician',
   name: 'magician',
@@ -281,6 +288,8 @@ const magician_wand_cup = {
 
 };
 allMagicianEvents.push(magician_wand_cup);
+
+// 8
 const magician_wand_leave = {
   title: 'The Magician',
   name: 'magician',
@@ -308,6 +317,7 @@ const magician_wand_leave = {
 };
 allMagicianEvents.push(magician_wand_leave);
 
+// 9
 const magician_cup_yes = {
   title: 'The Magician',
   name: 'magician',
@@ -337,6 +347,7 @@ const magician_cup_yes = {
 };
 allMagicianEvents.push(magician_cup_yes);
 
+// 10
 const magician_cup_no = {
   title: 'The Magician',
   name: 'magician',
@@ -365,6 +376,7 @@ const magician_cup_no = {
 
 allMagicianEvents.push(magician_cup_no);
 
+// 11
 const magician_sword_sword = {
   title: 'The Magician',
   name: 'magician',
@@ -376,9 +388,9 @@ const magician_sword_sword = {
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
 
-  text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer swings his sword at the witch, she counters with her staff and deals blow to his gut, knockiing the wind out of him. The witch refrains from dealing further damage, as she knows he is no match for her.'],
+  text: ['As the witch crumples in defeat, her staff clangs to the ground with a loud thump. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself.', 'The witch, though old, moves quicker than the adventurer. As the adventurer swings his sword at the witch, she counters with her staff and deals blow to his gut, knockiing the wind out of him. The witch refrains from dealing further damage, as she knows he is no match for her.'],
   dice: 4,
-  threshold: [2, 0],
+  threshold: [7, 0],
   statNeeded: "Strength",
   outcomes: 2,
   effectStats: [
@@ -397,6 +409,7 @@ const magician_sword_sword = {
 
 allMagicianEvents.push(magician_sword_sword);
 
+// 12
 const magician_sword_wand = {
   title: 'The Magician',
   name: 'magician',
@@ -408,7 +421,7 @@ const magician_sword_wand = {
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
  
-  text: ['As the witch crumples in defeat, she drops her staff to the ground. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself, while the witch lies in pain.', 'The witch, though old, moves quicker than the adventurer. As the adventurer casts his spell at the witch, she effortlessly counters with a spell of her own knocking the adveturer off his feet. The witch refrains from dealing further damage, as she knows he is no match for her.'],
+  text: ['As the witch crumples in defeat, her staff clangs to the ground with a loud thump. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself.', 'The witch, though old, moves quicker than the adventurer. As the adventurer casts his spell at the witch, she effortlessly counters with a spell of her own knocking the adveturer off his feet. The witch refrains from dealing further damage, as she knows he is no match for her.'],
   dice: 4,
   threshold: [7, 0],
   statNeeded: "Intelligence",
@@ -430,7 +443,7 @@ const magician_sword_wand = {
 
 allMagicianEvents.push(magician_sword_wand);
 
-
+// 13
 const magician_Main_Alt = {
   title: 'The Magician',
   name: 'magician',
@@ -446,13 +459,96 @@ const magician_Main_Alt = {
   completedOptions: [1, 0, 1, 0],
   completedOptionsStart: [1, 0, 1, 0],
 
-  connections: [1, 2, 3, 4],
+  connections: [1, 14, 3, 16],
 
 };
 
 allMagicianEvents.push(magician_Main_Alt);
 
-allEvents.push(allMagicianEvents);
+// 14
+const magician_wand_Alt = {
+  title: 'The Magician',
+  name: 'magician',
+  type: 'voting',
+  flavorTextDescription: 'The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
+  tldrDescription: 'The adventurer decides to invetigate the room. There is an Iron book, Floating book, and Worn book. Should the adventurer open one, or leave?',
+  
+  options: ['Iron', 'Floating', 'Worn', 'Leave'],
+  optionsFlavor: ['Open the iron book.', 'Open the floating book.', 'Open the worn book.', 'These books could be dangerous like the witch said, better leave them where we found them.'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [5, 6, 15, 8],
+
+};
+
+allMagicianEvents.push(magician_wand_Alt);
+
+// 15
+const magician_wand_cup_Alt = {
+  title: 'The Magician',
+  name: 'magician',
+  type: 'resolution',
+  flavorTextDescription: 'You attempt to open the book with your Cup.',
+  tldrDescription: '',
+  options: [''],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 13],
+
+  text: ['It looks like the witch\'s recipe book. The adventurer grabs a the ingredients and makes a health potion.', 'It looks like the witch\'s recipe book, but the adventurer cannot understand her writing. Maybe if the witch were here she could explain it to him...'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Charisma",
+  outcomes: 2,
+
+  effectStats: [
+    ['Charisma', 'Intelligence', "Health"],
+    []
+  ],  
+  effectPower: [
+    [1, 1, 5],
+    [],
+  ],
+
+
+};
+allMagicianEvents.push(magician_wand_cup_Alt);
+
+// 16
+const magician_Coin_Alt = {
+  title: 'The Magician',
+  name: 'magician',
+  type: 'resolution',
+  flavorTextDescription: 'The adventurer eyes the cerulean mixture the witch had been so carefully crafting and decides to take a sip.',
+  tldrDescription: '',
+  
+  
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 13],
+  text: ['The adventurer decides to taste the mixture. He feels rejuvenated, possibly more alive than he has in a while.', 'The adventurer decides to taste the mixture. He almost immediately feels sick - clearly the potion hadn’t been finished quite yet.'],
+  dice: 4,
+  threshold: [15, 0],
+  statNeeded: 'Luck',
+  outcomes: 2,
+  effectStats: [
+    ['Luck', 'Strength', 'Health'],
+    ['Luck', 'Strength', 'Health']
+  ],  
+  effectPower: [
+    [1, 1, 30],
+    [-1, -1, -5],
+  ],
+
+};
+
+allMagicianEvents.push(magician_Coin_Alt);
+
+
+
+
 
 // HIGH PREISTESS EVENTS
 
@@ -728,12 +824,12 @@ const highPreistess_coin_alt = {
 
 allHighPreistessEvents.push(highPreistess_coin_alt);
 
-allEvents.push(allHighPreistessEvents);
 
 
 
 // EMPRESS EVENTS
 
+// 0
 const empress_Main = {
   title: 'The Empress',
   name: 'empress',
@@ -752,7 +848,7 @@ const empress_Main = {
 
 allEmpressEvents.push(empress_Main);
 
-
+// 1
 const empress_sword = {
   title: 'The Empress',
   name: 'empress',
@@ -781,7 +877,7 @@ const empress_sword = {
 
 allEmpressEvents.push(empress_sword);
 
-
+// 2
 const empress_wand = {
   title: 'The Empress',
   name: 'empress',
@@ -791,7 +887,7 @@ const empress_wand = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [4, 5],
+  connections: [5, 4],
   text: ['The adventurer squints his eyes and assesses the maiden. He concludes that she’s just a regular person.','The adventurer squints his eyes and assesses the maiden. He concludes that she’s not human, but infact a siren!.'],
   dice: 4,
   threshold: [7, 0],
@@ -811,6 +907,7 @@ const empress_wand = {
 
 allEmpressEvents.push(empress_wand);
 
+// 3
 const empress_cup = {
   title: 'The Empress',
   name: 'empress',
@@ -820,23 +917,8 @@ const empress_cup = {
   options: [],
   completedOptions: [0, 0, 0, 1],
   completedOptionsStart: [0, 0, 0, 1],
-<<<<<<< HEAD
-  connections: [0, 13],
-  text: ['The adventurer squints his eyes and assesses the maiden. He concludes that she’s a siren.', 'The adventurer can’t make out from here if there’s anything suspicious going on with the lady.', 'The adventurer squints his eyes and assesses the maiden. He concludes that she’s just a regular person.'],
-  dice: 4,
-  threshold: [10, 6, 0],
-  statNeeded: "Intelligence",
-  outcomes: 2,
-  effectStats: [
-    ['Intelligence'],
-    [],
-    ['Intelligence']
-  ],  
-  effectPower: [
-    [1,],
-    [],
-    [-1],
-=======
+
+
   connections: [10, 10],
   text: ['The adventurer approaches the woman and begins to ask what is wrong, but is abruptly cut short by an incredible shriek. The adventurer collapses to his knees and clasps his ears, realizing too late that this woman is in fact a siren. When she finally finishes her cry, he brings himself to his feet again. He removes his hands from his ears and finds they are stained red with blood.', 'The adventurer approaches the woman and asks her what’s wrong. She begins to rant about her life in the walls, and how she is stuck alone in this room with only a tree to keep her company. Her tears flow like a stream down her face, and make her blue eyes glisten as she picks her head up to look at the adventurer. After some time, she concludes her story, and conjures a small vial. She allows a single tear to drop inside of it, and closes the top with a cork. “As a thank you...for your time,” she says handing it to the adventurer.'],
   dice: 4,
@@ -850,7 +932,6 @@ const empress_cup = {
   effectPower: [
     [-10, -1],
     [2, 1],
->>>>>>> b65e59c30e868eccc4a59625a744a35ba1a468e3
   ],
   constraint: true,
   constraintResult: [1, 0, 0]
@@ -860,7 +941,7 @@ const empress_cup = {
 allEmpressEvents.push(empress_cup);
 
 
-
+// 4
 const empress_Main_Maiden = {
   title: 'The Empress',
   name: 'empress',
@@ -879,6 +960,7 @@ const empress_Main_Maiden = {
 
 allEmpressEvents.push(empress_Main_Maiden);
 
+// 5
 const empress_Main_Siren = {
   title: 'The Empress',
   name: 'empress',
@@ -897,6 +979,7 @@ const empress_Main_Siren = {
 
 allEmpressEvents.push(empress_Main_Siren);
 
+// 6
 const empress_Maiden_Sword = {
   title: 'The Empress',
   name: 'empress',
@@ -924,6 +1007,7 @@ const empress_Maiden_Sword = {
 
 allEmpressEvents.push(empress_Maiden_Sword);
 
+// 7
 const empress_Maiden_Cup = {
   title: 'The Empress',
   name: 'empress',
@@ -949,6 +1033,7 @@ const empress_Maiden_Cup = {
 
 allEmpressEvents.push(empress_Maiden_Cup);
 
+// 8
 const empress_Siren_Sword = {
   title: 'The Empress',
   name: 'empress',
@@ -976,6 +1061,7 @@ const empress_Siren_Sword = {
 
 allEmpressEvents.push(empress_Siren_Sword);
 
+// 9
 const empress_Siren_Cup = {
   title: 'The Empress',
   name: 'empress',
@@ -1005,6 +1091,7 @@ const empress_Siren_Cup = {
 
 allEmpressEvents.push(empress_Siren_Cup);
 
+// 10
 const empress_Leave = {
   title: 'The Empress',
   name: 'empress',
@@ -1025,7 +1112,6 @@ allEmpressEvents.push(empress_Leave);
 
 
 
-allEvents.push(allEmpressEvents);
 
 // The Chariot /////////////////////////
 
@@ -1171,8 +1257,8 @@ const chariot_Leave = {
   flavorTextDescription: 'You decide to leave.',
   tldrDescription: '',
   options: [],
-  completedOptions: [1, 1, 1, 1],
-  completedOptionsStart: [1, 1, 1, 1],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
   connections: [7, 7, 7, 7],
   text: ['Good idea. Best not to disturb this place any more than we already have.'],
   dice: 3,
@@ -1232,9 +1318,12 @@ const chariot_Leave_Leave = {
 
 };
 allChariotEvents.push(chariot_Leave_Leave);
-//allEvents.push(allChariotEvents);
 
 
+
+// The Emperor ////////////////////////////
+
+// 0
 const emperor_Main = {
   title: 'The Emperor',
   name: 'emperor',
@@ -1250,22 +1339,23 @@ const emperor_Main = {
   completedOptions: [0, 1, 0, 0],
   completedOptionsStart: [0, 1, 0, 0],
 
-  connections: [1, 2, 3, 4],
+  connections: [1, 10, 2, 3],
 
 };
 
 allEmperorEvents.push(emperor_Main);
 
-const emperor_sword = {
+// 1
+const emperor_Sword = {
   title: 'The Emperor',
   name: 'emperor',
   type: 'resolution',
   flavorTextDescription: 'You decide to fight.',
   tldrDescription: '',
   options: [],
-  completedOptions: [1, 1, 1, 1],
-  completedOptionsStart: [1, 1, 1, 1],
-  connections: [7, 7, 7, 7],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [10, 10, 10, 10],
   text: ['The knights lie on the ground at the adventurer’s feet, defeated. He bends over and pries a spear from one of the dwarves and takes it for himself. The warrior can only give a mild grunt in protest as his weapon is stolen from his grip.'],
   dice: 3,
   threshold: [0],
@@ -1279,14 +1369,280 @@ const emperor_sword = {
   ],
 };
 
-allEmperorEvents.push(emperor_sword);
+allEmperorEvents.push(emperor_Sword);
+
+// 2
+const emperor_Cup = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to talk your way out.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [4, 1, 10, 10],
+  text: ['The adventurer slowly lowers himself to the ground on one knee, head down. The crowd of dwarves stares in awe as his apology to the people of the land he has intruded on echoes through the tunnel. The knights look at each other in confusion, bewilderment showing on their faces. One steps forward from their ranks. His sizeable beard shakes up and down as he speaks, “Assassins do not apologize for their transgressions. Clearly this man is no trained killer. We shall let him walk.” The knights lower their weapons, and create a gap in their circle for the adventurer to pass through. The soldier who spoke hands him a torch from the wall, telling him to follow its flame to find the way out.', 'The adventurer opens his mouth to speak but he swiftly finds the tip of a spear unsettlingly close to his jugular. They leave him no other choice but to do combat - he needs to press forward and he can’t allow these knights to stand in his way.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Charisma",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', 'Charisma'],
+    ['Health', 'Charisma'],
+  ],  
+  effectPower: [
+    [2, 1],
+    [-5, -1],
+  ],
+};
+
+allEmperorEvents.push(emperor_Cup);
+
+// 3
+const emperor_Coin = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to run.',
+  tldrDescription: '',
+  options: [],
+ completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [5, 6, 10, 10],
+  text: ['The adventurer chooses a direction and bolts into the darkness, leaving the shouting squadron of dwarves behind him. He follows his gut, making random right and left turns, but he can’t seem to shake the roar of footsteps closing in on his position. He needs to lose the soldiers fast. Finally the adventurer began to see light, but it comes from two diverging tunnels. The left route is shorter but blocked by a large spider-web. A little bit of fire could burn the web down but getting caught in it would spell disaster. The right route is less direct, since the exit is at the top of rock wall. It’s full of holes so the adventurer could likely climb it and leave the knights stuck at the bottom with their heavy armor.', 'The adventurer sees an opening in the group surrounding him and makes a break for it. He makes it a fair distance before he can no longer see, making navigating difficult. He is forced to slow down to find his way, but even that can’t save him from the terrain. He gets a familiar feeling as he extends a foot and fails to find the ground, tumbling into a hole with no way out. His only option now is to wait for his pursuers to rescue him, and then ambush them while they attempt to capture him again.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', 'Luck'],
+    ['Health', 'Luck'],
+  ],  
+  effectPower: [
+    [1, 2],
+    [-5, -1],
+  ],
+};
+
+allEmperorEvents.push(emperor_Coin);
+
+// 4
+const emperor_Cup_Vote = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'voting',
+  flavorTextDescription: 'The light leads the adventurer deeper into the cavern’s depths. Slowly but surely it grows weaker, until it becomes dangerously close to puttering out. The adventurer considers running to reach the end before the light goes out, but the air current he would create from doing that may blow out the torch like a candle. The alternative would be to attempt to stoke the fire to have it rise again, but that too could do more harm than good. A decision needs to be made fast or escaping this place will become much more difficult.',
+  
+  tldrDescription: 'You are running out of time and light. What should you do?',
+
+  options: ['Attack', 'Stoke', 'Talk', 'Run'],
+  
+  optionsFlavor: ['', 'Stoking the flame will best increase our chances.', '', 'Make a run for it, we’re out of time!'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [1, 0, 1, 0],
+  completedOptionsStart: [1, 0, 1, 0],
+
+  connections: [10, 8, 10, 9],
+
+};
+
+allEmperorEvents.push(emperor_Cup_Vote);
 
 
+// 5
+const emperor_Coin_Vote = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'voting',
+  flavorTextDescription: '...',
+  
+  tldrDescription: 'The adventurer is at a crossroads. What should he do?',
+
+  options: ['Right', 'Left', 'Talk', 'Run'],
+  
+  optionsFlavor: ['Go Right', 'Go Left', '', ''],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 1, 1],
+  completedOptionsStart: [0, 0, 1, 1],
+
+  connections: [6, 7, 10, 10],
+
+};
+
+allEmperorEvents.push(emperor_Coin_Vote);
+
+// 6
+const emperor_Coin_Vote_Sword = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the right path.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [10, 10, 10, 10],
+  text: ['The adventurer wastes no time and darts for the rock wall. He grabs hold of whatever crevices he can as he scales the surface. The pursuing battalion doesn’t reach the wall until he’s already halfway to the top, beyond the range that they can fling their spears. The knights grumble and leave in defeat as the adventurer raises himself over the ledge. He sprawls out of the ground and catches his breath for only a moment, and then walks out into the light.', 'The adventurer makes it to the wall, musters what strength he has left, and begins climbing. Already panting and sweating from running down endless corridors, he finds gripping the stone more difficult than anticipated. “Not bad,” he tells himself as he continues to go higher. As if on cue, both his hand and foot fail to find a hold causing him to slip and fall to the ground below. Pain searing through his body, he forces himself to get up just seconds before the dwarves are on top of him.'],
+  dice: 3,
+  threshold: [7, 0],
+  statNeeded: "Strength",
+  outcomes: 2,
+  effectStats: [
+    ['Strength', 'Luck'],
+    ['Health', 'Strength'],
+  ],  
+  effectPower: [
+    [1, 1],
+    [-10, -1],
+  ],
+};
+
+allEmperorEvents.push(emperor_Coin_Vote_Sword);
+
+// 7
+const emperor_Coin_Vote_Wand = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to take the left path.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [10, 10, 10, 10],
+  text: ['A blaze ignites in the adventurer’s hand and he hurls it at the web. It burns as though it was made of paper and he leaps through the hole, dashing for the exit. He throws himself through the opening and into the light. The sound of the charging dwarves still steadily nears, though, so he hastily uses some basic earth magic to raise the ground and seal the exit to cover his escape. ', 'The adventurer makes for the the web at full speed, extending a hand to launch fire magic at it. But nothing happens and the web is coming ever closer. Too late to stop, he wills flames to appear from his palm again but what magic he has inside him fails to respond. The web catches the adventurer and ensnares him, tired and defeated. The pursuing dwarves catch up with him, and some even chuckle as they poke and stab him with their spears. However, they unwittingly loosen the hold the web has on the adventurer, releasing him and allowing him to grab for his weapon.'],
+  dice: 3,
+  threshold: [7, 0],
+  statNeeded: "Intelligence",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', 'Luck'],
+    ['Health', 'Intelligence'],
+  ],  
+  effectPower: [
+    [1, 1],
+    [-10, -1],
+  ],
+};
+
+allEmperorEvents.push(emperor_Coin_Vote_Wand);
 
 
+// 8
+const emperor_Cup_Vote_Stoke = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to stoke the fire.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [10, 10, 10, 10],
+  text: ['The adventurer softly blows on the flame, hoping to give it the extra oxygen it needs to last until his escape. It bends away from his breath and for a moment he becomes worried that he snuffed it out instead. Luckily, the flame becomes larger instead, if only a small amount. The adventurer continues calmly down the tunnels, hugging the wall for safety while he follows the tip of the fire. Just as it finally peeters out, the adventurer becomes blinded by the glow of light coming from the outside world.', 'The adventurer gives a big puff to the fire in an embarrassingly bad attempt to feed the fire, and promptly extinguishes it. Lost and alone, the adventure sticks out a hand to the wall. “Treat it like a big maze,” he tells himself in the darkness. “If you stick to a wall, eventually you’ll reach the exit.” And reach the exit his does, after what feels like several days, surviving only on what little rations he has on him.'],
+  dice: 3,
+  threshold: [7, 0],
+  statNeeded: "Intelligence",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', 'Luck'],
+    ['Health', 'Intelligence'],
+  ],  
+  effectPower: [
+    [1, 1],
+    [-10, -1],
+  ],
+};
 
-const timeToVote = 5;
-const timeToWait = 5;
+allEmperorEvents.push(emperor_Cup_Vote_Stoke);
+
+// 9
+const emperor_Cup_Vote_Run = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'resolution',
+  flavorTextDescription: 'You decide to make a run for it.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [10, 10, 10, 10],
+  text: ['The adventurer picks up the pace to a speed that’s not quite a dash but faster than a jog, all the while eyeing the flame to ensure it stays ablaze. He makes a right turn, a left, and then another left. The light from the fire disappears, but the adventurer grins as it is replaced by a new light coming from outside the cave.', 'The adventurer decides that time is of the essence, and breaks into a sprint. He almost immediately regrets it, however, as his haste causes the flame to go out. Lost and alone, the adventure sticks out a hand to the wall. “Treat it like a big maze,” he tells himself in the darkness. “If you stick to a wall, eventually you’ll reach the exit.” And reach the exit his does, after what feels like several days, surviving only on what little rations he has on him.'],
+  dice: 3,
+  threshold: [7, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Luck'],
+    ['Health'],
+  ],  
+  effectPower: [
+    [1],
+    [-5],
+  ],
+};
+
+allEmperorEvents.push(emperor_Cup_Vote_Run);
+
+// 10
+const emperor_Leave = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'resolution',
+  flavorTextDescription: 'You leave.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [11, 11, 11, 11],
+  text: ['You finally escape and leave this place for good.'],
+  dice: 3,
+  threshold: [0],
+  statNeeded: "Luck",
+  outcomes: 1,
+  effectStats: [
+    [],
+    [],
+  ],  
+  effectPower: [
+    [],
+    [],
+  ],
+};
+
+allEmperorEvents.push(emperor_Leave);
+
+// 11
+const emperor_Main_Leave = {
+  title: 'The Emperor',
+  name: 'emperor',
+  type: 'voting',
+  flavorTextDescription: 'This should auto leave',
+  tldrDescription: 'This should auto leave',
+  options: ['Right', 'Left', 'Talk', 'Run'],
+  optionsFlavor: ['Go Right', 'Go Left', '', ''],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [1, 1, 1, 1],
+  completedOptionsStart: [1, 1, 1, 1],
+  connections: [10, 10, 10, 10],
+
+};
+
+allEmperorEvents.push(emperor_Main_Leave);
+
+
+// Push all main events to all Events list
+
+allEvents.push(allMagicianEvents);
+allEvents.push(allHighPreistessEvents);
+allEvents.push(allEmpressEvents);
+//allEvents.push(allChariotEvents);
+allEvents.push(allEmperorEvents);
+
+
+const timeToVote = 30;
+const timeToWait = 15;
 
 let voteTimer = timeToVote;
 
@@ -1402,9 +1758,7 @@ setInterval(() => {
         }
       }
 
-      
-      
-      
+
       if(completionCheck == false){
         
         let rng = 0;
@@ -1456,6 +1810,7 @@ setInterval(() => {
                   }
                   else if(fool.health + currentEvent.effectPower[rng][i] <= 0){
                     fool.health = 0;
+                    
                   }
                   else{
                     fool.health = foolMax.health;
@@ -1525,7 +1880,21 @@ setInterval(() => {
                   break;
               }   
             }
+            
+            console.dir(fool.health);
+             if(fool.health <= 0){
+              gameOver = true;
+              gameStarted = false;
+              voteTimer = timeToVote;
+              io.emit('game over', {
+                fool,
+              }); 
           }
+          
+          }
+          
+         
+          
 
           if(eventConstraint && currentEvent.constraint == true){
 
@@ -1653,7 +2022,7 @@ setInterval(() => {
             gameStarted = false;
             voteTimer = timeToVote;
             io.emit('game over', {
-
+              fool,
             }); 
           }
           
@@ -1684,6 +2053,38 @@ setInterval(() => {
                 currentEvent = allEvents[random][0];
                 completed = true;
                 eventConstraint = false;
+                
+              io.sockets.emit('load event', {
+                currentEvent,
+                finalVoteNum,
+           
+                fool,
+                foolMax,
+                finalVote,
+              });
+
+              swordVotes = [];
+              wandVotes = [];
+              cupVotes = [];
+              coinVotes = [];
+              numUsersVoted = 0;
+
+
+              if(previousEvent.type == "voting"){
+                io.emit('resetVotes', {
+                  finalVote: finalVote,
+                  usernames,
+                });
+              }
+
+              finalVote = "";
+
+              if(currentEvent.type == "voting"){
+                voteTimer = timeToVote;
+              }
+              else{
+                voteTimer = timeToWait;
+              }
               }
               
             }
@@ -1694,7 +2095,7 @@ setInterval(() => {
             gameStarted = false;
             voteTimer = timeToVote;
             io.emit('game over', {
-
+              fool,
             }); 
           }
       }

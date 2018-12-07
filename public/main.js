@@ -15,6 +15,8 @@ $(() => {
 
   const $loginPage = $('.login.page'); // The login page
   const $chatPage = $('.chat.page'); // The chatroom page
+  const $mainPage = $('.main.page')
+  const $gameOverPage = $('.gameOver.page')
 
   // Prompt for setting a username
   let username;
@@ -60,6 +62,8 @@ $(() => {
   
   const startButton = document.querySelector('#startButton');
 
+  const startGameButton = document.querySelector('#startGame');
+  const mainMenuButton = document.querySelector('#mainMenu');
 
   //  const startButton = document.querySelector('#startButton');
 
@@ -146,14 +150,39 @@ $(() => {
     // If the username is valid
     if (username) {
       $loginPage.fadeOut();
-      $chatPage.show();
+      $mainPage.show();
       $loginPage.off('click');
-      $currentInput = $inputMessage.focus();
+      //$currentInput = $inputMessage.focus();
 
       // Tell the server your username
       socket.emit('add user', username);
     }
   };
+  
+  const playGame = () => {
+    $mainPage.fadeOut();
+    $chatPage.fadeIn();
+    $mainPage.off('click');
+    $currentInput = $inputMessage.focus();
+    //startGame();
+  }
+  
+  startGameButton.addEventListener('click', playGame);
+  
+  const gameOver = () => {
+    $chatPage.fadeOut();
+    $gameOverPage.fadeIn();
+    $chatPage.off('click');
+  }
+  
+  const mainMenu = () => {
+    $gameOverPage.fadeOut();
+    $mainPage.fadeIn();
+    $gameOverPage.off('click');
+    
+  }
+  
+  mainMenuButton.addEventListener('click', mainMenu);
 
   // Sends message function
   const sendMessage = () => {
@@ -431,6 +460,7 @@ $(() => {
   const startGame = () => {
     socket.emit('start game');
     document.querySelector('#secondGameLog').innerHTML = "";
+    startButton.style.display = "none";
   }
   
   startButton.addEventListener('click', startGame);
@@ -702,9 +732,9 @@ $(() => {
         document.querySelector('#secondEventPicture').src = `media/${eventCard.name}.jpg`;
         
         if(finalVote){
-          document.querySelector('#eventDescriptionTLDR').innerHTML = "Fate has decided you will use your: " + finalVote + "<br>";
+          document.querySelector('#eventDescriptionTLDR').innerHTML = "Fate has decided the adventurer will use his: " + finalVote + "<br>";
           document.querySelector('#eventDescriptionTLDR').innerHTML += eventCard.tldrDescription;
-          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + "Fate has decided you will use your: " + finalVote + "</div>";
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + "Fate has decided the adventurer will use his: " + finalVote + "</div>";
         }
         else{
           document.querySelector('#eventDescriptionTLDR').innerHTML = eventCard.tldrDescription;
@@ -732,9 +762,18 @@ $(() => {
       }
       else if(eventCard.type == "resolution"){
         
-        document.querySelector('#eventDescriptionTLDR').innerHTML = "Fate has decided you will use your: " + finalVote + "<br>";
-        document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + "Fate has decided you will use your: " + finalVote + "</div>";
-        document.querySelector('#eventDescriptionTLDR').innerHTML += eventCard.flavorTextDescription;
+        
+        if(finalVote){
+          document.querySelector('#eventDescriptionTLDR').innerHTML = "Fate has decided the adventurer will use his: " + finalVote + "<br>";
+          document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + "Fate has decided the adventurer will use his: " + finalVote + "</div>";
+        }
+        if(!finalVote){
+          document.querySelector('#eventDescriptionTLDR').innerHTML = eventCard.flavorTextDescription;
+        }
+        else{
+          document.querySelector('#eventDescriptionTLDR').innerHTML += eventCard.flavorTextDescription;
+        }
+        
         document.querySelector('#eventDescription').innerHTML = eventCard.text[rng];
         
         document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.text[rng] + "</div>";
@@ -826,7 +865,14 @@ $(() => {
   });
   
   socket.on('game over', (data) => {
-    document.querySelector("#eventDescriptionTLDR").innerHTML = "Game Over";
+    if(data.fool.health > 0){
+      document.querySelector("#gameOver").innerHTML = "Congratulations! The adventurer has mastered fate.";
+    }
+    else{
+      document.querySelector("#gameOver").innerHTML = "Game Over. The adventurer died, thus, fate was not on his side.";
+    }
+    startButton.style.display = "block";
+    gameOver();
   });
   
   /*
