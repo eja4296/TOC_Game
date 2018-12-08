@@ -293,6 +293,95 @@ ul {
       font-weight: bold;
   }
 
+
+
+#rightSide #dropdowns #secondStats #foolStuff{
+  margin-bottom: 5px;
+  position: relative;
+  width: 24%;
+  float: left;
+  left: 1%;
+  text-align: center;
+}
+
+#rightSide #dropdowns #secondStats #foolTitle{
+  position: relative;
+  width: 100%;
+  float: left;
+  text-align: left;
+  padding-left: 1%;
+}
+
+#rightSide #dropdowns #secondStats #foolStuff #fool{
+  position: relative;
+  width: 100%;
+  float: left;
+  
+  box-shadow: 1px 1px 3px black;
+}
+
+#rightSide #dropdowns #secondStats ul{
+    position: relative;
+    width: 75%;
+    float: left;
+    left: 1%;
+    text-align: left;
+    font-size: 25px;
+    padding: 0;
+    margin: 0;
+    
+  }
+
+ #rightSide #dropdowns #secondStats ul li{
+      position: relative;
+      float: left;
+      width: 100%;
+      height: 75px;
+      padding: 5px;
+      margin: 0px;
+      
+  }
+
+
+    #rightSide #dropdowns #secondStats ul li img{
+      position: relative;
+      float: left;
+      height: 50px;
+      width: auto;
+      padding: 0;
+      margin: 0;
+      z-index: -1;
+      /* may have to make width:75% or something */
+      
+  }
+
+    #rightSide #dropdowns #secondStats ul li .specificStat{
+      display: block;
+      position: relative;
+      float: left;
+      height: 75px;
+      
+      width: auto;
+      text-align: left;
+      padding: 5px;
+      margin: 2px;
+      color: hsl(120, 75%, 45%);
+      font-weight: bold;
+  }
+
+ #rightSide #dropdowns #secondStats ul li .statDescription{
+      display: block;
+      position: relative;
+      float: left;
+      height: 75px;
+      
+      width: auto;
+      text-align: left;
+      padding: 5px;
+      margin: 2px;
+
+  }
+
 #rightSide #dropdowns #event #eventImage img{
     position: relative;
     height: 75px;
@@ -532,250 +621,6 @@ ul {
 }
 
 
-
-/*
-#rightSide #dropdowns{
-    position: relative;
-    float: left;
-    width: 100%;
-    height: 100%;
-  }
-  
-  #rightSide #dropdowns .dropdown{
-    position: relative;
-    height: 33.3%;
-    width: 100%;
-    float: left;
-    border-top: 1px solid black;
-    padding-bottom: 25px;
-  }
-  
-    #rightSide #dropdowns .dropdownTitle{
-    position: relative;
-    width: 10%;
-    height: 100%;
-    float: left;
-    border-right: 1px solid black;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-
-    #rightSide #dropdowns button{
-      outline: none;
-      border: none;
-      
-      
-  }
-
-    #rightSide #dropdowns button:hover{
-      background-color: gray;
-      
-  }
-
-    #rightSide #dropdowns .dropdownTitle img{
-    position: relative;
-    width: 100%;
-    z-index: -1;
-    float: left;
-  
-  }
-
-    #rightSide #dropdowns #stats ul {
-      position: relative;
-      float: left;
-      width: 90%;
-      height: 100%;
-      display: inline;
-      padding: 0;
-      margin: 0;
-  }
-
-    #rightSide #dropdowns #stats ul li{
-      position: relative;
-      float: left;
-      width: 16.6%;
-      height: 100%;
-      
-  }
-
-
-    #rightSide #dropdowns #stats ul li img{
-      
-      width: 100%;
-      
-      
-  }
-
-    #rightSide #dropdowns #stats ul li .specificStat{
-      display: block;
-      position: relative;
-      float: left;
-      width: 100%;
-      height: 50%;
-      left: 47.5%;
-      color: green;
-  }
-
-    #rightSide #dropdowns #event {
-      position: relative;
-      float: left;
-      width: 100%;
-      
-  }
-
-    #rightSide #dropdowns #event #eventImage{
-      position: relative;
-      float: left;
-      width: 10%;
-      height: 100%;
-  }
-
-    #rightSide #dropdowns #event #eventPicture{
-      position: relative;
-      float: left;
-      width: auto;
-      height: 100%;
-      padding: 2px;
-  }
-
-    #rightSide #dropdowns #event #eventPicture img{
-      position: relative;
-      float: left;
-      
-      
-  }
-
-    #rightSide #dropdowns #event #eventTitle{
-      position: relative;
-      float: left;
-      width: 80%;
-      font-size: 2em;
-      text-align: center;
-      height: 25%;
-      
-      
-  }
-
-   #rightSide #dropdowns #event #eventDescriptionTLDR{
-      position: relative;
-      float: left;
-      width: 80%;
-      font-size: 1em;
-      text-align: center;
-      height: 75%;
-      padding: 10px;
-      padding-left: 35px;
-      font-weight: bold;
-      overflow-y: scroll
-  }
-
-    #rightSide #dropdowns #vote {
-      position: relative;
-      float: left;
-      width: 100%;
-      height: 33.3%;
-  }
-
-    #rightSide #dropdowns #vote #voteIntro{
-      position: relative;
-      float: left;
-      width: 90%;
-      text-align: center;
-      height: 10%;
-      
-  }
-
-    #rightSide #dropdowns #vote #voteTimer, #rightSide #dropdowns #vote #userVote, #rightSide #dropdowns #vote #userVoteWeight{
-      position: relative;
-      float: left;
-      width: 30%;
-      display: inline;
-      height: 10%;
-      padding-top: 5px;
-      padding-left: 5px;
-  }
-
-    #rightSide #dropdowns #vote #voteTimer div, #rightSide #dropdowns #vote #userVote div, #rightSide #dropdowns #vote #userVoteWeight div{
-      
-      display: inline;
-  }
-
-
-
- #rightSide #dropdowns #vote ul{
-      position: relative;
-      float: left;
-   
-      position: relative;
-      float: left;
-      width: 90%;
-      height: 80%;
-      display: inline;
-      padding: 0;
-      margin: 0;
-      margin-top: 5px;  
-  }
-
-   #rightSide #dropdowns #vote ul li{
-      position: relative;
-      float: left;
-      width: 23%;
-      height: 100%;
-      display: inline;
-     padding: 0;
-      margin: 0;
-     margin: 1%;
-  }
-   #rightSide #dropdowns #vote ul li div{
-      
-     display: inline;
-     
-  }
-
-   #rightSide #dropdowns #vote ul li button{
-      position: relative;
-      width: 100%;
-     
-      float: left;
-      font-size: 1em;
-      outline: none;
-      border: 1px solid black;
-      padding: 10px;
-      margin: 0; 
-  }
-
-
-
-#rightSide #dropdowns #vote ul li .choice div{
-      padding-left: 5px;
-  
-  }
-
-#rightSide #dropdowns #vote #swordChoiceTLDR, #rightSide #dropdowns #vote #wandChoiceTLDR, #rightSide #dropdowns #vote #cupChoiceTLDR, #rightSide #dropdowns #vote #coinChoiceTLDR{
-  position: relative;
-  float: left;
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-  
-  
-}
-
-
-
-    #rightSide #dropdowns #stats ul li div{
-      display: inline;
-      
-  }
-
-    #rightSide #dropdowns .dropdownButton{
-      
-      width: 10%;
-      
-  }
-
-*/
-
 #leftSide{
   height: 100%;
   width: 25%;
@@ -789,11 +634,6 @@ ul {
   border-left: 5px solid black;
   
 }
-
-
-
-
-
 
 
 
@@ -859,9 +699,84 @@ ul {
   
 #rightSide #dropdowns #stats ul li img{
       
-      height: 40px;
+      height: 40px;  
+  }
+  
+#rightSide #dropdowns #secondStats #foolStuff{
+
+  width: 100%;
+  left: 0;
+}
+
+  
+  #rightSide #dropdowns #secondStats #foolStuff #fool{
+
+  width: 50%;
+  left: 25%;
+}
+  
+
+
+#rightSide #dropdowns #secondStats ul{
+   
+    width: 100%;
+
+    left: 0;
+    
+  }
+
+ #rightSide #dropdowns #secondStats ul li{
+      position: relative;
+      float: left;
+      width: 100%;
+      height: 75px;
+      padding: 5px;
+      margin: 0px;
       
+  }
+
+
+    #rightSide #dropdowns #secondStats ul li img{
+      position: relative;
+      float: left;
+      height: 50px;
+      width: auto;
+      padding: 0;
+      margin: 0;
+      z-index: -1;
+      /* may have to make width:75% or something */
       
+  }
+
+    #rightSide #dropdowns #secondStats ul li .specificStat{
+      display: block;
+      position: relative;
+      float: left;
+      height: 75px;
+      
+      width: auto;
+      text-align: left;
+      padding: 5px;
+      margin: 2px;
+      color: hsl(120, 75%, 45%);
+      font-weight: bold;
+      
+       font-size: .75em;
+  }
+
+ #rightSide #dropdowns #secondStats ul li .statDescription{
+      display: inline;
+      position: relative;
+      float: left;
+      height: 75px;
+      
+      width: 60%;
+      text-align: left;
+      padding: 5px;
+      margin: 2px;
+   
+    font-size: .5em;
+
   }
   
   #rightSide #dropdowns #event #eventTitle{
@@ -921,172 +836,5 @@ ul {
   font-size: .75em;
 }
 
-  
-  /*
-   #rightSide #dropdowns .dropdown{
-    margin-bottom: 10px;
-     border: none;
-    
-     padding-top: 10px;
-  }
-  
-  #rightSide #dropdowns .dropdownTitle{
-
-    width: 100%;
-    height: 25%;
-    float: left;
-    
-    font-size: 1em;
-      text-align: center;
-
-      
-  }
-  
-  #rightSide #dropdowns button{
-      outline: none;
-      border: none;
-      
-  }
-  
-     #rightSide #dropdowns .dropdownTitle{
-        border: 1px solid black;
-       
-      
-  }
-  
-  
-   #rightSide #dropdowns #stats ul {
-
-      width: 100%;
-
-  }
-  
-
-
-    #rightSide #dropdowns #event #eventImage{
-      width: 20%;
-      height: 85%;
-  }
-
-
-    #rightSide #dropdowns #event #eventPicture img{
-      position: relative;
-      float: left;
-      
-      
-  }
-
-    #rightSide #dropdowns #event #eventTitle{
-      position: relative;
-      float: left;
-      width: 80%;
-      font-size: 1em;
-      text-align: center;
-      height: 20%;
-      padding: 0;
-      margin-bottom: 10px;
-  }
-
-   #rightSide #dropdowns #event #eventDescriptionTLDR{
-      position: relative;
-      float: left;
-      width: 80%;
-      font-size: .75em;
-      text-align: center;
-      height: 70%;
-      padding: 5px;
-      padding-top: 5px;
-     
-  }
-  
-
-    #rightSide #dropdowns #vote #voteIntro{
-      position: relative;
-      float: left;
-      width: 90%;
-      text-align: left;
-      height: 10%;
-      font-size: .75em;
-      
-  }
-
-    #rightSide #dropdowns #vote #voteTimer, #rightSide #dropdowns #vote #userVote, #rightSide #dropdowns #vote #userVoteWeight{
-      position: relative;
-      float: left;
-      width: 33.3%;
-      font-size: .75em;
-  }
-
-    #rightSide #dropdowns #vote #voteTimer div, #rightSide #dropdowns #vote #userVote div, #rightSide #dropdowns #vote #userVoteWeight div{
-      
-      display: inline;
-  }
-
-
-#rightSide #dropdowns #vote ul{
-      position: relative;
-      float: left;
-   
-      position: relative;
-      float: left;
-      width: 100%;
-      height: 80%;
-      display: inline;
-      padding: 0;
-      margin: 0;
-      margin-top: 5px;  
-  }
-
-   #rightSide #dropdowns #vote ul li{
-      position: relative;
-      float: left;
-      width: 20%;
-      height: 100%;
-      display: inline;
-     padding: 0;
-      margin: 0;
-     margin: 2.5%;
-     margin-top: 0;
-  }
-   #rightSide #dropdowns #vote ul li div{
-      
-     display: inline;
-     
-  }
-
-   #rightSide #dropdowns #vote ul li button{
-      position: relative;
-      width: 100%;
-      margin: 2px;
-      float: left;
-      font-size: 1em;
-      outline: none;
-      border: 1px solid black;
-      padding: 5px;
-      margin: 0;
-     
-      
-  }
-
-#rightSide #dropdowns #vote ul li .choice div{
-      padding-left: 5px;
-  
-  }
-
-
-#rightSide #dropdowns #vote #swordChoiceTLDR, #rightSide #dropdowns #vote #wandChoiceTLDR, #rightSide #dropdowns #vote #cupChoiceTLDR, #rightSide #dropdowns #vote #coinChoiceTLDR{
-  display: inline;
-  font-weight: bold;
-  font-size: .75em;
-}
-  
-
-      #rightSide #dropdowns .dropdownButton{
-     
-      width: 20%;
-    
-  }
-  
-  
-*/
+ 
 }

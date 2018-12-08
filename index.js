@@ -1040,11 +1040,8 @@ const chariot_Main = {
   name: 'chariot',
   type: 'voting',
   flavorTextDescription: 'Gold light emanates from the cracks of this door as the adventurer approaches it. He staggers back after opening it, shielding his eyes. Stacks on stacks of gold, priceless goblets, and other treasures scattered across the room gleam in the light of the torches lining the wall. The main centerpiece is an ornate sarcophagus resting on a raised slab of stone. Chiseled into the rock is a message written in an older tongue, but some of the words can still be made out - “Wa..., ...iseas…, conqu…, death, yet gr… may be ...wnfall of man.” Just past this are four silver pedestals, each one with a horse made of precious gems resting upon it. The fates speak out the adventurer, and beckon him to make a choice.',
-  
   tldrDescription: 'In a room full of treasure, four crystalline horses draw the adventurer’s attention the most. Which horse should the adventurer take?',
-
   options: ['Ruby', 'Obsidian', 'Pearl', 'Diamond'],
-  
   optionsFlavor: ['Take the ruby stallion, exuding power and a thirst for action.', 'Take the obsidian mare, which whispers of the rot it would inflict on your enemies, corrupting both their minds and bodies from the inside out.', 'Take the pearl equine, promising victory in battle and dominance over your adversaries.', 'Take the diamond skeleton horse, whose bones are full of smoke which clouds its true purpose.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
@@ -1064,20 +1061,22 @@ const chariot_Sword = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0, 6],
-  text: ['The ruby stallion dissolves into the adventurer’s hands, sending searing pain through his muscles. Once it ebbs, the adventurer can feel newfound strength across his body, enough to take on the entire world.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  connections: [0, 5, 0, 0],
+  text: ['The ruby stallion dissolves into the adventurer’s hands, sending searing pain through his muscles. Once it ebbs, the adventurer can feel newfound strength across his body, enough to take on the entire world.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy. The adventurer raises his weapon as the mummy rises from its sarcophagus. For something so ancient, the mummy is both fast and strong, and he quickly lands a blow on the adventurer. Fortunately, the adventurer catches himself before falling down and sends his sword through the mummy\'s torso. The mummy\'s body falls to the ground in a pile of dust with its garments laying on top. The adventurer wraps his wound with the mummy\'s cloth. He notices a golden, horse-shaped, medalion lying in the pile. It looks valuable, so he picks it up and leaves the room hoping to keep from disturbing this place anymore.'],
   dice: 3,
-  threshold: [10, 0],
+  threshold: [7, 0],
   statNeeded: "Luck",
   outcomes: 2,
   effectStats: [
     ['Strength'],
-    ['Health','Strength']
+    ['Health','Strength', 'Gold']
   ],  
   effectPower: [
     [2],
-    [-10, -1],
+    [-10, -1, 15],
   ],
+  constraint: true,
+  constraintResult: [0,1],
 };
 
 allChariotEvents.push(chariot_Sword);
@@ -1092,20 +1091,22 @@ const chariot_Wand = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0, 6],
-  text: ['The obsidian mare dissolves into the adventurer’s hands, filling the adventurer’s mind with flashes of magic lost to the ages. No being can stand in his way with this knowledge at his disposal.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  connections: [0, 5, 0, 0],
+  text: ['The obsidian mare dissolves into the adventurer’s hands, filling the adventurer’s mind with flashes of magic lost to the ages. No being can stand in his way with this knowledge at his disposal.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy. The adventurer raises his weapon as the mummy rises from its sarcophagus. For something so ancient, the mummy is both fast and strong, and he quickly lands a blow on the adventurer. Fortunately, the adventurer catches himself before falling down and sends his sword through the mummy\'s torso. The mummy\'s body falls to the ground in a pile of dust with its garments laying on top. The adventurer wraps his wound with the mummy\'s cloth. He notices a golden, horse-shaped, medalion lying in the pile. It looks valuable, so he picks it up and leaves the room hoping to keep from disturbing this place anymore.'],
   dice: 3,
-  threshold: [10, 0],
+  threshold: [7, 0],
   statNeeded: "Luck",
   outcomes: 2,
   effectStats: [
     ['Intelligence'],
-    ['Health','Intelligence']
+    ['Health','Intelligence', 'Gold']
   ],  
   effectPower: [
     [2],
-    [-10, -1],
+    [-10, -1, 15],
   ],
+  constraint: true,
+  constraintResult: [0,1],
 };
 
 allChariotEvents.push(chariot_Wand);
@@ -1120,20 +1121,22 @@ const chariot_Cup = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0, 6],
-  text: ['The pearl equine dissolves into the adventurer’s hand, filling the adventurer’s body with new vigor and energy. It feels like he could crush any enemy that stands in his way with sheer willpower alone.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  connections: [0, 5, 0, 0],
+  text: ['The pearl equine dissolves into the adventurer’s hand, filling the adventurer’s body with new vigor and energy. It feels like he could crush any enemy that stands in his way with sheer willpower alone.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy. The adventurer raises his weapon as the mummy rises from its sarcophagus. For something so ancient, the mummy is both fast and strong, and he quickly lands a blow on the adventurer. Fortunately, the adventurer catches himself before falling down and sends his sword through the mummy\'s torso. The mummy\'s body falls to the ground in a pile of dust with its garments laying on top. The adventurer wraps his wound with the mummy\'s cloth. He notices a golden, horse-shaped, medalion lying in the pile. It looks valuable, so he picks it up and leaves the room hoping to keep from disturbing this place anymore.'],
   dice: 3,
-  threshold: [10, 0],
+  threshold: [7, 0],
   statNeeded: "Luck",
   outcomes: 2,
   effectStats: [
     ['Charisma'],
-    ['Health','Charisma']
+    ['Health','Charisma', 'Gold']
   ],  
   effectPower: [
     [2],
-    [-10, -1],
+    [-10, -1, 15],
   ],
+  constraint: true,
+  constraintResult: [0,1],
 };
 
 allChariotEvents.push(chariot_Cup);
@@ -1148,80 +1151,43 @@ const chariot_Coin = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [0, 6],
-  text: ['The diamond skeleton horse dissolves into the adventurer’s hand, leaving behind nothing but smoke. The adventurer realizes he is aware of no other feeling than emptiness, his emotions fading away like the mist in his hands, leaving only a void.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy.'],
+  connections: [0, 5, 0, 0],
+  text: ['The diamond skeleton horse dissolves into the adventurer’s hand, leaving behind nothing but smoke. The adventurer realizes he is aware of no other feeling than emptiness, his emotions fading away like the mist in his hands, leaving only a void.', 'The room shakes violently and the remaining horses crumble to dust. As the adventurer stumbles to the ground, he catches a glimpse of the top of the sarcophagus sliding off and clanging to the ground. He pushes back with his arms and legs until he hits a wall, unable to flee from the figure rising from its grave. There is no running from The Mummy. The adventurer raises his weapon as the mummy rises from its sarcophagus. For something so ancient, the mummy is both fast and strong, and he quickly lands a blow on the adventurer. Fortunately, the adventurer catches himself before falling down and sends his sword through the mummy\'s torso. The mummy\'s body falls to the ground in a pile of dust with its garments laying on top. The adventurer wraps his wound with the mummy\'s cloth. He notices a golden, horse-shaped, medalion lying in the pile. It looks valuable, so he picks it up and leaves the room hoping to keep from disturbing this place anymore.'],
   dice: 3,
-  threshold: [10, 0],
+  threshold: [7, 0],
   statNeeded: "Luck",
   outcomes: 2,
   effectStats: [
     ['Luck'],
-    ['Health','Luck']
+    ['Health','Luck', 'Gold']
   ],  
   effectPower: [
     [2],
-    [-10, -1],
+    [-10, -1, 15],
   ],
+  constraint: true,
+  constraintResult: [0,1],
 };
 
 allChariotEvents.push(chariot_Coin);
 
+
+// 5
 const chariot_Leave = {
   title: 'The Chariot',
   name: 'chariot',
-  type: 'resolution',
-  flavorTextDescription: 'The adventurer decides to leave.',
-  tldrDescription: '',
-  options: [],
-  completedOptions: [0, 0, 0, 0],
-  completedOptionsStart: [0, 0, 0, 0],
-  connections: [7, 7, 7, 7],
-  text: ['Good idea. Best not to disturb this place any more than we already have.'],
-  dice: 3,
-  threshold: [0],
-  statNeeded: "Luck",
-  outcomes: 2,
-  effectStats: [
-    ['Luck', 'Intelligence'],
-  ],  
-  effectPower: [
-    [1, 1],
-  ],
-};
-
-allChariotEvents.push(chariot_Leave);
-
-const chariot_Main_Alt_Sword = {
-  title: 'The Chariot',
-  name: 'chariot',
   type: 'voting',
-  flavorTextDescription: 'Gold light emanates from the cracks of this door as the adventurer approaches it. He staggers back after opening it, shielding his eyes. Stacks on stacks of gold, priceless goblets, and other treasures scattered across the room gleam in the light of the torches lining the wall. The main centerpiece is an ornate sarcophagus resting on a raised slab of stone. Chiseled into the rock is a message written in an older tongue, but some of the words can still be made out - “Wa..., ...iseas…, conqu…, death, yet gr… may be ...wnfall of man.” Just past this are four silver pedestals, each one with a horse made of precious gems resting upon it. The fates speak out the adventurer, and beckon him to make a choice.',
-  tldrDescription: 'In a room full of treasure, four crystalline horses draw the adventurer’s attention the most.',
-  options: ['Leave', 'Obsidian', 'Pearl', 'Diamond'],
-  optionsFlavor: ['Take the ruby stallion, exuding power and a thirst for action.', 'Take the obsidian mare, which whispers of the rot it would inflict on your enemies, corrupting both their minds and bodies from the inside out.', 'Take the pearl equine, promising victory in battle and dominance over your adversaries.', 'Take the diamond skeleton horse, whose bones are full of smoke which clouds its true purpose.'],
-  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
-  completedOptions: [0, 0, 0, 0],
-  completedOptionsStart: [0, 0, 0, 0],
-  connections: [5, 2, 3, 4],
-};
-
-
-allChariotEvents.push(chariot_Main_Alt_Sword);
-
-const chariot_Leave_Leave = {
-  title: 'The Chariot',
-  name: 'chariot',
-  type: 'voting',
-  flavorTextDescription: 'Auto leave room',
-  tldrDescription: 'Auto leave room',
+  flavorTextDescription: 'auto leave room',
+  tldrDescription: 'auto leave room',
   options: ['Ruby', 'Obsidian', 'Pearl', 'Diamond'],
-  optionsFlavor: [],
+  optionsFlavor: ['Take the ruby stallion, exuding power and a thirst for action.', 'Take the obsidian mare, which whispers of the rot it would inflict on your enemies, corrupting both their minds and bodies from the inside out.', 'Take the pearl equine, promising victory in battle and dominance over your adversaries.', 'Take the diamond skeleton horse, whose bones are full of smoke which clouds its true purpose.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [1, 1, 1, 1],
   completedOptionsStart: [1, 1, 1, 1],
   connections: [1, 2, 3, 4],
 };
-allChariotEvents.push(chariot_Leave_Leave);
+
+allChariotEvents.push(chariot_Leave);
 
 // The Emperor ////////////////////////////
 
@@ -1802,15 +1768,15 @@ allLoversEvents.push(lovers_Main);
 
 // Push all main events to all Events list
 
-//allEvents.push(allMagicianEvents);
-//allEvents.push(allHighPreistessEvents);
+allEvents.push(allMagicianEvents);
+allEvents.push(allHighPreistessEvents);
 allEvents.push(allEmpressEvents);
-//allEvents.push(allChariotEvents);
-//allEvents.push(allEmperorEvents);
-//allEvents.push(allHierophantEvents);
+allEvents.push(allChariotEvents);
+allEvents.push(allEmperorEvents);
+allEvents.push(allHierophantEvents);
 
-const timeToVote = 10;
-const timeToWait = 10;
+const timeToVote = 3;
+const timeToWait = 3;
 
 let voteTimer = timeToVote;
 

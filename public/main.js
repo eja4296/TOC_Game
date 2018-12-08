@@ -725,11 +725,25 @@ $(() => {
         document.querySelector('#luck').style.color = "hsl(" + (fool.luck / foolMax.luck) * 120 + ", 80%, 35%)";
         document.querySelector('#gold').innerHTML = fool.gold;
         document.querySelector('#gold').style.color = "hsl(" + (fool.gold / foolMax.gold) * 120 + ", 80%, 35%)";
+      
+      //document.querySelector("#userVoteChoice").innerHTML = "";
+        document.querySelector('#health2').innerHTML = fool.health;
+        document.querySelector('#health2').style.color = "hsl(" + (fool.health / foolMax.health) * 120 + ", 80%, 35%)";
+        document.querySelector('#strength2').innerHTML = fool.strength;
+        document.querySelector('#strength2').style.color = "hsl(" + (fool.strength / foolMax.strength) * 120 + ", 80%, 35%)";
+        document.querySelector('#intelligence2').innerHTML = fool.intelligence;
+        document.querySelector('#intelligence2').style.color = "hsl(" + (fool.intelligence / foolMax.intelligence) * 120 + ", 80%, 35%)";
+        document.querySelector('#charisma2').innerHTML = fool.charisma;
+        document.querySelector('#charisma2').style.color = "hsl(" + (fool.charisma / foolMax.charisma) * 120 + ", 80%, 35%)";
+        document.querySelector('#luck2').innerHTML = fool.luck;
+        document.querySelector('#luck2').style.color = "hsl(" + (fool.luck / foolMax.luck) * 120 + ", 80%, 35%)";
+        document.querySelector('#gold2').innerHTML = fool.gold;
+        document.querySelector('#gold2').style.color = "hsl(" + (fool.gold / foolMax.gold) * 120 + ", 80%, 35%)";
 
       if(eventCard.type == "voting"){
         document.querySelector('#eventTitle').innerHTML = eventCard.title;
-        document.querySelector('#eventPicture').src = `media/${eventCard.name}.jpg`;
-        document.querySelector('#secondEventPicture').src = `media/${eventCard.name}.jpg`;
+        document.querySelector('#eventPicture').src = `media/${eventCard.name}.png`;
+        document.querySelector('#secondEventPicture').src = `media/${eventCard.name}.png`;
         
         if(finalVote){
           document.querySelector('#eventDescriptionTLDR').innerHTML = "Fate has decided the adventurer will use his: " + finalVote + "<br>";
