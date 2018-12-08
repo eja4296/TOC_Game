@@ -76,6 +76,7 @@ const allHighPreistessEvents = [];
 const allChariotEvents = [];
 const allEmperorEvents = [];
 const allHierophantEvents = [];
+const allLoversEvents = [];
 
 // The Magician ////////////////////
 
@@ -182,7 +183,7 @@ const magician_wand_sword = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'You attempt to open the book with your Sword.',
+  flavorTextDescription: 'The adventurer attempts to open the iron book.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -211,7 +212,7 @@ const magician_wand_wand = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'You attempt to open the book with your Wand.',
+  flavorTextDescription: 'The adventurer attempts to open the floating book.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -240,7 +241,7 @@ const magician_wand_cup = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'You attempt to open the book with your Cup.',
+  flavorTextDescription: 'The adventurer attempts to open the worn book.',
   tldrDescription: '',
   options: [''],
   completedOptions: [0, 0, 0, 0],
@@ -267,7 +268,7 @@ const magician_wand_leave = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'Nothing gained, nothing lost.',
+  flavorTextDescription: 'The adventurer refrains from opening any books. Nothing gained, nothing lost.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -292,7 +293,7 @@ const magician_cup_yes = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'You inquire the witch.',
+  flavorTextDescription: 'The adventurer inquires the witch.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -319,7 +320,7 @@ const magician_cup_no = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'You ignore the witch.',
+  flavorTextDescription: 'The adventurer ignores the witch.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -345,7 +346,7 @@ const magician_sword_sword = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'You hack the witch with your sword.',
+  flavorTextDescription: 'The adventurer hacks the witch with his sword.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -375,7 +376,7 @@ const magician_sword_wand = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'You cast a spell on the witch.',
+  flavorTextDescription: 'The adventurer casts a spell on the witch.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -439,7 +440,7 @@ const magician_wand_cup_Alt = {
   title: 'The Magician',
   name: 'magician',
   type: 'resolution',
-  flavorTextDescription: 'You attempt to open the book with your Cup.',
+  flavorTextDescription: 'The adventurer attempts to open worn book.',
   tldrDescription: '',
   options: [''],
   completedOptions: [0, 0, 0, 0],
@@ -513,7 +514,7 @@ const highPreistess_sword = {
   title: 'The High Priestess',
   name: 'highPriestess',
   type: 'resolution',
-  flavorTextDescription: 'You decide to go fishing in the fountain.',
+  flavorTextDescription: 'The adventurer decides to go fishing in the fountain.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -544,7 +545,7 @@ const highPriestess_wand = {
   name: 'highPriestess',
   type: 'voting',
   flavorTextDescription: 'Tucked away between the wings of the statue, where the small of her back would be if she was indeed a real angel, was a teardrop shaped crystal. Taking it would likely stop the flow of water in the room but it’s loose enough to do so. Take it?',
-  tldrDescription: 'There is a crystal on the statue. Should we take it?',
+  tldrDescription: 'There is a crystal on the statue. Should the adventurer take it?',
   options: ['Yes', 'No'],
   optionsFlavor: ['Take the crystal. It could prove to be valuable.', 'Leave the crystal. We would not want to disturb such a divine place.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
@@ -560,7 +561,7 @@ const highPreistess_cup = {
   title: 'The High Priestess',
   name: 'highPriestess',
   type: 'resolution',
-  flavorTextDescription: 'You decide to pray at the altar.',
+  flavorTextDescription: 'The adventurer decides to pray at the altar.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -590,7 +591,7 @@ const highPreistess_coin = {
   title: 'The High Priestess',
   name: 'highPriestess',
   type: 'resolution',
-  flavorTextDescription: 'You decide to toss a coin in the fountain.',
+  flavorTextDescription: 'The adventurer decides to toss a coin in the fountain.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -620,7 +621,7 @@ const highPreistess_wand_yes = {
   title: 'The High Priestess',
   name: 'highPriestess',
   type: 'resolution',
-  flavorTextDescription: 'You decide to try and take the crystal.',
+  flavorTextDescription: 'The adventurer decides to try and take the crystal.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -651,7 +652,7 @@ const highPreistess_wand_no = {
   title: 'The High Priestess',
   name: 'highPriestess',
   type: 'resolution',
-  flavorTextDescription: 'You decide not to try and take the crystal.',
+  flavorTextDescription: 'The adventurer decides not to take the crystal.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -695,7 +696,7 @@ const highPreistess_sword_alt = {
   title: 'The High Priestess',
   name: 'highPriestess',
   type: 'resolution',
-  flavorTextDescription: 'You decide to go fishing.',
+  flavorTextDescription: 'The adventurer decides to catch a fish.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -723,7 +724,7 @@ const highPreistess_cup_alt = {
   title: 'The High Priestess',
   name: 'highPriestess',
   type: 'resolution',
-  flavorTextDescription: 'You decide to pray at the altar.',
+  flavorTextDescription: 'The adventurer decides to pray at the altar.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -749,7 +750,7 @@ const highPreistess_coin_alt = {
   title: 'The High Priestess',
   name: 'highPriestess',
   type: 'resolution',
-  flavorTextDescription: 'You decide to toss a coin in the fountain.',
+  flavorTextDescription: 'The adventurer decide to toss a coin in the fountain.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -795,7 +796,7 @@ const empress_sword = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
-  flavorTextDescription: 'You attack the maiden.',
+  flavorTextDescription: 'The adventurer tries to attack the maiden.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -823,7 +824,7 @@ const empress_wand = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
-  flavorTextDescription: 'You investigate the maiden.',
+  flavorTextDescription: 'The adventurer investigates the maiden.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -851,7 +852,7 @@ const empress_cup = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
-  flavorTextDescription: 'You attempt to befriend the woman.',
+  flavorTextDescription: 'The adventurer attempts to befriend the woman.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 1],
@@ -915,7 +916,7 @@ const empress_Maiden_Sword = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
-  flavorTextDescription: 'You attempt to attack the maiden.',
+  flavorTextDescription: 'The adventurer attempts to attack the maiden.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 1],
@@ -941,7 +942,7 @@ const empress_Maiden_Cup = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
-  flavorTextDescription: 'You attempt to befriend the maiden.',
+  flavorTextDescription: 'The adventurer attempts to befriend the maiden.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 1],
@@ -967,7 +968,7 @@ const empress_Siren_Sword = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
-  flavorTextDescription: 'You attempt to attack the siren.',
+  flavorTextDescription: 'The adventurer attempts to attack the siren.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 1],
@@ -993,7 +994,7 @@ const empress_Siren_Cup = {
   title: 'The Empress',
   name: 'empress',
   type: 'resolution',
-  flavorTextDescription: 'You attempt to befriend the siren.',
+  flavorTextDescription: 'The adventurer attempts to befriend the siren.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 1],
@@ -1040,7 +1041,7 @@ const chariot_Main = {
   type: 'voting',
   flavorTextDescription: 'Gold light emanates from the cracks of this door as the adventurer approaches it. He staggers back after opening it, shielding his eyes. Stacks on stacks of gold, priceless goblets, and other treasures scattered across the room gleam in the light of the torches lining the wall. The main centerpiece is an ornate sarcophagus resting on a raised slab of stone. Chiseled into the rock is a message written in an older tongue, but some of the words can still be made out - “Wa..., ...iseas…, conqu…, death, yet gr… may be ...wnfall of man.” Just past this are four silver pedestals, each one with a horse made of precious gems resting upon it. The fates speak out the adventurer, and beckon him to make a choice.',
   
-  tldrDescription: 'In a room full of treasure, four crystalline horses draw the adventurer’s attention the most.',
+  tldrDescription: 'In a room full of treasure, four crystalline horses draw the adventurer’s attention the most. Which horse should the adventurer take?',
 
   options: ['Ruby', 'Obsidian', 'Pearl', 'Diamond'],
   
@@ -1053,11 +1054,12 @@ const chariot_Main = {
 
 allChariotEvents.push(chariot_Main);
 
+// 1
 const chariot_Sword = {
   title: 'The Chariot',
   name: 'chariot',
   type: 'resolution',
-  flavorTextDescription: 'You decide to take the ruby stallion.',
+  flavorTextDescription: 'The adventurer decides to take the ruby stallion.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1080,11 +1082,12 @@ const chariot_Sword = {
 
 allChariotEvents.push(chariot_Sword);
 
+// 2
 const chariot_Wand = {
   title: 'The Chariot',
   name: 'chariot',
   type: 'resolution',
-  flavorTextDescription: 'You decide to take the obsidian mare.',
+  flavorTextDescription: 'The adventurer decides to take the obsidian mare.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1107,11 +1110,12 @@ const chariot_Wand = {
 
 allChariotEvents.push(chariot_Wand);
 
+// 3
 const chariot_Cup = {
   title: 'The Chariot',
   name: 'chariot',
   type: 'resolution',
-  flavorTextDescription: 'You decide to take the pearl esquine.',
+  flavorTextDescription: 'The adventurer decides to take the pearl esquine.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1134,11 +1138,12 @@ const chariot_Cup = {
 
 allChariotEvents.push(chariot_Cup);
 
+// 4
 const chariot_Coin = {
   title: 'The Chariot',
   name: 'chariot',
   type: 'resolution',
-  flavorTextDescription: 'You decide to take the diamond skeleton horse.',
+  flavorTextDescription: 'The adventurer decides to take the diamond skeleton horse.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1165,7 +1170,7 @@ const chariot_Leave = {
   title: 'The Chariot',
   name: 'chariot',
   type: 'resolution',
-  flavorTextDescription: 'You decide to leave.',
+  flavorTextDescription: 'The adventurer decides to leave.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1242,7 +1247,7 @@ const emperor_Sword = {
   title: 'The Emperor',
   name: 'emperor',
   type: 'resolution',
-  flavorTextDescription: 'You decide to fight.',
+  flavorTextDescription: 'The adventurer decides to fight.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1268,7 +1273,7 @@ const emperor_Cup = {
   title: 'The Emperor',
   name: 'emperor',
   type: 'resolution',
-  flavorTextDescription: 'You decide to talk your way out.',
+  flavorTextDescription: 'The adventurer decides to talk his way out.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1296,7 +1301,7 @@ const emperor_Coin = {
   title: 'The Emperor',
   name: 'emperor',
   type: 'resolution',
-  flavorTextDescription: 'You decide to run.',
+  flavorTextDescription: 'The adventurer attempts to run.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1325,7 +1330,7 @@ const emperor_Cup_Vote = {
   name: 'emperor',
   type: 'voting',
   flavorTextDescription: 'The light leads the adventurer deeper into the cavern’s depths. Slowly but surely it grows weaker, until it becomes dangerously close to puttering out. The adventurer considers running to reach the end before the light goes out, but the air current he would create from doing that may blow out the torch like a candle. The alternative would be to attempt to stoke the fire to have it rise again, but that too could do more harm than good. A decision needs to be made fast or escaping this place will become much more difficult.',
-  tldrDescription: 'You are running out of time and light. What should you do?',
+  tldrDescription: 'The adventurer is running out of time and light. What should he do?',
   options: ['Attack', 'Stoke', 'Talk', 'Run'],
   optionsFlavor: ['', 'Stoking the flame will best increase our chances.', '', 'Make a run for it, we’re out of time!'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
@@ -1358,7 +1363,7 @@ const emperor_Coin_Vote_Sword = {
   title: 'The Emperor',
   name: 'emperor',
   type: 'resolution',
-  flavorTextDescription: 'You decide to take the right path.',
+  flavorTextDescription: 'The adventurer takes the right path.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1386,7 +1391,7 @@ const emperor_Coin_Vote_Wand = {
   title: 'The Emperor',
   name: 'emperor',
   type: 'resolution',
-  flavorTextDescription: 'You decide to take the left path.',
+  flavorTextDescription: 'The adventurer takes the left path.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1414,7 +1419,7 @@ const emperor_Cup_Vote_Stoke = {
   title: 'The Emperor',
   name: 'emperor',
   type: 'resolution',
-  flavorTextDescription: 'You decide to stoke the fire.',
+  flavorTextDescription: 'The adventurer stokes the fire.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1442,7 +1447,7 @@ const emperor_Cup_Vote_Run = {
   title: 'The Emperor',
   name: 'emperor',
   type: 'resolution',
-  flavorTextDescription: 'You decide to make a run for it.',
+  flavorTextDescription: 'The adventurer tries to make a run for it.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1470,7 +1475,7 @@ const emperor_Leave = {
   title: 'The Emperor',
   name: 'emperor',
   type: 'resolution',
-  flavorTextDescription: 'You leave.',
+  flavorTextDescription: 'The adventurer leaves.',
   tldrDescription: '',
   options: [],
   completedOptions: [0, 0, 0, 0],
@@ -1774,6 +1779,25 @@ const hierophant_Coin_Wand = {
 };
 
 allHierophantEvents.push(hierophant_Coin_Wand);
+
+// The Lovers ////////////////////////
+
+// 0
+const lovers_Main = {
+  title: 'The Lovers',
+  name: 'lovers',
+  type: 'voting',
+  flavorTextDescription: 'The smell of this room reached the adventurer’s nose before he even entered it. Compared to other rooms of the dungeon, this one is somewhat smaller. He can already see the other side, a pool of water tinted blue-green like the ocean. However, the space between the adventurer and the pool is littered with mirrors of all shapes and sizes. Some are cracked and even missing pieces with rusty frames, while others are in pristine condition, as if they belonged in a palace. Alone the mirrors aren’t terrifying, at least not until the adventurer catches sight of their prey. Every other mirror has a person standing in front of it, expressions blank. Those that don’t have a live person in front of them have the corpses of one, flesh rotting and falling off the bone as if melting from staring into the depths of the glass for too long. The adventurer reaches the other side of the room by keeping his head down to avoid a similar fate. The exit is easy to find, visible just beneath the surface of the water. All he’d have to do was swim and - he freezes mid-thought. A familiar face stares back at him and they lock eyes. Too late he realizes that he’s been doomed by his own reflection, stuck in place like those he had seen peering into the mirrors.',
+  tldrDescription: 'The adventurer is stuck staring at his own reflection thanks to this room’s magic and has to find a way to escape its hold over him. What should he do?',
+  options: ['Move', 'Concentrate', 'Talk', 'Discover'],
+  optionsFlavor: ['We just need to force our arms to move and our legs to step forward!', 'This trap is just a mind game. If we concentrate hard enough, we can escape it.', 'Maybe there really is a version of us on the other side of the reflection. If that’s the case, we should be able to talk to it.', ''],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 0, 1],
+  completedOptionsStart: [0, 0, 0, 1],
+  connections: [1, 2, 3, 4],
+};
+
+allLoversEvents.push(lovers_Main);
 
 
 // Push all main events to all Events list
