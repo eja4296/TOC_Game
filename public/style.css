@@ -14,7 +14,7 @@ html {
 
 html, input {
   overflow-y: scroll;
-  background-color: lightgray;
+  background-color: white;
   font-family:
     "HelveticaNeue-Light",
     "Helvetica Neue Light",
@@ -304,6 +304,14 @@ ul {
   text-align: center;
 }
 
+#rightSide #dropdowns #secondStats #foolStuff #foolDescription{
+  position: relative;
+  float: left;
+  width: 100%;
+  padding: 5px;
+  font-style: italic;
+}
+
 #rightSide #dropdowns #secondStats #foolTitle{
   position: relative;
   width: 100%;
@@ -388,6 +396,7 @@ ul {
     width: auto; 
     float: left;
     padding-left: 5px;
+    
   }
 
 #rightSide #dropdowns #event #eventImage{
@@ -422,6 +431,7 @@ ul {
     float: left;
     box-shadow: 1px 1px 3px black;
     margin: 5px; 
+    border: 1px solid black
   }
 
 #rightSide #dropdowns #secondEvent #secondEventImage{
@@ -711,8 +721,15 @@ ul {
   
   #rightSide #dropdowns #secondStats #foolStuff #fool{
 
+  width: 45%;
+  left: 2.5%;
+  margin-right: 2.5%;
+}
+  
+#rightSide #dropdowns #secondStats #foolStuff #foolDescription{
+
   width: 50%;
-  left: 25%;
+  
 }
   
 
