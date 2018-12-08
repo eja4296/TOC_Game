@@ -800,54 +800,31 @@ $(() => {
           document.querySelector("#eventDescriptionTLDR").innerHTML += " Nothing happened...";
         }
         else{
-          //document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.flavorTextDescription + " ";
+         
           for(var i = 0; i < eventCard.effectStats[rng].length; i++){
-            document.querySelector("#eventDescriptionTLDR").innerHTML += " <br>" + eventCard.effectStats[rng][i] + ": " + eventCard.effectPower[rng][i] + "";
-            document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.effectStats[rng][i] + ": " + eventCard.effectPower[rng][i] + "</div> ";
+            if(eventCard.effectPower[rng][i] > 0){
+               document.querySelector("#eventDescriptionTLDR").innerHTML += " <br>" + eventCard.effectStats[rng][i] + ": +" + eventCard.effectPower[rng][i] + "";
+            
+                document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.effectStats[rng][i] + ": +" + eventCard.effectPower[rng][i] + "</div> ";
+            }
+            else{
+               document.querySelector("#eventDescriptionTLDR").innerHTML += " <br>" + eventCard.effectStats[rng][i] + ": " + eventCard.effectPower[rng][i] + "";
+            
+                document.querySelector('#secondGameLog').innerHTML += "<div class='logElement'>" + eventCard.effectStats[rng][i] + ": " + eventCard.effectPower[rng][i] + "</div> ";
+            }
+           
           }
           document.querySelector('#secondGameLog').innerHTML += "<br><br>";
-          //document.querySelector('#secondGameLog').innerHTML += "</div>";
+          
         }
       }
-      /*
-    // Add information about the event to the client page
-    document.querySelector('#eventTitle').innerHTML = `<h2>${eventCard.title}</h2>`;
-    document.querySelector('#eventImage').src = `media/${eventCard.name}.jpg`;
-    document.querySelector('#description').innerHTML = eventCard.flavorTextDescription;
-    document.querySelector('#textOverlay').innerHTML = eventCard.flavorTextDescription;
-
-    // Only display necessary options and buttons
-    for (let i = 0; i < 4; i++) {
-      if (eventCard.options && eventCard.options[i] && eventCard.completedOptions[i] == 0) {
-        document.querySelector(`#button${i}`).style.display = 'block';
-        document.querySelector(`#option${i}`).innerHTML = `${voteLetters[i]}. (${eventCard.options[i]}) ${eventCard.optionsFlavor[i]}`;
-      } else {
-        document.querySelector(`#option${i}`).innerHTML = '';
-        document.querySelector(`#button${i}`).style.display = 'none';
-      }
-    }
-    */
+     
   };
   
   socket.on('load event', (data) => {
     currentEvent = data.currentEvent;
     loadEvent(data.currentEvent, data.topVote, data.rng, data.fool, data.foolMax, data.finalVote);
 
-    
-  
-    
-    /*
-    document.querySelector('#optionList').style.display = 'block';
-    document.querySelector('#voteCompleted').innerHTML = '';
-    playerVoted = false;
-
-    document.querySelector('#health').innerHTML = `Health: ${data.fool.health}`;
-    document.querySelector('#strength').innerHTML = `Strength: ${data.fool.strength}`;
-    document.querySelector('#intelligence').innerHTML = `Intelligence: ${data.fool.intelligence}`;
-    document.querySelector('#charisma').innerHTML = `Charisma: ${data.fool.charisma}`;
-    document.querySelector('#luck').innerHTML = `Luck: ${data.fool.luck}`;
-    document.querySelector('#gold').innerHTML = `Gold: ${data.fool.gold}`;
-    */
   });
   
   const updateTimer = (newTime) => {

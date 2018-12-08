@@ -20,7 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Variables stored on server
-
 let usernames = [];
 let numUsers = 0;
 let numUsersVoted = 0;
@@ -30,19 +29,14 @@ const numOfEvents = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 const usedNums = [];
 const usedEvents = [];
 let gameStarted = false;
-
 let currentEvent;
 let previousEvent;
-
-
 let swordVotes = [];
 let wandVotes = [];
 let cupVotes = [];
 let coinVotes = [];
-
 let finalVote = "";
 let topVote = 0;
-
 let gameOver = false;
 let eventConstraint = false;
 
@@ -75,14 +69,13 @@ const foolMax = {
 
 let currentMainEvent = 1;
 const allEvents = [];
-
 let completedMainEvents = [];
-
 const allMagicianEvents = [];
 const allEmpressEvents = [];
 const allHighPreistessEvents = [];
 const allChariotEvents = [];
 const allEmperorEvents = [];
+const allHierophantEvents = [];
 
 // The Magician ////////////////////
 
@@ -92,16 +85,12 @@ const magician_Main = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The adventurer enters a dimly lit and cramped room. The walls are lined with shelves of books, many of which display runes from a long lost ancient language. In the center of the room stands a large black cauldron, which has vapor rising from the top and makes a quiet simmering noise. On the side of the pot opposite to the adventurer is an elven witch dressed in mage’s robes, adding ingredients to the elixir and occasionally stirring it. Though her wrinkles and grey hair betray her age, she stands tall with dignity and you can see the vast amount of knowledge she’s gained over countless years (and perhaps centuries) in her eyes.',
-  
   tldrDescription: 'The adventurer encounters a witch crafting a potion in a room populated with books. What should he do?',
-
   options: ['Attack', 'Investigate', 'Inquire', 'Taste'],
-  
   optionsFlavor: ['This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.', 'We may be able to learn something useful from the books around the room, they may be worth taking a look at.', 'The witch may know something about this place we’re in, we should ask her some questions.', 'That draught looks very enticing...should we take a sip?'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-
   connections: [1, 2, 3, 4],
 
 };
@@ -115,15 +104,12 @@ const magician_sword = {
   type: 'voting',
   flavorTextDescription: 'The adventurer rushes up to the witch and in his haste knocks the cauldron of liquid and spills it on her! Enraged, she draws her staff and combat spellbook and prepares to fight.',
   tldrDescription: 'The adventurer decides to attack the witch. How should he engage her in combat?',
-  
   options: ['Slash', 'Cast a Spell'],
   optionsFlavor: ['The witch will be no match for my raw strength. I will cut her down where she stands.', 'The witch is old and her mind is frayed. I will use magic to incapacitate her.'],
   voteOption: ['Sword', 'Wand'],
   completedOptions: [0, 0, 1, 1],
   completedOptionsStart: [0, 0, 1, 1],
   connections: [11, 12],
-
-
 };
 
 allMagicianEvents.push(magician_sword);
@@ -135,7 +121,6 @@ const magician_wand = {
   type: 'voting',
   flavorTextDescription: 'The witch calls out to the adventurer, “Weary traveller I do not mind if you look through my library but be warned that some of those tomes contain dangerous knowledge. Proceed at your own risk.” The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
   tldrDescription: 'The adventurer decides to invetigate the room. There is an Iron book, Floating book, and Worn book. Should the adventurer open one, or leave?',
-  
   options: ['Iron', 'Floating', 'Worn', 'Leave'],
   optionsFlavor: ['Open the iron book.', 'Open the floating book.', 'Open the worn book.', 'These books could be dangerous like the witch said, better leave them where we found them.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
@@ -154,14 +139,12 @@ const magician_cup = {
   type: 'voting',
   flavorTextDescription: 'The witch begins, “There are few places in the world that seep evil energy as this place does - I only stay here for the immense amount of mana and magical resources it provides.” She pauses. “I sense that you are here to end this wretched place. I know little but I’m willing to impart on you what I can, though just knowing this information could prove dangerous. Are you sure you wish to know regardless?”',
   tldrDescription: 'The adventurer decides to inquire the witch. The witch offers to enlighten the adventurer with her knowledge. Should he accept?',
-  
   options: ['Say Yes', 'Say No'],
   optionsFlavor: ["We should accept. The witch's knowledge could prove to be invaluable", 'It would be best to decline. Knowledge can be dangerous.'],
   voteOption: ['Sword', 'Wand'],
   completedOptions: [0, 0, 1, 1],
   completedOptionsStart: [0, 0, 1, 1],
   connections: [9, 10],
-
 };
 
 allMagicianEvents.push(magician_cup);
@@ -173,8 +156,6 @@ const magician_coin = {
   type: 'resolution',
   flavorTextDescription: 'The witch notices the adventurer eyeing the cerulean mixture she has been so carefully crafting. “Care for a taste?” she asks as she extends a sturdy but boney hand towards him, clasping a vial of her work.',
   tldrDescription: '',
-  
-  
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
@@ -192,7 +173,6 @@ const magician_coin = {
     [1, 1, 30],
     [-1, -1, -5],
   ],
-
 };
 
 allMagicianEvents.push(magician_coin);
@@ -223,8 +203,6 @@ const magician_wand_sword = {
  
     [-3, -1],
   ],
-
-
 };
 allMagicianEvents.push(magician_wand_sword);
 
@@ -239,7 +217,6 @@ const magician_wand_wand = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
-
   text: ['The magic book slams open and attempts to assault the adventurer with dark magic, but he uses his own power to bend the book to his will, letting him access its harbored secrets without resistance.', 'The adventurer extends a hand to the floating book and the room fills with a high pitched scream coming from the book itself, replacing the almost ambient whispers that it conjured previously. It dissolves into ash, but not before thoroughly leaving the adventurer’s head rattled and ears ringing.'],
   dice: 4,
   threshold: [7, 0],
@@ -269,13 +246,11 @@ const magician_wand_cup = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
-
   text: ['“It’s just my recipe book!” she replies. “I hardly use it anymore - I have all of my concoctions in my head nowadays. I’d be happy to let you use it.” She extends the book over her cauldron, which sufficiently heats it to reveal writing that was previously invisible. “Can’t just let anyone have these secrets, can I?”. She points to the simplest formula, a healing elixir, and provides the adventurer the ingredients and flask to make one.', 'The witch doesn’t respond, too absorbed in her work. After some initial pestering, the adventurer gives up and places the pages back with the other books.'],
   dice: 4,
   threshold: [7, 0],
   statNeeded: "Charisma",
   outcomes: 2,
-
   effectStats: [
     ['Charisma', 'Intelligence', "Health"],
     []
@@ -284,8 +259,6 @@ const magician_wand_cup = {
     [1, 1, 5],
     [],
   ],
-
-
 };
 allMagicianEvents.push(magician_wand_cup);
 
@@ -300,7 +273,6 @@ const magician_wand_leave = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
-  
   text: ['It was probably a good idea to leave those books alone.'],
   dice: 0,
   threshold: [],
@@ -312,8 +284,6 @@ const magician_wand_leave = {
   effectPower: [
 
   ],
-
-  
 };
 allMagicianEvents.push(magician_wand_leave);
 
@@ -328,7 +298,6 @@ const magician_cup_yes = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
-
   text: ['The witch lowers her voice to barely audible from where the adventurer is standing, and tells him of her experiences over the many years of the dungeon. Of the power of swords, cups, wands, and coins having influence on all of the happenings in the realm, and of constantly shifting rooms with constantly shifting happenings and unknown futures in each of them.', 'She begins to speak, but a purple mist rises from the floor and the temperature in the room drops drastically. The tainted air finds its way into her nose and fills her lungs. The witch twitches and writhes in unnatural ways until she succumbs to suffocation. As if to hint at what’s coming, the remaining haze attacks the adventurer.'],
   dice: 4,
   threshold: [7, 0],
@@ -342,8 +311,6 @@ const magician_cup_yes = {
     [2, 2],
     [-1, -5],
   ],
-
-
 };
 allMagicianEvents.push(magician_cup_yes);
 
@@ -358,7 +325,6 @@ const magician_cup_no = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
- 
   text: ['“I see,” the witch says somewhat disheartened. “Perhaps then you are not the adventurer that I was expecting to liberate this place.”'],
   dice: 0,
   threshold: [],
@@ -370,8 +336,6 @@ const magician_cup_no = {
   effectPower: [
 
   ],
-
-
 };
 
 allMagicianEvents.push(magician_cup_no);
@@ -387,7 +351,6 @@ const magician_sword_sword = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
-
   text: ['As the witch crumples in defeat, her staff clangs to the ground with a loud thump. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself.', 'The witch, though old, moves quicker than the adventurer. As the adventurer swings his sword at the witch, she counters with her staff and deals blow to his gut, knockiing the wind out of him. The witch refrains from dealing further damage, as she knows he is no match for her.'],
   dice: 4,
   threshold: [7, 0],
@@ -401,10 +364,8 @@ const magician_sword_sword = {
     [2, 2],
     [-5, -1],
   ],
-
   constraint: true,
   constraintResult: [1, 0]
-
 };
 
 allMagicianEvents.push(magician_sword_sword);
@@ -420,7 +381,6 @@ const magician_sword_wand = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
- 
   text: ['As the witch crumples in defeat, her staff clangs to the ground with a loud thump. No point in wasting a perfectly good weapon - the adventurer picks it up and claims it for himself.', 'The witch, though old, moves quicker than the adventurer. As the adventurer casts his spell at the witch, she effortlessly counters with a spell of her own knocking the adveturer off his feet. The witch refrains from dealing further damage, as she knows he is no match for her.'],
   dice: 4,
   threshold: [7, 0],
@@ -434,12 +394,9 @@ const magician_sword_wand = {
     [2, 2],
     [-5, -1],
   ],
-
   constraint: true,
   constraintResult: [1, 0]
-
 };
-
 
 allMagicianEvents.push(magician_sword_wand);
 
@@ -449,18 +406,13 @@ const magician_Main_Alt = {
   name: 'magician',
   type: 'voting',
   flavorTextDescription: 'The walls are lined with shelves of books, many of which display runes from a long lost ancient language. In the center of the room stands a large black cauldron, which has vapor rising from the top and makes a quiet simmering noise.',
-  
   tldrDescription: 'The witch is dead so the adventurer is free to explore. What should he do?',
-
   options: ['Attack', 'Investigate', 'Inquire', 'Taste'],
-  
   optionsFlavor: ['This witch is clearly powerful and possibly even a threat, better attack her before she attacks us with whatever she’s making.', 'We may be able to learn something useful from the books around the room, they may be worth taking a look at.', 'The witch may know something about this place we’re in, we should ask her some questions.', 'That draught looks very enticing...should we take a sip?'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [1, 0, 1, 0],
   completedOptionsStart: [1, 0, 1, 0],
-
   connections: [1, 14, 3, 16],
-
 };
 
 allMagicianEvents.push(magician_Main_Alt);
@@ -472,14 +424,12 @@ const magician_wand_Alt = {
   type: 'voting',
   flavorTextDescription: 'The adventurer returns his attention to the shelf and spots three books. The covers of the first book are made of pure metal and looks dangerously difficult to open. The second book floats once pulled from the shelf and whispers promises of divine secrets. The last book is rather plain and well worn, likely meaning that it has been read a good deal. Better only read one, there’s not much time to waste.',
   tldrDescription: 'The adventurer decides to invetigate the room. There is an Iron book, Floating book, and Worn book. Should the adventurer open one, or leave?',
-  
   options: ['Iron', 'Floating', 'Worn', 'Leave'],
   optionsFlavor: ['Open the iron book.', 'Open the floating book.', 'Open the worn book.', 'These books could be dangerous like the witch said, better leave them where we found them.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [5, 6, 15, 8],
-
 };
 
 allMagicianEvents.push(magician_wand_Alt);
@@ -495,13 +445,11 @@ const magician_wand_cup_Alt = {
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [0, 13],
-
   text: ['It looks like the witch\'s recipe book. The adventurer grabs a the ingredients and makes a health potion.', 'It looks like the witch\'s recipe book, but the adventurer cannot understand her writing. Maybe if the witch were here she could explain it to him...'],
   dice: 4,
   threshold: [7, 0],
   statNeeded: "Charisma",
   outcomes: 2,
-
   effectStats: [
     ['Charisma', 'Intelligence', "Health"],
     []
@@ -510,8 +458,6 @@ const magician_wand_cup_Alt = {
     [1, 1, 5],
     [],
   ],
-
-
 };
 allMagicianEvents.push(magician_wand_cup_Alt);
 
@@ -522,8 +468,6 @@ const magician_Coin_Alt = {
   type: 'resolution',
   flavorTextDescription: 'The adventurer eyes the cerulean mixture the witch had been so carefully crafting and decides to take a sip.',
   tldrDescription: '',
-  
-  
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
@@ -541,17 +485,13 @@ const magician_Coin_Alt = {
     [1, 1, 30],
     [-1, -1, -5],
   ],
-
 };
 
 allMagicianEvents.push(magician_Coin_Alt);
 
+// The High Priestess ////////////////
 
-
-
-
-// HIGH PREISTESS EVENTS
-
+// 0
 const highPriestess_Main = {
   title: 'The High Preistess',
   name: 'highPriestess',
@@ -563,12 +503,12 @@ const highPriestess_Main = {
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-
   connections: [1, 2, 3, 4],
 };
 
 allHighPreistessEvents.push(highPriestess_Main);
 
+// 1
 const highPreistess_sword = {
   title: 'The High Priestess',
   name: 'highPriestess',
@@ -598,6 +538,7 @@ const highPreistess_sword = {
 
 allHighPreistessEvents.push(highPreistess_sword);
 
+// 2
 const highPriestess_wand = {
   title: 'The High Preistess',
   name: 'highPriestess',
@@ -609,12 +550,12 @@ const highPriestess_wand = {
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 1, 1],
   completedOptionsStart: [0, 0, 1, 1],
-
   connections: [5, 6],
 };
 
 allHighPreistessEvents.push(highPriestess_wand);
 
+// 3
 const highPreistess_cup = {
   title: 'The High Priestess',
   name: 'highPriestess',
@@ -644,6 +585,7 @@ const highPreistess_cup = {
 
 allHighPreistessEvents.push(highPreistess_cup);
 
+// 4
 const highPreistess_coin = {
   title: 'The High Priestess',
   name: 'highPriestess',
@@ -673,8 +615,7 @@ const highPreistess_coin = {
 
 allHighPreistessEvents.push(highPreistess_coin);
 
-
-
+// 5
 const highPreistess_wand_yes = {
   title: 'The High Priestess',
   name: 'highPriestess',
@@ -705,6 +646,7 @@ const highPreistess_wand_yes = {
 
 allHighPreistessEvents.push(highPreistess_wand_yes);
 
+// 6
 const highPreistess_wand_no = {
   title: 'The High Priestess',
   name: 'highPriestess',
@@ -730,6 +672,7 @@ const highPreistess_wand_no = {
 
 allHighPreistessEvents.push(highPreistess_wand_no);
 
+// 7
 const highPriestess_Main_Alt = {
   title: 'The High Preistess',
   name: 'highPriestess',
@@ -747,6 +690,7 @@ const highPriestess_Main_Alt = {
 
 allHighPreistessEvents.push(highPriestess_Main_Alt);
 
+// 8
 const highPreistess_sword_alt = {
   title: 'The High Priestess',
   name: 'highPriestess',
@@ -774,6 +718,7 @@ const highPreistess_sword_alt = {
 
 allHighPreistessEvents.push(highPreistess_sword_alt);
 
+// 9
 const highPreistess_cup_alt = {
   title: 'The High Priestess',
   name: 'highPriestess',
@@ -799,6 +744,7 @@ const highPreistess_cup_alt = {
 
 allHighPreistessEvents.push(highPreistess_cup_alt);
 
+// 10
 const highPreistess_coin_alt = {
   title: 'The High Priestess',
   name: 'highPriestess',
@@ -825,9 +771,7 @@ const highPreistess_coin_alt = {
 allHighPreistessEvents.push(highPreistess_coin_alt);
 
 
-
-
-// EMPRESS EVENTS
+// The Empress ///////////////////////////////
 
 // 0
 const empress_Main = {
@@ -841,9 +785,7 @@ const empress_Main = {
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 1],
   completedOptionsStart: [0, 0, 0, 1],
-
   connections: [1, 2, 3, 4],
-  
 };
 
 allEmpressEvents.push(empress_Main);
@@ -872,7 +814,6 @@ const empress_sword = {
     [2, 1],
     [-10, -1],
   ],
-  
 };
 
 allEmpressEvents.push(empress_sword);
@@ -887,10 +828,10 @@ const empress_wand = {
   options: [],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-  connections: [5, 4],
+  connections: [4, 5],
   text: ['The adventurer squints his eyes and assesses the maiden. He concludes that she’s just a regular person.','The adventurer squints his eyes and assesses the maiden. He concludes that she’s not human, but infact a siren!.'],
   dice: 4,
-  threshold: [7, 0],
+  threshold: [2, 0],
   statNeeded: "Intelligence",
   outcomes: 2,
   effectStats: [
@@ -901,8 +842,6 @@ const empress_wand = {
     [],
     [],
   ],
-
-
 };
 
 allEmpressEvents.push(empress_wand);
@@ -917,8 +856,6 @@ const empress_cup = {
   options: [],
   completedOptions: [0, 0, 0, 1],
   completedOptionsStart: [0, 0, 0, 1],
-
-
   connections: [10, 10],
   text: ['The adventurer approaches the woman and begins to ask what is wrong, but is abruptly cut short by an incredible shriek. The adventurer collapses to his knees and clasps his ears, realizing too late that this woman is in fact a siren. When she finally finishes her cry, he brings himself to his feet again. He removes his hands from his ears and finds they are stained red with blood.', 'The adventurer approaches the woman and asks her what’s wrong. She begins to rant about her life in the walls, and how she is stuck alone in this room with only a tree to keep her company. Her tears flow like a stream down her face, and make her blue eyes glisten as she picks her head up to look at the adventurer. After some time, she concludes her story, and conjures a small vial. She allows a single tear to drop inside of it, and closes the top with a cork. “As a thank you...for your time,” she says handing it to the adventurer.'],
   dice: 4,
@@ -935,11 +872,9 @@ const empress_cup = {
   ],
   constraint: true,
   constraintResult: [1, 0, 0]
-
 };
 
 allEmpressEvents.push(empress_cup);
-
 
 // 4
 const empress_Main_Maiden = {
@@ -953,9 +888,7 @@ const empress_Main_Maiden = {
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 1, 0, 0],
   completedOptionsStart: [0, 1, 0, 0],
-
   connections: [6, 2, 7, 10],
-  
 };
 
 allEmpressEvents.push(empress_Main_Maiden);
@@ -972,9 +905,7 @@ const empress_Main_Siren = {
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 1, 0, 0],
   completedOptionsStart: [0, 1, 0, 0],
-
   connections: [8, 2, 9, 10],
-  
 };
 
 allEmpressEvents.push(empress_Main_Siren);
@@ -1001,8 +932,6 @@ const empress_Maiden_Sword = {
   effectPower: [
     [-10, -1, 2],
   ],
-
-
 };
 
 allEmpressEvents.push(empress_Maiden_Sword);
@@ -1055,8 +984,6 @@ const empress_Siren_Sword = {
   effectPower: [
     [1, 1, 2],
   ],
-
-
 };
 
 allEmpressEvents.push(empress_Siren_Sword);
@@ -1083,11 +1010,7 @@ const empress_Siren_Cup = {
   effectPower: [
     [-5, -1, -2],
   ],
-
-
 };
-
-
 
 allEmpressEvents.push(empress_Siren_Cup);
 
@@ -1103,18 +1026,14 @@ const empress_Leave = {
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [1, 1, 1, 1],
   completedOptionsStart: [1, 1, 1, 1],
-
   connections: [1, 2, 3, 4],
-  
 };
 
 allEmpressEvents.push(empress_Leave);
 
-
-
-
 // The Chariot /////////////////////////
 
+// 0
 const chariot_Main = {
   title: 'The Chariot',
   name: 'chariot',
@@ -1129,11 +1048,8 @@ const chariot_Main = {
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-
   connections: [1, 2, 3, 4],
-
 };
-
 
 allChariotEvents.push(chariot_Main);
 
@@ -1162,7 +1078,6 @@ const chariot_Sword = {
   ],
 };
 
-
 allChariotEvents.push(chariot_Sword);
 
 const chariot_Wand = {
@@ -1189,7 +1104,6 @@ const chariot_Wand = {
     [-10, -1],
   ],
 };
-
 
 allChariotEvents.push(chariot_Wand);
 
@@ -1218,7 +1132,6 @@ const chariot_Cup = {
   ],
 };
 
-
 allChariotEvents.push(chariot_Cup);
 
 const chariot_Coin = {
@@ -1244,9 +1157,7 @@ const chariot_Coin = {
     [2],
     [-10, -1],
   ],
-  
 };
-
 
 allChariotEvents.push(chariot_Coin);
 
@@ -1280,46 +1191,32 @@ const chariot_Main_Alt_Sword = {
   name: 'chariot',
   type: 'voting',
   flavorTextDescription: 'Gold light emanates from the cracks of this door as the adventurer approaches it. He staggers back after opening it, shielding his eyes. Stacks on stacks of gold, priceless goblets, and other treasures scattered across the room gleam in the light of the torches lining the wall. The main centerpiece is an ornate sarcophagus resting on a raised slab of stone. Chiseled into the rock is a message written in an older tongue, but some of the words can still be made out - “Wa..., ...iseas…, conqu…, death, yet gr… may be ...wnfall of man.” Just past this are four silver pedestals, each one with a horse made of precious gems resting upon it. The fates speak out the adventurer, and beckon him to make a choice.',
-  
   tldrDescription: 'In a room full of treasure, four crystalline horses draw the adventurer’s attention the most.',
-
   options: ['Leave', 'Obsidian', 'Pearl', 'Diamond'],
-  
   optionsFlavor: ['Take the ruby stallion, exuding power and a thirst for action.', 'Take the obsidian mare, which whispers of the rot it would inflict on your enemies, corrupting both their minds and bodies from the inside out.', 'Take the pearl equine, promising victory in battle and dominance over your adversaries.', 'Take the diamond skeleton horse, whose bones are full of smoke which clouds its true purpose.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
-
   connections: [5, 2, 3, 4],
-
 };
 
 
 allChariotEvents.push(chariot_Main_Alt_Sword);
-
-
 
 const chariot_Leave_Leave = {
   title: 'The Chariot',
   name: 'chariot',
   type: 'voting',
   flavorTextDescription: 'Auto leave room',
-  
   tldrDescription: 'Auto leave room',
-
   options: ['Ruby', 'Obsidian', 'Pearl', 'Diamond'],
-  
   optionsFlavor: [],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [1, 1, 1, 1],
   completedOptionsStart: [1, 1, 1, 1],
-
   connections: [1, 2, 3, 4],
-
 };
 allChariotEvents.push(chariot_Leave_Leave);
-
-
 
 // The Emperor ////////////////////////////
 
@@ -1329,18 +1226,13 @@ const emperor_Main = {
   name: 'emperor',
   type: 'voting',
   flavorTextDescription: 'The echo of the door creaking reverberates in the seemingly empty room as it swings open into nothingness. The adventurer pauses for only a moment before taking a step into the darkness. If the room has a floor, he fails to find it and tumbles down a long rocky slope instead. By the time he reaches its end with a solid thud, he is thoroughly disoriented. It takes the adventurer a second to realize that while the impact was hard, his fall had thankfully been broken by something. After rising to his feet he conjures a small flame to survey his surroundings. Initially all he sees are the stone walls of a cave, with hanging stalactites occasionally releasing drops of water from their sharp points. He looks to the ground to see what saved him from a harsher landing. His relief fades instantly as a crowd of horrified faces come into view, staring either directly at him or at his now crushed target - a dwarven king, dressed in royal purple garbs and a crown adorned with gems likely mined from these same caves. Dwarven knights surround the scene and point their spears at the adventurer, ready to apprehend him for his crime.',
-  
   tldrDescription: 'The adventurer accidentally assassinated a dwarven king in front of his people and is being threatened by his loyal knights. What should he do?',
-
   options: ['Attack', 'Investigate', 'Talk', 'Run'],
-  
   optionsFlavor: ['You can take these knights easily. Let’s show them what for!', '', 'There’s obviously been a misunderstanding, we just need to talk this out.', 'You’ve got much longer legs than these guys and can definitely find your way out before they catch up.'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 1, 0, 0],
   completedOptionsStart: [0, 1, 0, 0],
-
   connections: [1, 10, 2, 3],
-
 };
 
 allEmperorEvents.push(emperor_Main);
@@ -1407,7 +1299,7 @@ const emperor_Coin = {
   flavorTextDescription: 'You decide to run.',
   tldrDescription: '',
   options: [],
- completedOptions: [0, 0, 0, 0],
+  completedOptions: [0, 0, 0, 0],
   completedOptionsStart: [0, 0, 0, 0],
   connections: [5, 1, 10, 10],
   text: ['The adventurer chooses a direction and bolts into the darkness, leaving the shouting squadron of dwarves behind him. He follows his gut, making random right and left turns, but he can’t seem to shake the roar of footsteps closing in on his position. He needs to lose the soldiers fast. Finally the adventurer began to see light, but it comes from two diverging tunnels. The left route is shorter but blocked by a large spider-web. A little bit of fire could burn the web down but getting caught in it would spell disaster. The right route is less direct, since the exit is at the top of rock wall. It’s full of holes so the adventurer could likely climb it and leave the knights stuck at the bottom with their heavy armor.', 'The adventurer sees an opening in the group surrounding him and makes a break for it. He makes it a fair distance before he can no longer see, making navigating difficult. He is forced to slow down to find his way, but even that can’t save him from the terrain. He gets a familiar feeling as he extends a foot and fails to find the ground, tumbling into a hole with no way out. His only option now is to wait for his pursuers to rescue him, and then ambush them while they attempt to capture him again.'],
@@ -1433,22 +1325,16 @@ const emperor_Cup_Vote = {
   name: 'emperor',
   type: 'voting',
   flavorTextDescription: 'The light leads the adventurer deeper into the cavern’s depths. Slowly but surely it grows weaker, until it becomes dangerously close to puttering out. The adventurer considers running to reach the end before the light goes out, but the air current he would create from doing that may blow out the torch like a candle. The alternative would be to attempt to stoke the fire to have it rise again, but that too could do more harm than good. A decision needs to be made fast or escaping this place will become much more difficult.',
-  
   tldrDescription: 'You are running out of time and light. What should you do?',
-
   options: ['Attack', 'Stoke', 'Talk', 'Run'],
-  
   optionsFlavor: ['', 'Stoking the flame will best increase our chances.', '', 'Make a run for it, we’re out of time!'],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [1, 0, 1, 0],
   completedOptionsStart: [1, 0, 1, 0],
-
   connections: [10, 8, 10, 9],
-
 };
 
 allEmperorEvents.push(emperor_Cup_Vote);
-
 
 // 5
 const emperor_Coin_Vote = {
@@ -1456,18 +1342,13 @@ const emperor_Coin_Vote = {
   name: 'emperor',
   type: 'voting',
   flavorTextDescription: '...',
-  
   tldrDescription: 'The adventurer is at a crossroads. What should he do?',
-
   options: ['Right', 'Left', 'Talk', 'Run'],
-  
   optionsFlavor: ['Go Right', 'Go Left', '', ''],
   voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
   completedOptions: [0, 0, 1, 1],
   completedOptionsStart: [0, 0, 1, 1],
-
   connections: [6, 7, 10, 10],
-
 };
 
 allEmperorEvents.push(emperor_Coin_Vote);
@@ -1527,7 +1408,6 @@ const emperor_Coin_Vote_Wand = {
 };
 
 allEmperorEvents.push(emperor_Coin_Vote_Wand);
-
 
 // 8
 const emperor_Cup_Vote_Stoke = {
@@ -1631,18 +1511,282 @@ const emperor_Main_Leave = {
 
 allEmperorEvents.push(emperor_Main_Leave);
 
+// The Hierophant ////////////////////////
+
+// 0
+const hierophant_Main = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'voting',
+  flavorTextDescription: 'The adventurer pushes hard against two large doors that whine in resistance, but ultimately swing open into what appears to be a run down church. Pews are knocked over, and torn tapestries litter the floor or hang by a thread on the walls. Once colorful stained glass windows have gaping holes revealing a swirling blackness outside. Towards the front of the room sits a towering organ, the only item in pristine condition in the room. On a worn out piano bench sits a man in tattered religious clothes. His hands move over the keys as if to play them but they’re too high. Instead his fingers hauntingly twitch through the air. The doors slam behind the adventurer, startling him and alerting the dark priest to his presence. He rises and turns to look at the adventurer. If the puppet-like way he moved wasn’t sinister enough, the shadow covering his face is. It covers only half of his features, however, shrouding the right side with shade and replacing his blue eye with a large, red, demonic one.',
+  tldrDescription: 'The adventurer comes across an abandoned and run-down cult gathering lead by a corrupt religious head. What should he do?',
+  options: ['Attack', 'Play', 'Talk', 'Discover'],
+  optionsFlavor: ['', 'The organ stands out amongst the eerie backdrop, as though yearning to be played.', 'Is the priest consumed by the darkness, or it he still partly human? Can we save him?', 'What secrets do the shadows hide?'],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [1, 0, 0, 0],
+  completedOptionsStart: [1, 0, 0, 0],
+  connections: [1, 1, 2, 3],
+};
+
+allHierophantEvents.push(hierophant_Main);
+
+// 1
+const hierophant_Wand = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'voting',
+  flavorTextDescription: 'The adventurer takes a seat on the rather creaky bench and stares at the keys in front of him. Time has taken its toll on them, leaving scratches and brown stains on what were likely once shiny white keys. He wonders what kind of music he should make with them.',
+  tldrDescription: 'The adventurer decides to play the organ. What kind of music should he play?',
+  options: ['Classical', 'Whimsical', 'Save', 'Discover'],
+  optionsFlavor: ['Play something courtly and classical.', 'Play something whimsical and improvised.', '', ''],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 1, 1],
+  completedOptionsStart: [0, 0, 1, 1],
+  connections: [4, 5, 2, 3],
+};
+
+allHierophantEvents.push(hierophant_Wand);
+
+// 2
+const hierophant_Cup = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'voting',
+  flavorTextDescription: 'The priest parts his lips as if to speak but all that emanates from his mouth is a gurgle followed by a hellish shriek. He looks as though he is pain, though he may be lost to the demon altogether. What should we do?',
+  tldrDescription: 'The adventurer decides to talk to the priest. Should he try to save him, or kill him?',
+  options: ['Kill', 'Whimsical', 'Save', 'Discover'],
+  optionsFlavor: ['Show him mercy and kill him.', '', 'Try to save him.', ''],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 1, 0, 1],
+  completedOptionsStart: [0, 1, 0, 1],
+  connections: [6, 0, 7, 0],
+};
+
+allHierophantEvents.push(hierophant_Cup);
+
+// 3
+const hierophant_Coin = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'voting',
+  flavorTextDescription: 'The adventurer moves to the window to peer outside. To his alarm, a pale hand with abnormally long fingernails extends from the darkness. It holds an offering bowl.',
+  tldrDescription: 'The adventurer decides to discover the secrets of the shadows and finds an offering bowl. Should he place gold in it?',
+  options: ['Yes', 'No', 'Save', 'Discover'],
+  optionsFlavor: ['Put gold in the bowl.', 'Hold on to our gold, we can use it for better things later.', '', ''],
+  voteOption: ['Sword', 'Wand', 'Cup', 'Coin'],
+  completedOptions: [0, 0, 1, 1],
+  completedOptionsStart: [0, 0, 1, 1],
+  connections: [9, 10, 2, 3],
+};
+
+allHierophantEvents.push(hierophant_Coin);
+
+// 4
+const hierophant_Wand_Sword = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'resolution',
+  flavorTextDescription: 'The adventurer tries to play something...classical.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 0, 0, 0],
+  text: ['The adventurer begins playing at a tempo that is not too fast but not too slow either. The notes ring out from the pipes and echo through the chamber. It’s a sweet sound, one that doesn’t belong in the dark ruins of a once divine place. For a moment it almost seems as though light returns to the room, revealing a place where people once came to give thanks for the lives they lived. The voices of patrons past can be heard chanting along to the song. The adventurer clings to this harmony, and commits it to memory as his piece concludes as soothing as it began.', 'The adventurer tries to recall a piece he learned during childhood, but he can only remember remnants. His fingers fumble on the keys and he eventually gives up in a huff of frustration, realizing that he quit playing all those years ago because he had no ear for music. What was the point of playing without an audience, anyways?'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Intelligence",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', 'Charisma'],
+    ['Intelligence'],
+  ],  
+  effectPower: [
+    [1, 2],
+    [-1],
+  ],
+};
+
+allHierophantEvents.push(hierophant_Wand_Sword);
+
+// 5
+const hierophant_Wand_Wand = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'resolution',
+  flavorTextDescription: 'The adventurer tries to play something...whimsical.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 0, 0, 0],
+  text: ['The adventurer takes a deep breath as he takes a seat. He pauses for only a moment before his fingers begin to fly across the ivory and create brand new music. The adventurer follows his instincts to formulate a melody as he goes. The tempo is quick and full of life and vigor. He finishes with a flourish, bouncing his fingers off of the final notes and leaving them suspended in the air. The adventurer can hear a rustle in the rubble nearby, from which springs the pages of a musical score drawn to the adventurers music. Reading it reveals a song used both for praise and for protection in battle.', 'The adventurer tries to make a sound on the organ but nothing comes out, as if the organ is denying him. He presses more violently on the keys but they do not respond to him. “Looks like it was a piece of junk after all,” the adventurer says to himself, rising from the bench and beginning to walk away. Suddenly a piece of stone falls from the ceiling above onto the organ, sounding all its notes in one final taunt to the adventurer before it crumbles.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Intelligence",
+  outcomes: 2,
+  effectStats: [
+    ['Intelligence', 'Strength'],
+    ['Intelligence'],
+  ],  
+  effectPower: [
+    [1, 2],
+    [-1],
+  ],
+};
+
+allHierophantEvents.push(hierophant_Wand_Wand);
+
+// 6
+const hierophant_Cup_Sword = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'resolution',
+  flavorTextDescription: 'The adventurer tries to kill the priest.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 0, 0, 0],
+  text: ['The priest falls, and with him the demon. The shadow dissipates from his now lifeless body and seeps into the cracks of the floor beneath him. Left behind is a blood colored orb, which the adventurer collects. He moves to leave, but hesitates. He returns to the body and lowers the eyelids, wishing the man well in the afterlife as he does so.'],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Strength",
+  outcomes: 1,
+  effectStats: [
+    ['Strength', 'Charisma'],
+  ],  
+  effectPower: [
+    [2, 1],
+  ],
+};
+
+allHierophantEvents.push(hierophant_Cup_Sword);
+
+// 7
+const hierophant_Cup_Cup = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'resolution',
+  flavorTextDescription: 'The adventurer tries to save the priest.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 8, 0, 0],
+  text: ['The adventurer begins to chant, using an ancient spell to will the demon to return from where it came from. The priest writhes and a terrible, indescribable sound leaves his mouth. The shadow slowly peels itself from his face as if it was stuck there by adhesive. It drops to the ground, producing limbs from its shapeless body with which is scurries into a dark corner and disappears. The priest watches in a combination of horror and relief as the being that was once a part of him vanishes. “Thank you stranger, I have little to offer you as thanks but perhaps my holy skills may be of some use to you.”', 'The adventurer brings his hands together and begins to pray in hopes of banishing the shade. It reels before using the priest to pounce at the adventurer, delivering a powerful blow to his chest and knocking him over. His head comes crashing down on a piece of rubble. The possessed preacher raises his arms for another critical blow but the adventurer barely rolls away. He notices a slight wobble as he stands as well as a warm sensation on the back of his head. The priest, now crawling on the ground on all fours in a way reminiscent of a spider, prepares for another strike.'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Charisma",
+  outcomes: 2,
+  effectStats: [
+    ['Charisma', 'Health'],
+    ['Charisma', 'Health'],
+  ],  
+  effectPower: [
+    [1, 10],
+    [-1, -10],
+  ],
+  constraint: true,
+  constraintResult: [0, 1],
+};
+
+allHierophantEvents.push(hierophant_Cup_Cup);
+
+// 8
+const hierophant_Cup_Cup_Kill = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'resolution',
+  flavorTextDescription: 'The adventurer must fight the priest.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 0, 0, 0],
+  text: ['The priest unceremoniously crumples to the ground, but quickly disappears as if he were made of smoke. The only indication that there was ever a person there are the clerical garments he left behind. They’re conveniently adventurer sized.', 'The priest unceremoniously crumples to the ground, but quickly disappears as if he were made of smoke. The only indication that there was ever a person there are the clerical garments he left behind. They’re conveniently adventurer sized.'],
+  dice: 4,
+  threshold: [2, 0],
+  statNeeded: "Charisma",
+  outcomes: 2,
+  effectStats: [
+    ['Luck'],
+    ['Luck'],
+  ],  
+  effectPower: [
+    [1],
+    [1],
+  ],
+};
+
+allHierophantEvents.push(hierophant_Cup_Cup_Kill);
+
+// 9
+const hierophant_Coin_Sword = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'resolution',
+  flavorTextDescription: 'The adventurer puts gold in the bowl.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 0, 0, 0],
+  text: ['The hand retracts into the darkness, but soon reappears with a single finger reaching out towards the adventurer. It strains for his forehead but makes contact, and the adventurer feels a pulse of energy shoot throughout his entire body. The hand disappears, though not without an inconspicuous but somewhat friendly wave first.', 'The hand shuffles the bowl around a little bit as if checking to see how much it weighs. It withdraws into the same patch of shadow it emerged from. The adventurer stands at the window waiting for some kind of reward, but there are no signs of anything happening in the void beyond. Looks like the fiend stole his money!'],
+  dice: 4,
+  threshold: [7, 0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    ['Health', 'Strength', 'Gold'],
+    ['Luck', 'Gold'],
+  ],  
+  effectPower: [
+    [5, 1, -5],
+    [-1, -5],
+  ],
+};
+
+allHierophantEvents.push(hierophant_Coin_Sword);
+
+// 10
+const hierophant_Coin_Wand = {
+  title: 'The Hierophant',
+  name: 'hierophant',
+  type: 'resolution',
+  flavorTextDescription: 'The adventurer does not put any gold in the bowl.',
+  tldrDescription: '',
+  options: [],
+  completedOptions: [0, 0, 0, 0],
+  completedOptionsStart: [0, 0, 0, 0],
+  connections: [0, 0, 0, 0],
+  text: ['As the adventurer begins to walk away holding onto his gold, the nails curl inward and a faint scream can be heard as the hand returns to the darkness. Hopefully that did not upset anyone.'],
+  dice: 4,
+  threshold: [0],
+  statNeeded: "Luck",
+  outcomes: 2,
+  effectStats: [
+    [],
+  ],  
+  effectPower: [
+    [],
+  ],
+};
+
+allHierophantEvents.push(hierophant_Coin_Wand);
+
 
 // Push all main events to all Events list
 
-allEvents.push(allMagicianEvents);
-allEvents.push(allHighPreistessEvents);
+//allEvents.push(allMagicianEvents);
+//allEvents.push(allHighPreistessEvents);
 allEvents.push(allEmpressEvents);
 //allEvents.push(allChariotEvents);
-allEvents.push(allEmperorEvents);
+//allEvents.push(allEmperorEvents);
+//allEvents.push(allHierophantEvents);
 
-
-const timeToVote = 30;
-const timeToWait = 15;
+const timeToVote = 10;
+const timeToWait = 10;
 
 let voteTimer = timeToVote;
 
@@ -1733,7 +1877,6 @@ setInterval(() => {
 
 
       previousEvent = currentEvent;
-      
       
       
       if(currentEvent.connections[0] == 0 && eventConstraint == false && currentEvent.constraint == false){
