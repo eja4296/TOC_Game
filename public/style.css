@@ -14,8 +14,11 @@ html {
 
 html, input {
   overflow-y: scroll;
-  background-color: white;
+  background-color: black;
+  color: white;
   font-family:
+    'VT323',
+    monospace,
     "HelveticaNeue-Light",
     "Helvetica Neue Light",
     "Helvetica Neue",
@@ -23,6 +26,14 @@ html, input {
     Arial,
     "Lucida Grande",
     sans-serif;
+}
+
+
+button{
+  font-family: 'VT323', monospace;
+  background: black;
+  color: white;
+  border: 1px solid white;
 }
 
 html, body {
@@ -84,7 +95,7 @@ ul {
 }
 
 .login.page .gameTitle, .main.page .gameTitle, .gameOver.page .gameTitle{
-  font-family: 'Uncial Antiqua', cursive;
+  
   font-size: 3em;
   margin-bottom: 100px;
   text-align: center;
@@ -132,26 +143,30 @@ ul {
 
 .messages {
   font-size: 150%;
-  background-color: white;
+  background-color: black;
+  color: white;
 }
 
 .inputMessage {
   font-size: 100%;
-  background-color: white;
+  background-color: black;
+  color: white
 }
 
 .log {
-  color: gray;
+  color: white;
   font-size: 70%;
   margin: 5px;
   text-align: center;
+  
 }
 
 /* Messages */
 
 .chatArea {
   height: 95%;
-  
+  background-color: black;
+  color: white;
 }
 
 .messages {
@@ -162,7 +177,7 @@ ul {
 }
 
 .message.typing .messageBody {
-  color: gray;
+  color: white;
 }
 
 .username {
@@ -175,7 +190,7 @@ ul {
 /* Input */
 
 .inputMessage {
-  border: 5px solid #000;
+  border: 3px solid gray;
   
   bottom: 0;
   height: 5%;
@@ -186,6 +201,7 @@ ul {
   display: block;
   right: 0;
   width: 100%;
+  color: white;
 }
 
 
@@ -201,11 +217,11 @@ ul {
   position: relative;
   width: 100%;
   text-align: center;
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: gray;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-family: 'Uncial Antiqua', cursive;
+  
   font-size: 2em;
 }
 
@@ -324,7 +340,7 @@ ul {
   position: relative;
   width: 100%;
   float: left;
-  
+  border: 1px solid gray;
   box-shadow: 1px 1px 3px black;
 }
 
@@ -413,11 +429,12 @@ ul {
     text-decoration: underline;
     padding-left: 20px;
     height: 25px;
+  font-size: 1.5em;
   }
 
 #rightSide #dropdowns #event #eventDescriptionTLDR{
     position: relative;
-    width: 90%;
+    width: 100%;
     float: left;
     padding-left: 20px;
     padding-right: 10px;
@@ -431,7 +448,8 @@ ul {
     float: left;
     box-shadow: 1px 1px 3px black;
     margin: 5px; 
-    border: 1px solid black
+    border: 1px solid white;
+    border-radius: 1px;
   }
 
 #rightSide #dropdowns #secondEvent #secondEventImage{
@@ -507,8 +525,9 @@ ul {
   margin-left: 5%;
   margin-right: 5%;
   outline: none;
-  border: 1px solid black;
-  background-color: white;
+  color: white;
+  border: 1px solid white;
+  background-color: gray;
 }
 
 #rightSide #dropdowns #vote ul li .choice{
@@ -616,9 +635,10 @@ ul {
   outline: none;
   border-right: none;
   border-left: none;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  background-color: black;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  background-color: gray;
+  color: black;
   background-image: url("media/dropdownIcon_Down.png");
   background-repeat: no-repeat;
   background-position: center; 
@@ -635,17 +655,30 @@ ul {
   height: 100%;
   width: 25%;
   position: fixed;
-  
+  background-color: black;
+  color: white;
   right: 0px;
   
 }
 
 #leftSide .chatArea{
-  border-left: 5px solid black;
-  
+  border-left: 3px solid gray;
+  background-color: black;
+  color: white;
 }
 
-
+#startButton{
+  position: relative;
+  width: 50%;
+  left: 25%;
+  margin-right: 25%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 2em;
+  background-color: black;
+  color: white;
+}
 
 
 @media screen and (max-width: 768px) {
@@ -678,7 +711,7 @@ ul {
     left: 0;
     width: 100%;
     height: 25%;
-    background-color: white;
+    background-color: black;
   }
   
   #leftSide{
@@ -720,7 +753,7 @@ ul {
 
   
   #rightSide #dropdowns #secondStats #foolStuff #fool{
-
+  
   width: 45%;
   left: 2.5%;
   margin-right: 2.5%;

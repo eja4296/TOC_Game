@@ -100,36 +100,7 @@ $(() => {
   // Load event function
   // Loads all information about the current event
 
-  /*
-  const loadEvent = (eventCard) => {
-    // Add information about the event to the client page
-    document.querySelector('#eventTitle').innerHTML = `<h2>${eventCard.title}</h2>`;
-    document.querySelector('#eventImage').src = `media/${eventCard.name}.jpg`;
-    document.querySelector('#description').innerHTML = eventCard.flavorTextDescription;
-    document.querySelector('#textOverlay').innerHTML = eventCard.flavorTextDescription;
-
-    // Only display necessary options and buttons
-    for (let i = 0; i < 4; i++) {
-      if (eventCard.options && eventCard.options[i] && eventCard.completedOptions[i] == 0) {
-        document.querySelector(`#button${i}`).style.display = 'block';
-        document.querySelector(`#option${i}`).innerHTML = `${voteLetters[i]}. (${eventCard.options[i]}) ${eventCard.optionsFlavor[i]}`;
-      } else {
-        document.querySelector(`#option${i}`).innerHTML = '';
-        document.querySelector(`#button${i}`).style.display = 'none';
-      }
-    }
-  };
-
-  const loadResolution = (eventCard, index) => {
-    // Add information about the event to the client page
-
-    document.querySelector('#eventTitle').innerHTML = `<h2>${eventCard.title}</h2>`;
-    document.querySelector('#eventImage').src = `media/${eventCard.name}.jpg`;
-    document.querySelector('#description').innerHTML = `${eventCard.flavorTextDescription}<br><br>${eventCard.resolution.text[index]}`;
-    document.querySelector('#textOverlay').innerHTML = `${eventCard.flavorTextDescription}<br><br>${eventCard.resolution.text[index]}`;
-    // document.querySelector("#textOverlay").innerHTML = eventCard.description;
-  };
-  */
+  
 
   // Add Participant Message function
   // Provide information about the number of players in the game
@@ -321,25 +292,7 @@ $(() => {
 
   
   const userVote = (e) => {
-    /*
-    //console.log(e.target.value);
-    switch(e.target.value){
-      case "Sword":
-        playerVote = 
-        break;
-      case "Wand":
-        console.log(e.target.value);
-        break;
-      case "Cup":
-        console.log(e.target.value);
-        break;
-      case "Coin":
-        console.log(e.target.value);
-        break;
-      default:
-        break;
-    }
-    */
+
     
     
     playerVote = e.target.value;
@@ -348,11 +301,11 @@ $(() => {
 
     if(playerVote != playerPreviousVote){
       socket.emit('playerVote', playerVote, playerVoteWeight, playerPreviousVote, playerVoted, username);
-      buttonA.style.border = "1px solid black";
-      buttonB.style.border = "1px solid black";
-      buttonC.style.border = "1px solid black";
-      buttonD.style.border = "1px solid black";
-      e.target.style.border = "3px solid black";
+      buttonA.style.border = "1px solid white";
+      buttonB.style.border = "1px solid white";
+      buttonC.style.border = "1px solid white";
+      buttonD.style.border = "1px solid white";
+      e.target.style.border = "3px solid white";
       document.querySelector("#userVoteChoice").innerHTML = e.target.value;
     }
     
@@ -465,86 +418,6 @@ $(() => {
   
   startButton.addEventListener('click', startGame);
   
-  /*
-  // Get votes function
-  // Gets the votes from the server each time a player votes
-  // Displays votes to the screen
-  // "data" is the votes array on the server side
-  const getVotes = (data) => {
-    vA = data.votes[0];
-    vB = data.votes[1];
-    vC = data.votes[2];
-    vD = data.votes[3];
-
-    // Update visual
-    $voteA.text(`Votes for A: ${vA}`);
-    $voteB.text(`Votes for C: ${vB}`);
-    $voteC.text(`Votes for C: ${vC}`);
-    $voteD.text(`Votes for C: ${vD}`);
-  };
-
-  // Handle each type of vote
-  // Each of these four functions are connected to the different voting buttons
-  const voteForA = () => {
-    if (playerVoted == false) {
-      socket.emit('voting', 0, playerVoteWeight);
-      playerVote = 'A';
-      voteChoices[0] += 1;
-      playerVoteIndex = 0;
-      playerVoted = true;
-    }
-  };
-  const voteForB = () => {
-    if (playerVoted == false) {
-      socket.emit('voting', 1, playerVoteWeight);
-      playerVote = 'B';
-      voteChoices[1] += 1;
-      playerVoteIndex = 1;
-      playerVoted = true;
-    }
-  };
-  const voteForC = () => {
-    if (playerVoted == false) {
-      socket.emit('voting', 2, playerVoteWeight);
-      playerVote = 'C';
-      voteChoices[2] += 1;
-      playerVoteIndex = 2;
-      playerVoted = true;
-    }
-  };
-  const voteForD = () => {
-    if (playerVoted == false) {
-      socket.emit('voting', 3, playerVoteWeight);
-      playerVote = 'D';
-      voteChoices[3] += 1;
-      playerVoteIndex = 3;
-      playerVoted = true;
-    }
-  };
-
-
-  const startGame = (data) => {
-    socket.emit('start game');
-  };
-
-  // Reset votes on the client and server side
-  const resetVotes = () => {
-    vA = 0;
-    vB = 0;
-    vC = 0;
-    vD = 0;
-
-    socket.emit('resetVotes');
-  };
-
-  // Add the event listeners for the buttons
-  buttonA.addEventListener('click', voteForA);
-  buttonB.addEventListener('click', voteForB);
-  buttonC.addEventListener('click', voteForC);
-  buttonD.addEventListener('click', voteForD);
-
-  startButton.addEventListener('click', startGame);
-  */
   // Keyboard events
   $window.keydown((event) => {
     // Auto-focus the current input when a key is typed
