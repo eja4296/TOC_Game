@@ -479,6 +479,7 @@ ul {
   width: 100%;
   font-weight: bold;
   padding-top: 5px;
+  color: white;
 }
 
 #rightSide #dropdowns #vote #voteInformation{
@@ -498,6 +499,7 @@ ul {
 
 #rightSide #dropdowns #vote #voteTimerNum, #rightSide #dropdowns #vote #userVoteChoice, #rightSide #dropdowns #vote #weight{
   display: inline;
+  color: white;
 }
 
 #rightSide #dropdowns #vote ul{

@@ -615,7 +615,7 @@ $(() => {
 
       if(eventCard.type == "voting"){
         document.querySelector('#eventTitle').innerHTML = eventCard.title;
-        document.querySelector('#eventPicture').src = `media/${eventCard.name}.png`;
+       
         document.querySelector('#secondEventPicture').src = `media/${eventCard.name}.png`;
         
         if(finalVote){
@@ -724,7 +724,7 @@ $(() => {
       document.querySelector("#voteTimerNum").style.color = "red";
     }
     else{
-      document.querySelector("#voteTimerNum").style.color = "black";
+      document.querySelector("#voteTimerNum").style.color = "white";
     }
   });
   
