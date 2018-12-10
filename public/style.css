@@ -717,9 +717,11 @@ ul {
   
 .main.page button, .gameOver.page button{
   position: relative;
-  width: 40%;
-  left: 30%;
+  width: 75%;
+  left: 15%;
+  margin-right: 15%;
   padding: 10px;
+  margin-bottom: 10px;
 }
   
 
