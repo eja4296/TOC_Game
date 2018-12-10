@@ -1775,8 +1775,8 @@ allEvents.push(allChariotEvents);
 allEvents.push(allEmperorEvents);
 allEvents.push(allHierophantEvents);
 
-const timeToVote = 8;
-const timeToWait = 8;
+const timeToVote = 30;
+const timeToWait = 15;
 
 let voteTimer = timeToVote;
 
