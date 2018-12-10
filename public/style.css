@@ -34,6 +34,7 @@ button{
   background: black;
   color: white;
   border: 1px solid white;
+  cursor: pointer;
 }
 
 html, body {
@@ -108,9 +109,11 @@ ul {
 .main.page button, .gameOver.page button{
   position: relative;
   width: 10%;
-  left: 45%;
+  left: 40%;
   padding: 10px;
 }
+
+
 
 .login.page #welcome{
   margin-bottom: 25px;
@@ -681,7 +684,7 @@ ul {
   color: white;
 }
 
-#startButton{
+#startButton, #tutorialButton{
   position: relative;
   width: 50%;
   left: 25%;
@@ -692,6 +695,11 @@ ul {
   font-size: 2em;
   background-color: black;
   color: white;
+}
+
+#tutorial a{
+  color: white;
+  text-decoration: none;
 }
 
 
@@ -713,6 +721,8 @@ ul {
   left: 30%;
   padding: 10px;
 }
+  
+
   
   #voteArea{
     display: none;
