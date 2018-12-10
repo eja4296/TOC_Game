@@ -1775,8 +1775,8 @@ allEvents.push(allChariotEvents);
 allEvents.push(allEmperorEvents);
 allEvents.push(allHierophantEvents);
 
-const timeToVote = 30;
-const timeToWait = 15;
+const timeToVote = 8;
+const timeToWait = 8;
 
 let voteTimer = timeToVote;
 
@@ -1938,75 +1938,81 @@ setInterval(() => {
             for(let i = 0; i < currentEvent.effectStats[rng].length; i++){
               switch(currentEvent.effectStats[rng][i]){
                 case "Health":
-                  if(fool.health + currentEvent.effectPower[rng][i] < foolMax.health){
-                      fool.health += currentEvent.effectPower[rng][i];
+                  if(fool.health + currentEvent.effectPower[rng][i] > foolMax.health){
+                      fool.health = foolMax.health;
                   }
                   else if(fool.health + currentEvent.effectPower[rng][i] <= 0){
                     fool.health = 0;
                     
                   }
                   else{
-                    fool.health = foolMax.health;
+                    fool.health += currentEvent.effectPower[rng][i];
+                    
                   }
                   break;
                 case "Strength":
 
-                  if(fool.strength + currentEvent.effectPower[rng][i] < foolMax.strength){
-                      fool.strength += currentEvent.effectPower[rng][i];
+                  if(fool.strength + currentEvent.effectPower[rng][i] > foolMax.strength){
+                      fool.strength = foolMax.strength;
                   }
                   else if(fool.strength + currentEvent.effectPower[rng][i] <= 1){
                     fool.strength = 1;
                   }
                   else{
-                    fool.strength = foolMax.strength;
+                    
+                    fool.strength += currentEvent.effectPower[rng][i];
                   } 
                   break;
                 case "Intelligence":
 
-                  if(fool.intelligence + currentEvent.effectPower[rng][i] < foolMax.intelligence){
-                      fool.intelligence += currentEvent.effectPower[rng][i];
+                  if(fool.intelligence + currentEvent.effectPower[rng][i] > foolMax.intelligence){
+                      fool.intelligence = foolMax.intelligence;
                   }
                   else if(fool.intelligence + currentEvent.effectPower[rng][i] <= 1){
                     fool.intelligence = 1;
                   }
                   else{
-                    fool.intelligence = foolMax.intelligence;
+                    
+                    fool.intelligence += currentEvent.effectPower[rng][i];
                   }
                   break;
                 case "Charisma":
 
-                  if(fool.charisma + currentEvent.effectPower[rng][i] < foolMax.charisma){
-                      fool.charisma += currentEvent.effectPower[rng][i];
+                  if(fool.charisma + currentEvent.effectPower[rng][i] > foolMax.charisma){
+                      fool.charisma = foolMax.charisma;
                   }
                   else if(fool.charisma + currentEvent.effectPower[rng][i] <= 1){
                     fool.charisma = 1;
                   }
                   else{
-                    fool.charisma = foolMax.charisma;
+                    
+                    fool.charisma += currentEvent.effectPower[rng][i];
                   }
                   break;
                 case "Luck":
 
-                  if(fool.luck + currentEvent.effectPower[rng][i] < foolMax.luck){
-                      fool.luck += currentEvent.effectPower[rng][i];
+                  if(fool.luck + currentEvent.effectPower[rng][i] > foolMax.luck){
+                      fool.luck = foolMax.luck;
                   }
                   else if(fool.luck + currentEvent.effectPower[rng][i] <= 1){
                     fool.luck = 1;
                   }
                   else{
-                    fool.luck = foolMax.luck;
+                    
+                    fool.luck += currentEvent.effectPower[rng][i];
                   }
                   break;
                 case "Gold":
 
-                  if(fool.gold + currentEvent.effectPower[rng] [i]< foolMax.gold){
-                      fool.gold += currentEvent.effectPower[rng][i];
+                  if(fool.gold + currentEvent.effectPower[rng] [i]> foolMax.gold){
+                      fool.gold = foolMax.gold;
                   }
                   else if(fool.gold + currentEvent.effectPower[rng][i] <= 0){
                     fool.gold = 0;
                   }
                   else{
-                    fool.gold = foolMax.gold;
+                    
+                    fool.gold += currentEvent.effectPower[rng][i];
                   }
                   break;
                 default:

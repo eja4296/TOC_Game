@@ -339,15 +339,15 @@ $(() => {
     //statDropdownActive = !statDropdownActive;
     if(document.querySelector("#secondStats").style.display == "block"){
       document.querySelector("#secondStats").style.display = "none";
-      statDropdownButton.style.borderTop = "1px solid black";
-      statDropdownButton.style.borderBottom = "1px solid black";
+      statDropdownButton.style.borderTop = "1px solid white";
+      statDropdownButton.style.borderBottom = "1px solid white";
       statDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Down.png')";
       
     }
     else{
       document.querySelector("#secondStats").style.display = "block";
-      statDropdownButton.style.borderTop = "3px solid black";
-      statDropdownButton.style.borderBottom = "3px solid black";
+      statDropdownButton.style.borderTop = "3px solid white";
+      statDropdownButton.style.borderBottom = "3px solid white";
        statDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Up.png')";
       
     }
@@ -358,16 +358,16 @@ $(() => {
   const eventDropdown = () => {
     if(document.querySelector("#secondEvent").style.display == "block"){
       document.querySelector("#secondEvent").style.display = "none";
-      eventDropdownButton.style.borderTop = "1px solid black";
-      eventDropdownButton.style.borderBottom = "1px solid black";
+      eventDropdownButton.style.borderTop = "1px solid white";
+      eventDropdownButton.style.borderBottom = "1px solid white";
        eventDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Down.png')";
       
 
     }
     else{
       document.querySelector("#secondEvent").style.display = "block";
-      eventDropdownButton.style.borderTop = "3px solid black";
-      eventDropdownButton.style.borderBottom = "3px solid black";
+      eventDropdownButton.style.borderTop = "3px solid white";
+      eventDropdownButton.style.borderBottom = "3px solid white";
       eventDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Up.png')";
     }
   }
@@ -377,15 +377,15 @@ $(() => {
   const voteDropdown = () => {
     if(document.querySelector("#secondVote").style.display == "block"){
       document.querySelector("#secondVote").style.display = "none";
-      voteDropdownButton.style.borderTop = "1px solid black";
-      voteDropdownButton.style.borderBottom = "1px solid black";
+      voteDropdownButton.style.borderTop = "1px solid white";
+      voteDropdownButton.style.borderBottom = "1px solid white";
        voteDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Down.png')";
 
     }
     else{
       document.querySelector("#secondVote").style.display = "block";
-      voteDropdownButton.style.borderTop = "3px solid black";
-      voteDropdownButton.style.borderBottom = "3px solid black";
+      voteDropdownButton.style.borderTop = "3px solid white";
+      voteDropdownButton.style.borderBottom = "3px solid white";
       voteDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Up.png')";
     }
   }
@@ -395,15 +395,15 @@ $(() => {
   const logDropdown = () => {
     if(document.querySelector("#secondGameLog").style.display == "block"){
       document.querySelector("#secondGameLog").style.display = "none";
-      logDropdownButton.style.borderTop = "1px solid black";
-      logDropdownButton.style.borderBottom = "1px solid black";
+      logDropdownButton.style.borderTop = "1px solid white";
+      logDropdownButton.style.borderBottom = "1px solid white";
        logDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Down.png')";
 
     }
     else{
       document.querySelector("#secondGameLog").style.display = "block";
-      logDropdownButton.style.borderTop = "3px solid black";
-      logDropdownButton.style.borderBottom = "3px solid black";
+      logDropdownButton.style.borderTop = "3px solid white";
+      logDropdownButton.style.borderBottom = "3px solid white";
       logDropdownButton.style.backgroundImage = "url('media/dropdownIcon_Up.png')";
     }
   }
@@ -558,10 +558,10 @@ $(() => {
 
     document.querySelector("#weight").innerHTML = playerVoteWeight;
     
-    buttonA.style.border = "1px solid black";
-    buttonB.style.border = "1px solid black";
-    buttonC.style.border = "1px solid black";
-    buttonD.style.border = "1px solid black";
+    buttonA.style.border = "1px solid white";
+    buttonB.style.border = "1px solid white";
+    buttonC.style.border = "1px solid white";
+    buttonD.style.border = "1px solid white";
     
     for(var i = 0; i < usernames.length; i++){
 
